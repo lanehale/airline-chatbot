@@ -1,0 +1,2467 @@
+{
+    "ABE": [
+        "ABE"
+    ],
+    "Allentown": [
+        "ABE"
+    ],
+    "Bethlehem": [
+        "ABE"
+    ],
+    "Easton": [
+        "ABE"
+    ],
+    "ABI": [
+        "ABI"
+    ],
+    "Abilene": [
+        "ABI"
+    ],
+    "ABQ": [
+        "ABQ"
+    ],
+    "Albuquerque": [
+        "ABQ"
+    ],
+    "ABR": [
+        "ABR"
+    ],
+    "Aberdeen": [
+        "ABR"
+    ],
+    "ABY": [
+        "ABY"
+    ],
+    "Albany": [
+        "ALB",
+        "ABY"
+    ],
+    "ACK": [
+        "ACK"
+    ],
+    "Nantucket": [
+        "ACK"
+    ],
+    "ACT": [
+        "ACT"
+    ],
+    "Waco": [
+        "ACT"
+    ],
+    "ACV": [
+        "ACV"
+    ],
+    "Arcata": [
+        "ACV"
+    ],
+    "Eureka": [
+        "ACV"
+    ],
+    "ACY": [
+        "ACY"
+    ],
+    "Atlantic City": [
+        "ACY"
+    ],
+    "ADK": [
+        "ADK"
+    ],
+    "Adak Island": [
+        "ADK"
+    ],
+    "ADQ": [
+        "ADQ"
+    ],
+    "Kodiak": [
+        "ADQ"
+    ],
+    "AEX": [
+        "AEX"
+    ],
+    "Alexandria": [
+        "AEX"
+    ],
+    "AGS": [
+        "AGS"
+    ],
+    "Augusta": [
+        "AGS"
+    ],
+    "AKN": [
+        "AKN"
+    ],
+    "King Salmon": [
+        "AKN"
+    ],
+    "ALB": [
+        "ALB"
+    ],
+    "ALO": [
+        "ALO"
+    ],
+    "Waterloo": [
+        "ALO"
+    ],
+    "ALS": [
+        "ALS"
+    ],
+    "Alamosa": [
+        "ALS"
+    ],
+    "ALW": [
+        "ALW"
+    ],
+    "Walla Walla": [
+        "ALW"
+    ],
+    "AMA": [
+        "AMA"
+    ],
+    "Amarillo": [
+        "AMA"
+    ],
+    "ANC": [
+        "ANC"
+    ],
+    "Anchorage": [
+        "ANC"
+    ],
+    "APN": [
+        "APN"
+    ],
+    "Alpena": [
+        "APN"
+    ],
+    "ART": [
+        "ART"
+    ],
+    "Watertown": [
+        "ART",
+        "ATY"
+    ],
+    "ASE": [
+        "ASE"
+    ],
+    "Aspen": [
+        "ASE"
+    ],
+    "ATL": [
+        "ATL"
+    ],
+    "Atlanta": [
+        "ATL"
+    ],
+    "ATW": [
+        "ATW"
+    ],
+    "Appleton": [
+        "ATW"
+    ],
+    "ATY": [
+        "ATY"
+    ],
+    "AUS": [
+        "AUS"
+    ],
+    "Austin": [
+        "AUS"
+    ],
+    "AVL": [
+        "AVL"
+    ],
+    "Asheville": [
+        "AVL"
+    ],
+    "AVP": [
+        "AVP"
+    ],
+    "Scranton": [
+        "AVP"
+    ],
+    "Wilkes-Barre": [
+        "AVP"
+    ],
+    "AZA": [
+        "AZA"
+    ],
+    "Phoenix": [
+        "PHX",
+        "AZA"
+    ],
+    "AZO": [
+        "AZO"
+    ],
+    "Kalamazoo": [
+        "AZO"
+    ],
+    "BDL": [
+        "BDL"
+    ],
+    "Hartford": [
+        "BDL"
+    ],
+    "BET": [
+        "BET"
+    ],
+    "Bethel": [
+        "BET"
+    ],
+    "BFF": [
+        "BFF"
+    ],
+    "Scottsbluff": [
+        "BFF"
+    ],
+    "BFL": [
+        "BFL"
+    ],
+    "Bakersfield": [
+        "BFL"
+    ],
+    "BFM": [
+        "BFM"
+    ],
+    "Mobile": [
+        "BFM",
+        "MOB"
+    ],
+    "BGM": [
+        "BGM"
+    ],
+    "Binghamton": [
+        "BGM"
+    ],
+    "BGR": [
+        "BGR"
+    ],
+    "Bangor": [
+        "BGR"
+    ],
+    "BHM": [
+        "BHM"
+    ],
+    "Birmingham": [
+        "BHM"
+    ],
+    "BIH": [
+        "BIH"
+    ],
+    "Bishop": [
+        "BIH"
+    ],
+    "BIL": [
+        "BIL"
+    ],
+    "Billings": [
+        "BIL"
+    ],
+    "BIS": [
+        "BIS"
+    ],
+    "Bismarck": [
+        "BIS"
+    ],
+    "Mandan": [
+        "BIS"
+    ],
+    "BJI": [
+        "BJI"
+    ],
+    "Bemidji": [
+        "BJI"
+    ],
+    "BKG": [
+        "BKG"
+    ],
+    "Branson": [
+        "BKG"
+    ],
+    "BLI": [
+        "BLI"
+    ],
+    "Bellingham": [
+        "BLI"
+    ],
+    "BLV": [
+        "BLV"
+    ],
+    "Belleville": [
+        "BLV"
+    ],
+    "BMI": [
+        "BMI"
+    ],
+    "Bloomington": [
+        "BMI"
+    ],
+    "Normal": [
+        "BMI"
+    ],
+    "BNA": [
+        "BNA"
+    ],
+    "Nashville": [
+        "BNA"
+    ],
+    "BOI": [
+        "BOI"
+    ],
+    "Boise": [
+        "BOI"
+    ],
+    "BOS": [
+        "BOS"
+    ],
+    "Boston": [
+        "BOS"
+    ],
+    "BPT": [
+        "BPT"
+    ],
+    "Beaumont": [
+        "BPT"
+    ],
+    "Port Arthur": [
+        "BPT"
+    ],
+    "BQK": [
+        "BQK"
+    ],
+    "Brunswick": [
+        "BQK"
+    ],
+    "BQN": [
+        "BQN"
+    ],
+    "Aguadilla": [
+        "BQN"
+    ],
+    "BRD": [
+        "BRD"
+    ],
+    "Brainerd": [
+        "BRD"
+    ],
+    "BRO": [
+        "BRO"
+    ],
+    "Brownsville": [
+        "BRO"
+    ],
+    "BRW": [
+        "BRW"
+    ],
+    "Barrow": [
+        "BRW"
+    ],
+    "BTM": [
+        "BTM"
+    ],
+    "Butte": [
+        "BTM"
+    ],
+    "BTR": [
+        "BTR"
+    ],
+    "Baton Rouge": [
+        "BTR"
+    ],
+    "BTV": [
+        "BTV"
+    ],
+    "Burlington": [
+        "BTV"
+    ],
+    "BUF": [
+        "BUF"
+    ],
+    "Buffalo": [
+        "BUF"
+    ],
+    "BUR": [
+        "BUR"
+    ],
+    "Burbank": [
+        "BUR"
+    ],
+    "BWI": [
+        "BWI"
+    ],
+    "Baltimore": [
+        "BWI"
+    ],
+    "BZN": [
+        "BZN"
+    ],
+    "Bozeman": [
+        "BZN"
+    ],
+    "CAE": [
+        "CAE"
+    ],
+    "Columbia": [
+        "CAE",
+        "COU"
+    ],
+    "CAK": [
+        "CAK"
+    ],
+    "Akron": [
+        "CAK"
+    ],
+    "CDB": [
+        "CDB"
+    ],
+    "Cold Bay": [
+        "CDB"
+    ],
+    "CDC": [
+        "CDC"
+    ],
+    "Cedar City": [
+        "CDC"
+    ],
+    "CDV": [
+        "CDV"
+    ],
+    "Cordova": [
+        "CDV"
+    ],
+    "CEC": [
+        "CEC"
+    ],
+    "Crescent City": [
+        "CEC"
+    ],
+    "CGI": [
+        "CGI"
+    ],
+    "Cape Girardeau": [
+        "CGI"
+    ],
+    "CHA": [
+        "CHA"
+    ],
+    "Chattanooga": [
+        "CHA"
+    ],
+    "CHO": [
+        "CHO"
+    ],
+    "Charlottesville": [
+        "CHO"
+    ],
+    "CHS": [
+        "CHS"
+    ],
+    "Charleston": [
+        "CHS",
+        "CRW"
+    ],
+    "CIC": [
+        "CIC"
+    ],
+    "Chico": [
+        "CIC"
+    ],
+    "CID": [
+        "CID"
+    ],
+    "Cedar Rapids": [
+        "CID"
+    ],
+    "Iowa City": [
+        "CID"
+    ],
+    "CIU": [
+        "CIU"
+    ],
+    "Sault Ste. Marie": [
+        "CIU"
+    ],
+    "CKB": [
+        "CKB"
+    ],
+    "Clarksburg": [
+        "CKB"
+    ],
+    "Fairmont": [
+        "CKB"
+    ],
+    "CLD": [
+        "CLD"
+    ],
+    "Carlsbad": [
+        "CLD"
+    ],
+    "CLE": [
+        "CLE"
+    ],
+    "Cleveland": [
+        "CLE"
+    ],
+    "CLL": [
+        "CLL"
+    ],
+    "College Station": [
+        "CLL"
+    ],
+    "Bryan": [
+        "CLL"
+    ],
+    "CLT": [
+        "CLT"
+    ],
+    "Charlotte": [
+        "CLT"
+    ],
+    "CMH": [
+        "CMH"
+    ],
+    "Columbus": [
+        "CMH",
+        "CSG",
+        "GTR",
+        "LCK"
+    ],
+    "CMI": [
+        "CMI"
+    ],
+    "Champaign": [
+        "CMI"
+    ],
+    "Urbana": [
+        "CMI"
+    ],
+    "CMX": [
+        "CMX"
+    ],
+    "Hancock": [
+        "CMX"
+    ],
+    "Houghton": [
+        "CMX"
+    ],
+    "CNY": [
+        "CNY"
+    ],
+    "Moab": [
+        "CNY"
+    ],
+    "COD": [
+        "COD"
+    ],
+    "Cody": [
+        "COD"
+    ],
+    "COS": [
+        "COS"
+    ],
+    "Colorado Springs": [
+        "COS"
+    ],
+    "COU": [
+        "COU"
+    ],
+    "CPR": [
+        "CPR"
+    ],
+    "Casper": [
+        "CPR"
+    ],
+    "CRP": [
+        "CRP"
+    ],
+    "Corpus Christi": [
+        "CRP"
+    ],
+    "CRW": [
+        "CRW"
+    ],
+    "Dunbar": [
+        "CRW"
+    ],
+    "CSG": [
+        "CSG"
+    ],
+    "CVG": [
+        "CVG"
+    ],
+    "Cincinnati": [
+        "CVG"
+    ],
+    "CWA": [
+        "CWA"
+    ],
+    "Mosinee": [
+        "CWA"
+    ],
+    "CYS": [
+        "CYS"
+    ],
+    "Cheyenne": [
+        "CYS"
+    ],
+    "DAB": [
+        "DAB"
+    ],
+    "Daytona Beach": [
+        "DAB"
+    ],
+    "DAL": [
+        "DAL"
+    ],
+    "Dallas": [
+        "DFW",
+        "DAL"
+    ],
+    "DAY": [
+        "DAY"
+    ],
+    "Dayton": [
+        "DAY"
+    ],
+    "DBQ": [
+        "DBQ"
+    ],
+    "Dubuque": [
+        "DBQ"
+    ],
+    "DCA": [
+        "DCA"
+    ],
+    "Washington": [
+        "IAD",
+        "DCA"
+    ],
+    "DDC": [
+        "DDC"
+    ],
+    "Dodge City": [
+        "DDC"
+    ],
+    "DEC": [
+        "DEC"
+    ],
+    "Decatur": [
+        "DEC"
+    ],
+    "DEN": [
+        "DEN"
+    ],
+    "Denver": [
+        "DEN"
+    ],
+    "DFW": [
+        "DFW"
+    ],
+    "Fort Worth": [
+        "DFW"
+    ],
+    "DHN": [
+        "DHN"
+    ],
+    "Dothan": [
+        "DHN"
+    ],
+    "DIK": [
+        "DIK"
+    ],
+    "Dickinson": [
+        "DIK"
+    ],
+    "DLG": [
+        "DLG"
+    ],
+    "Dillingham": [
+        "DLG"
+    ],
+    "DLH": [
+        "DLH"
+    ],
+    "Duluth": [
+        "DLH"
+    ],
+    "DRO": [
+        "DRO"
+    ],
+    "Durango": [
+        "DRO"
+    ],
+    "DRT": [
+        "DRT"
+    ],
+    "Del Rio": [
+        "DRT"
+    ],
+    "DSM": [
+        "DSM"
+    ],
+    "Des Moines": [
+        "DSM"
+    ],
+    "DTW": [
+        "DTW"
+    ],
+    "Detroit": [
+        "DTW"
+    ],
+    "DVL": [
+        "DVL"
+    ],
+    "Devils Lake": [
+        "DVL"
+    ],
+    "EAR": [
+        "EAR"
+    ],
+    "Kearney": [
+        "EAR"
+    ],
+    "EAT": [
+        "EAT"
+    ],
+    "Wenatchee": [
+        "EAT"
+    ],
+    "EAU": [
+        "EAU"
+    ],
+    "Eau Claire": [
+        "EAU"
+    ],
+    "ECP": [
+        "ECP"
+    ],
+    "Panama City": [
+        "ECP"
+    ],
+    "EFD": [
+        "EFD"
+    ],
+    "Houston": [
+        "IAH",
+        "HOU",
+        "EFD"
+    ],
+    "EGE": [
+        "EGE"
+    ],
+    "Eagle": [
+        "EGE"
+    ],
+    "EKO": [
+        "EKO"
+    ],
+    "Elko": [
+        "EKO"
+    ],
+    "ELM": [
+        "ELM"
+    ],
+    "Elmira": [
+        "ELM"
+    ],
+    "Corning": [
+        "ELM"
+    ],
+    "ELP": [
+        "ELP"
+    ],
+    "El Paso": [
+        "ELP"
+    ],
+    "ENV": [
+        "ENV"
+    ],
+    "Wendover": [
+        "ENV"
+    ],
+    "ERI": [
+        "ERI"
+    ],
+    "Erie": [
+        "ERI"
+    ],
+    "ESC": [
+        "ESC"
+    ],
+    "Escanaba": [
+        "ESC"
+    ],
+    "EUG": [
+        "EUG"
+    ],
+    "Eugene": [
+        "EUG"
+    ],
+    "EVV": [
+        "EVV"
+    ],
+    "Evansville": [
+        "EVV"
+    ],
+    "EWN": [
+        "EWN"
+    ],
+    "New Bern": [
+        "EWN"
+    ],
+    "Morehead": [
+        "EWN"
+    ],
+    "Beaufort": [
+        "EWN"
+    ],
+    "EWR": [
+        "EWR"
+    ],
+    "Newark": [
+        "EWR"
+    ],
+    "EYW": [
+        "EYW"
+    ],
+    "Key West": [
+        "EYW"
+    ],
+    "FAI": [
+        "FAI"
+    ],
+    "Fairbanks": [
+        "FAI"
+    ],
+    "FAR": [
+        "FAR"
+    ],
+    "Fargo": [
+        "FAR"
+    ],
+    "FAT": [
+        "FAT"
+    ],
+    "Fresno": [
+        "FAT"
+    ],
+    "FAY": [
+        "FAY"
+    ],
+    "Fayetteville": [
+        "FAY",
+        "XNA"
+    ],
+    "FCA": [
+        "FCA"
+    ],
+    "Kalispell": [
+        "FCA"
+    ],
+    "FLG": [
+        "FLG"
+    ],
+    "Flagstaff": [
+        "FLG"
+    ],
+    "FLL": [
+        "FLL"
+    ],
+    "Fort Lauderdale": [
+        "FLL"
+    ],
+    "FLO": [
+        "FLO"
+    ],
+    "Florence": [
+        "FLO"
+    ],
+    "FNL": [
+        "FNL"
+    ],
+    "Fort Collins": [
+        "FNL"
+    ],
+    "Loveland": [
+        "FNL"
+    ],
+    "FNT": [
+        "FNT"
+    ],
+    "Flint": [
+        "FNT"
+    ],
+    "FOD": [
+        "FOD"
+    ],
+    "Fort Dodge": [
+        "FOD"
+    ],
+    "FOE": [
+        "FOE"
+    ],
+    "Topeka": [
+        "FOE"
+    ],
+    "FSD": [
+        "FSD"
+    ],
+    "Sioux Falls": [
+        "FSD"
+    ],
+    "FSM": [
+        "FSM"
+    ],
+    "Fort Smith": [
+        "FSM"
+    ],
+    "FWA": [
+        "FWA"
+    ],
+    "Fort Wayne": [
+        "FWA"
+    ],
+    "GCC": [
+        "GCC"
+    ],
+    "Gillette": [
+        "GCC"
+    ],
+    "GCK": [
+        "GCK"
+    ],
+    "Garden City": [
+        "GCK"
+    ],
+    "GEG": [
+        "GEG"
+    ],
+    "Spokane": [
+        "GEG"
+    ],
+    "GFK": [
+        "GFK"
+    ],
+    "Grand Forks": [
+        "GFK"
+    ],
+    "GGG": [
+        "GGG"
+    ],
+    "Longview": [
+        "GGG"
+    ],
+    "GJT": [
+        "GJT"
+    ],
+    "Grand Junction": [
+        "GJT"
+    ],
+    "GNV": [
+        "GNV"
+    ],
+    "Gainesville": [
+        "GNV"
+    ],
+    "GPT": [
+        "GPT"
+    ],
+    "Gulfport": [
+        "GPT"
+    ],
+    "Biloxi": [
+        "GPT"
+    ],
+    "GRB": [
+        "GRB"
+    ],
+    "Green Bay": [
+        "GRB"
+    ],
+    "GRI": [
+        "GRI"
+    ],
+    "Grand Island": [
+        "GRI"
+    ],
+    "GRK": [
+        "GRK"
+    ],
+    "Killeen": [
+        "GRK"
+    ],
+    "GRR": [
+        "GRR"
+    ],
+    "Grand Rapids": [
+        "GRR"
+    ],
+    "GSO": [
+        "GSO"
+    ],
+    "Greensboro": [
+        "GSO"
+    ],
+    "High Point": [
+        "GSO"
+    ],
+    "GSP": [
+        "GSP"
+    ],
+    "Greer": [
+        "GSP"
+    ],
+    "GST": [
+        "GST"
+    ],
+    "Gustavus": [
+        "GST"
+    ],
+    "GTF": [
+        "GTF"
+    ],
+    "Great Falls": [
+        "GTF"
+    ],
+    "GTR": [
+        "GTR"
+    ],
+    "GUC": [
+        "GUC"
+    ],
+    "Gunnison": [
+        "GUC"
+    ],
+    "GUM": [
+        "GUM"
+    ],
+    "Guam": [
+        "GUM"
+    ],
+    "HDN": [
+        "HDN"
+    ],
+    "Hayden": [
+        "HDN"
+    ],
+    "HGR": [
+        "HGR"
+    ],
+    "Hagerstown": [
+        "HGR"
+    ],
+    "HHH": [
+        "HHH"
+    ],
+    "Hilton Head": [
+        "HHH"
+    ],
+    "HIB": [
+        "HIB"
+    ],
+    "Hibbing": [
+        "HIB"
+    ],
+    "HLN": [
+        "HLN"
+    ],
+    "Helena": [
+        "HLN"
+    ],
+    "HNL": [
+        "HNL"
+    ],
+    "Honolulu": [
+        "HNL"
+    ],
+    "HOB": [
+        "HOB"
+    ],
+    "Hobbs": [
+        "HOB"
+    ],
+    "HOU": [
+        "HOU"
+    ],
+    "HPN": [
+        "HPN"
+    ],
+    "White Plains": [
+        "HPN"
+    ],
+    "HRL": [
+        "HRL"
+    ],
+    "Harlingen": [
+        "HRL"
+    ],
+    "San Benito": [
+        "HRL"
+    ],
+    "HSV": [
+        "HSV"
+    ],
+    "Huntsville": [
+        "HSV"
+    ],
+    "HTS": [
+        "HTS"
+    ],
+    "Ashland": [
+        "HTS"
+    ],
+    "HVN": [
+        "HVN"
+    ],
+    "New Haven": [
+        "HVN"
+    ],
+    "HYA": [
+        "HYA"
+    ],
+    "Hyannis": [
+        "HYA"
+    ],
+    "HYS": [
+        "HYS"
+    ],
+    "Hays": [
+        "HYS"
+    ],
+    "IAD": [
+        "IAD"
+    ],
+    "IAG": [
+        "IAG"
+    ],
+    "Niagara Falls": [
+        "IAG"
+    ],
+    "IAH": [
+        "IAH"
+    ],
+    "ICT": [
+        "ICT"
+    ],
+    "Wichita": [
+        "ICT"
+    ],
+    "IDA": [
+        "IDA"
+    ],
+    "Idaho Falls": [
+        "IDA"
+    ],
+    "IFP": [
+        "IFP"
+    ],
+    "Bullhead City": [
+        "IFP"
+    ],
+    "ILG": [
+        "ILG"
+    ],
+    "Wilmington": [
+        "ILM",
+        "ILG"
+    ],
+    "ILM": [
+        "ILM"
+    ],
+    "IMT": [
+        "IMT"
+    ],
+    "Iron Mountain": [
+        "IMT"
+    ],
+    "Kingsfd": [
+        "IMT"
+    ],
+    "IND": [
+        "IND"
+    ],
+    "Indianapolis": [
+        "IND"
+    ],
+    "INL": [
+        "INL"
+    ],
+    "International Falls": [
+        "INL"
+    ],
+    "IPT": [
+        "IPT"
+    ],
+    "Williamsport": [
+        "IPT"
+    ],
+    "ISP": [
+        "ISP"
+    ],
+    "Islip": [
+        "ISP"
+    ],
+    "ITH": [
+        "ITH"
+    ],
+    "Ithaca": [
+        "ITH"
+    ],
+    "Cortland": [
+        "ITH"
+    ],
+    "ITO": [
+        "ITO"
+    ],
+    "Hilo": [
+        "ITO"
+    ],
+    "IYK": [
+        "IYK"
+    ],
+    "Inyokern": [
+        "IYK"
+    ],
+    "JAC": [
+        "JAC"
+    ],
+    "Jackson": [
+        "JAN",
+        "JAC"
+    ],
+    "JAN": [
+        "JAN"
+    ],
+    "Vicksburg": [
+        "JAN"
+    ],
+    "JAX": [
+        "JAX"
+    ],
+    "Jacksonville": [
+        "JAX",
+        "OAJ"
+    ],
+    "JFK": [
+        "JFK"
+    ],
+    "New York": [
+        "JFK",
+        "LGA"
+    ],
+    "JLN": [
+        "JLN"
+    ],
+    "Joplin": [
+        "JLN"
+    ],
+    "JMS": [
+        "JMS"
+    ],
+    "Jamestown": [
+        "JMS"
+    ],
+    "JNU": [
+        "JNU"
+    ],
+    "Juneau": [
+        "JNU"
+    ],
+    "JST": [
+        "JST"
+    ],
+    "Johnstown": [
+        "JST"
+    ],
+    "KOA": [
+        "KOA"
+    ],
+    "Kona": [
+        "KOA"
+    ],
+    "KTN": [
+        "KTN"
+    ],
+    "Ketchikan": [
+        "KTN"
+    ],
+    "LAN": [
+        "LAN"
+    ],
+    "Lansing": [
+        "LAN"
+    ],
+    "LAR": [
+        "LAR"
+    ],
+    "Laramie": [
+        "LAR"
+    ],
+    "LAS": [
+        "LAS"
+    ],
+    "Las Vegas": [
+        "LAS"
+    ],
+    "LAW": [
+        "LAW"
+    ],
+    "Lawton": [
+        "LAW"
+    ],
+    "Fort Sill": [
+        "LAW"
+    ],
+    "LAX": [
+        "LAX"
+    ],
+    "Los Angeles": [
+        "LAX"
+    ],
+    "LBB": [
+        "LBB"
+    ],
+    "Lubbock": [
+        "LBB"
+    ],
+    "LBE": [
+        "LBE"
+    ],
+    "Latrobe": [
+        "LBE"
+    ],
+    "LBF": [
+        "LBF"
+    ],
+    "North Platte": [
+        "LBF"
+    ],
+    "LBL": [
+        "LBL"
+    ],
+    "Liberal": [
+        "LBL"
+    ],
+    "LCH": [
+        "LCH"
+    ],
+    "Lake Charles": [
+        "LCH"
+    ],
+    "LCK": [
+        "LCK"
+    ],
+    "LEX": [
+        "LEX"
+    ],
+    "Lexington": [
+        "LEX"
+    ],
+    "LFT": [
+        "LFT"
+    ],
+    "Lafayette": [
+        "LFT"
+    ],
+    "LGA": [
+        "LGA"
+    ],
+    "LGB": [
+        "LGB"
+    ],
+    "Long Beach": [
+        "LGB"
+    ],
+    "LIH": [
+        "LIH"
+    ],
+    "Lihue": [
+        "LIH"
+    ],
+    "LIT": [
+        "LIT"
+    ],
+    "Little Rock": [
+        "LIT"
+    ],
+    "LMT": [
+        "LMT"
+    ],
+    "Klamath Falls": [
+        "LMT"
+    ],
+    "LNK": [
+        "LNK"
+    ],
+    "Lincoln": [
+        "LNK"
+    ],
+    "LRD": [
+        "LRD"
+    ],
+    "Laredo": [
+        "LRD"
+    ],
+    "LSE": [
+        "LSE"
+    ],
+    "La Crosse": [
+        "LSE"
+    ],
+    "LWB": [
+        "LWB"
+    ],
+    "Lewisburg": [
+        "LWB"
+    ],
+    "LWS": [
+        "LWS"
+    ],
+    "Lewiston": [
+        "LWS"
+    ],
+    "LYH": [
+        "LYH"
+    ],
+    "Lynchburg": [
+        "LYH"
+    ],
+    "MAF": [
+        "MAF"
+    ],
+    "Midland": [
+        "MAF",
+        "MBS"
+    ],
+    "Odessa": [
+        "MAF"
+    ],
+    "MBS": [
+        "MBS"
+    ],
+    "Saginaw": [
+        "MBS"
+    ],
+    "Bay City": [
+        "MBS"
+    ],
+    "MCI": [
+        "MCI"
+    ],
+    "Kansas City": [
+        "MCI"
+    ],
+    "MCN": [
+        "MCN"
+    ],
+    "Macon": [
+        "MCN"
+    ],
+    "MCO": [
+        "MCO"
+    ],
+    "Orlando": [
+        "MCO"
+    ],
+    "MCW": [
+        "MCW"
+    ],
+    "Mason City": [
+        "MCW"
+    ],
+    "MDT": [
+        "MDT"
+    ],
+    "Harrisburg": [
+        "MDT"
+    ],
+    "MDW": [
+        "MDW"
+    ],
+    "Chicago": [
+        "ORD",
+        "MDW"
+    ],
+    "MEI": [
+        "MEI"
+    ],
+    "Meridian": [
+        "MEI"
+    ],
+    "MEM": [
+        "MEM"
+    ],
+    "Memphis": [
+        "MEM"
+    ],
+    "MFE": [
+        "MFE"
+    ],
+    "Mission": [
+        "MFE"
+    ],
+    "McAllen": [
+        "MFE"
+    ],
+    "Edinburg": [
+        "MFE"
+    ],
+    "MFR": [
+        "MFR"
+    ],
+    "Medford": [
+        "MFR"
+    ],
+    "MGM": [
+        "MGM"
+    ],
+    "Montgomery": [
+        "MGM"
+    ],
+    "MHK": [
+        "MHK"
+    ],
+    "Manhattan": [
+        "MHK"
+    ],
+    "MHT": [
+        "MHT"
+    ],
+    "Manchester": [
+        "MHT"
+    ],
+    "MIA": [
+        "MIA"
+    ],
+    "Miami": [
+        "MIA"
+    ],
+    "MKE": [
+        "MKE"
+    ],
+    "Milwaukee": [
+        "MKE"
+    ],
+    "MKG": [
+        "MKG"
+    ],
+    "Muskegon": [
+        "MKG"
+    ],
+    "MLB": [
+        "MLB"
+    ],
+    "Melbourne": [
+        "MLB"
+    ],
+    "MLI": [
+        "MLI"
+    ],
+    "Moline": [
+        "MLI"
+    ],
+    "MLU": [
+        "MLU"
+    ],
+    "Monroe": [
+        "MLU"
+    ],
+    "MMH": [
+        "MMH"
+    ],
+    "Mammoth Lakes": [
+        "MMH"
+    ],
+    "MOB": [
+        "MOB"
+    ],
+    "MOD": [
+        "MOD"
+    ],
+    "Modesto": [
+        "MOD"
+    ],
+    "MOT": [
+        "MOT"
+    ],
+    "Minot": [
+        "MOT"
+    ],
+    "MQT": [
+        "MQT"
+    ],
+    "Marquette": [
+        "MQT"
+    ],
+    "MRY": [
+        "MRY"
+    ],
+    "Monterey": [
+        "MRY"
+    ],
+    "MSN": [
+        "MSN"
+    ],
+    "Madison": [
+        "MSN"
+    ],
+    "MSO": [
+        "MSO"
+    ],
+    "Missoula": [
+        "MSO"
+    ],
+    "MSP": [
+        "MSP"
+    ],
+    "Minneapolis": [
+        "MSP"
+    ],
+    "MSY": [
+        "MSY"
+    ],
+    "New Orleans": [
+        "MSY"
+    ],
+    "MTJ": [
+        "MTJ"
+    ],
+    "Montrose": [
+        "MTJ"
+    ],
+    "Delta": [
+        "MTJ"
+    ],
+    "MVY": [
+        "MVY"
+    ],
+    "Martha's Vineyard": [
+        "MVY"
+    ],
+    "MYR": [
+        "MYR"
+    ],
+    "Myrtle Beach": [
+        "MYR"
+    ],
+    "OAJ": [
+        "OAJ"
+    ],
+    "Camp Lejeune": [
+        "OAJ"
+    ],
+    "OAK": [
+        "OAK"
+    ],
+    "Oakland": [
+        "OAK"
+    ],
+    "OGD": [
+        "OGD"
+    ],
+    "Ogden": [
+        "OGD"
+    ],
+    "OGG": [
+        "OGG"
+    ],
+    "Kahului": [
+        "OGG"
+    ],
+    "OGS": [
+        "OGS"
+    ],
+    "Ogdensburg": [
+        "OGS"
+    ],
+    "OKC": [
+        "OKC"
+    ],
+    "Oklahoma City": [
+        "OKC"
+    ],
+    "OMA": [
+        "OMA"
+    ],
+    "Omaha": [
+        "OMA"
+    ],
+    "OME": [
+        "OME"
+    ],
+    "Nome": [
+        "OME"
+    ],
+    "ONT": [
+        "ONT"
+    ],
+    "Ontario": [
+        "ONT"
+    ],
+    "ORD": [
+        "ORD"
+    ],
+    "ORF": [
+        "ORF"
+    ],
+    "Norfolk": [
+        "ORF"
+    ],
+    "ORH": [
+        "ORH"
+    ],
+    "Worcester": [
+        "ORH"
+    ],
+    "OTH": [
+        "OTH"
+    ],
+    "North Bend": [
+        "OTH"
+    ],
+    "Coos Bay": [
+        "OTH"
+    ],
+    "OTZ": [
+        "OTZ"
+    ],
+    "Kotzebue": [
+        "OTZ"
+    ],
+    "OWB": [
+        "OWB"
+    ],
+    "Owensboro": [
+        "OWB"
+    ],
+    "PAE": [
+        "PAE"
+    ],
+    "Everett": [
+        "PAE"
+    ],
+    "PAH": [
+        "PAH"
+    ],
+    "Paducah": [
+        "PAH"
+    ],
+    "PBG": [
+        "PBG"
+    ],
+    "Plattsburgh": [
+        "PBG"
+    ],
+    "PBI": [
+        "PBI"
+    ],
+    "West Palm Beach": [
+        "PBI"
+    ],
+    "Palm Beach": [
+        "PBI"
+    ],
+    "PDX": [
+        "PDX"
+    ],
+    "Portland": [
+        "PDX",
+        "PWM"
+    ],
+    "PGD": [
+        "PGD"
+    ],
+    "Punta Gorda": [
+        "PGD"
+    ],
+    "PGV": [
+        "PGV"
+    ],
+    "Greenville": [
+        "PGV"
+    ],
+    "PHF": [
+        "PHF"
+    ],
+    "Newport News": [
+        "PHF"
+    ],
+    "Williamsburg": [
+        "PHF"
+    ],
+    "PHL": [
+        "PHL"
+    ],
+    "Philadelphia": [
+        "PHL"
+    ],
+    "PHX": [
+        "PHX"
+    ],
+    "PIA": [
+        "PIA"
+    ],
+    "Peoria": [
+        "PIA"
+    ],
+    "PIB": [
+        "PIB"
+    ],
+    "Hattiesburg": [
+        "PIB"
+    ],
+    "Laurel": [
+        "PIB"
+    ],
+    "PIE": [
+        "PIE"
+    ],
+    "St. Petersburg": [
+        "PIE"
+    ],
+    "PIH": [
+        "PIH"
+    ],
+    "Pocatello": [
+        "PIH"
+    ],
+    "PIR": [
+        "PIR"
+    ],
+    "Pierre": [
+        "PIR"
+    ],
+    "PIT": [
+        "PIT"
+    ],
+    "Pittsburgh": [
+        "PIT"
+    ],
+    "PLN": [
+        "PLN"
+    ],
+    "Pellston": [
+        "PLN"
+    ],
+    "PNS": [
+        "PNS"
+    ],
+    "Pensacola": [
+        "PNS"
+    ],
+    "PPG": [
+        "PPG"
+    ],
+    "Pago Pago": [
+        "PPG"
+    ],
+    "PRC": [
+        "PRC"
+    ],
+    "Prescott": [
+        "PRC"
+    ],
+    "PSC": [
+        "PSC"
+    ],
+    "Pasco": [
+        "PSC"
+    ],
+    "Kennewick": [
+        "PSC"
+    ],
+    "Richland": [
+        "PSC"
+    ],
+    "PSE": [
+        "PSE"
+    ],
+    "Ponce": [
+        "PSE"
+    ],
+    "PSG": [
+        "PSG"
+    ],
+    "Petersburg": [
+        "PSG"
+    ],
+    "PSM": [
+        "PSM"
+    ],
+    "Portsmouth": [
+        "PSM"
+    ],
+    "PSP": [
+        "PSP"
+    ],
+    "Palm Springs": [
+        "PSP"
+    ],
+    "PUB": [
+        "PUB"
+    ],
+    "Pueblo": [
+        "PUB"
+    ],
+    "PUW": [
+        "PUW"
+    ],
+    "Pullman": [
+        "PUW"
+    ],
+    "PVD": [
+        "PVD"
+    ],
+    "Providence": [
+        "PVD"
+    ],
+    "PVU": [
+        "PVU"
+    ],
+    "Provo": [
+        "PVU"
+    ],
+    "PWM": [
+        "PWM"
+    ],
+    "RAP": [
+        "RAP"
+    ],
+    "Rapid City": [
+        "RAP"
+    ],
+    "RDD": [
+        "RDD"
+    ],
+    "Redding": [
+        "RDD"
+    ],
+    "RDM": [
+        "RDM"
+    ],
+    "Bend": [
+        "RDM"
+    ],
+    "Redmond": [
+        "RDM"
+    ],
+    "RDU": [
+        "RDU"
+    ],
+    "Raleigh": [
+        "RDU"
+    ],
+    "Durham": [
+        "RDU"
+    ],
+    "RFD": [
+        "RFD"
+    ],
+    "Rockford": [
+        "RFD"
+    ],
+    "RHI": [
+        "RHI"
+    ],
+    "Rhinelander": [
+        "RHI"
+    ],
+    "RIC": [
+        "RIC"
+    ],
+    "Richmond": [
+        "RIC"
+    ],
+    "RIW": [
+        "RIW"
+    ],
+    "Riverton": [
+        "RIW"
+    ],
+    "Lander": [
+        "RIW"
+    ],
+    "RKS": [
+        "RKS"
+    ],
+    "Rock Springs": [
+        "RKS"
+    ],
+    "RNO": [
+        "RNO"
+    ],
+    "Reno": [
+        "RNO"
+    ],
+    "ROA": [
+        "ROA"
+    ],
+    "Roanoke": [
+        "ROA"
+    ],
+    "ROC": [
+        "ROC"
+    ],
+    "Rochester": [
+        "ROC",
+        "RST"
+    ],
+    "ROW": [
+        "ROW"
+    ],
+    "Roswell": [
+        "ROW"
+    ],
+    "RST": [
+        "RST"
+    ],
+    "RSW": [
+        "RSW"
+    ],
+    "Fort Myers": [
+        "RSW"
+    ],
+    "SAF": [
+        "SAF"
+    ],
+    "Santa Fe": [
+        "SAF"
+    ],
+    "SAN": [
+        "SAN"
+    ],
+    "San Diego": [
+        "SAN"
+    ],
+    "SAT": [
+        "SAT"
+    ],
+    "San Antonio": [
+        "SAT"
+    ],
+    "SAV": [
+        "SAV"
+    ],
+    "Savannah": [
+        "SAV"
+    ],
+    "SBA": [
+        "SBA"
+    ],
+    "Santa Barbara": [
+        "SBA"
+    ],
+    "SBN": [
+        "SBN"
+    ],
+    "South Bend": [
+        "SBN"
+    ],
+    "SBP": [
+        "SBP"
+    ],
+    "San Luis Obispo": [
+        "SBP"
+    ],
+    "SCC": [
+        "SCC"
+    ],
+    "Deadhorse": [
+        "SCC"
+    ],
+    "SCE": [
+        "SCE"
+    ],
+    "State College": [
+        "SCE"
+    ],
+    "SCK": [
+        "SCK"
+    ],
+    "Stockton": [
+        "SCK"
+    ],
+    "SDF": [
+        "SDF"
+    ],
+    "Louisville": [
+        "SDF"
+    ],
+    "SEA": [
+        "SEA"
+    ],
+    "Seattle": [
+        "SEA"
+    ],
+    "SFB": [
+        "SFB"
+    ],
+    "Sanford": [
+        "SFB"
+    ],
+    "SFO": [
+        "SFO"
+    ],
+    "San Francisco": [
+        "SFO"
+    ],
+    "SGF": [
+        "SGF"
+    ],
+    "Springfield": [
+        "SGF",
+        "SPI"
+    ],
+    "SGU": [
+        "SGU"
+    ],
+    "St. George": [
+        "SGU"
+    ],
+    "SHD": [
+        "SHD"
+    ],
+    "Staunton": [
+        "SHD"
+    ],
+    "SHR": [
+        "SHR"
+    ],
+    "Sheridan": [
+        "SHR"
+    ],
+    "SHV": [
+        "SHV"
+    ],
+    "Shreveport": [
+        "SHV"
+    ],
+    "SIT": [
+        "SIT"
+    ],
+    "Sitka": [
+        "SIT"
+    ],
+    "SJC": [
+        "SJC"
+    ],
+    "San Jose": [
+        "SJC"
+    ],
+    "SJT": [
+        "SJT"
+    ],
+    "San Angelo": [
+        "SJT"
+    ],
+    "SJU": [
+        "SJU"
+    ],
+    "San Juan": [
+        "SJU"
+    ],
+    "SLC": [
+        "SLC"
+    ],
+    "Salt Lake City": [
+        "SLC"
+    ],
+    "SLN": [
+        "SLN"
+    ],
+    "Salina": [
+        "SLN"
+    ],
+    "SMF": [
+        "SMF"
+    ],
+    "Sacramento": [
+        "SMF"
+    ],
+    "SMX": [
+        "SMX"
+    ],
+    "Santa Maria": [
+        "SMX"
+    ],
+    "SNA": [
+        "SNA"
+    ],
+    "Santa Ana": [
+        "SNA"
+    ],
+    "SPI": [
+        "SPI"
+    ],
+    "SPN": [
+        "SPN"
+    ],
+    "Saipan": [
+        "SPN"
+    ],
+    "SPS": [
+        "SPS"
+    ],
+    "Wichita Falls": [
+        "SPS"
+    ],
+    "SRQ": [
+        "SRQ"
+    ],
+    "Sarasota": [
+        "SRQ"
+    ],
+    "Bradenton": [
+        "SRQ"
+    ],
+    "STC": [
+        "STC"
+    ],
+    "St. Cloud": [
+        "STC"
+    ],
+    "STL": [
+        "STL"
+    ],
+    "St. Louis": [
+        "STL"
+    ],
+    "STS": [
+        "STS"
+    ],
+    "Santa Rosa": [
+        "STS"
+    ],
+    "STT": [
+        "STT"
+    ],
+    "Charlotte Amalie": [
+        "STT"
+    ],
+    "STX": [
+        "STX"
+    ],
+    "Christiansted": [
+        "STX"
+    ],
+    "SUN": [
+        "SUN"
+    ],
+    "Sun Valley": [
+        "SUN"
+    ],
+    "Hailey": [
+        "SUN"
+    ],
+    "Ketchum": [
+        "SUN"
+    ],
+    "SUX": [
+        "SUX"
+    ],
+    "Sioux City": [
+        "SUX"
+    ],
+    "SWF": [
+        "SWF"
+    ],
+    "Newburgh": [
+        "SWF"
+    ],
+    "Poughkeepsie": [
+        "SWF"
+    ],
+    "SWO": [
+        "SWO"
+    ],
+    "Stillwater": [
+        "SWO"
+    ],
+    "SYR": [
+        "SYR"
+    ],
+    "Syracuse": [
+        "SYR"
+    ],
+    "TBN": [
+        "TBN"
+    ],
+    "Fort Leonard Wood": [
+        "TBN"
+    ],
+    "TKI": [
+        "TKI"
+    ],
+    "Tokeen": [
+        "TKI"
+    ],
+    "TLH": [
+        "TLH"
+    ],
+    "Tallahassee": [
+        "TLH"
+    ],
+    "TOL": [
+        "TOL"
+    ],
+    "Toledo": [
+        "TOL"
+    ],
+    "TPA": [
+        "TPA"
+    ],
+    "Tampa": [
+        "TPA"
+    ],
+    "TRI": [
+        "TRI"
+    ],
+    "Bristol": [
+        "TRI"
+    ],
+    "Johnson City": [
+        "TRI"
+    ],
+    "Kingsport": [
+        "TRI"
+    ],
+    "TTN": [
+        "TTN"
+    ],
+    "Trenton": [
+        "TTN"
+    ],
+    "TUL": [
+        "TUL"
+    ],
+    "Tulsa": [
+        "TUL"
+    ],
+    "TUS": [
+        "TUS"
+    ],
+    "Tucson": [
+        "TUS"
+    ],
+    "TVC": [
+        "TVC"
+    ],
+    "Traverse City": [
+        "TVC"
+    ],
+    "TWF": [
+        "TWF"
+    ],
+    "Twin Falls": [
+        "TWF"
+    ],
+    "TXK": [
+        "TXK"
+    ],
+    "Texarkana": [
+        "TXK"
+    ],
+    "TYR": [
+        "TYR"
+    ],
+    "Tyler": [
+        "TYR"
+    ],
+    "TYS": [
+        "TYS"
+    ],
+    "Knoxville": [
+        "TYS"
+    ],
+    "UIN": [
+        "UIN"
+    ],
+    "Quincy": [
+        "UIN"
+    ],
+    "USA": [
+        "USA"
+    ],
+    "Concord": [
+        "USA"
+    ],
+    "UST": [
+        "UST"
+    ],
+    "St. Augustine": [
+        "UST"
+    ],
+    "VCT": [
+        "VCT"
+    ],
+    "Victoria": [
+        "VCT"
+    ],
+    "VEL": [
+        "VEL"
+    ],
+    "Vernal": [
+        "VEL"
+    ],
+    "VLD": [
+        "VLD"
+    ],
+    "Valdosta": [
+        "VLD"
+    ],
+    "VPS": [
+        "VPS"
+    ],
+    "Valparaiso": [
+        "VPS"
+    ],
+    "WRG": [
+        "WRG"
+    ],
+    "Wrangell": [
+        "WRG"
+    ],
+    "WYS": [
+        "WYS"
+    ],
+    "West Yellowstone": [
+        "WYS"
+    ],
+    "XNA": [
+        "XNA"
+    ],
+    "XWA": [
+        "XWA"
+    ],
+    "Williston": [
+        "XWA"
+    ],
+    "YAK": [
+        "YAK"
+    ],
+    "Yakutat": [
+        "YAK"
+    ],
+    "YKM": [
+        "YKM"
+    ],
+    "Yakima": [
+        "YKM"
+    ],
+    "YNG": [
+        "YNG"
+    ],
+    "Youngstown": [
+        "YNG"
+    ],
+    "Warren": [
+        "YNG"
+    ],
+    "YUM": [
+        "YUM"
+    ],
+    "Yuma": [
+        "YUM"
+    ],
+    "Fort Riley": [
+        "MHK"
+    ]
+}
