@@ -77,6 +77,8 @@ question_classifier = pipeline("text-classification", model=model, tokenizer=tok
 ################################################################################
 ###                               Functions                                  ###
 ################################################################################
+#   choose_retry_phrase()                                                      #
+#   choose_redundant_phrase()                                                  #
 #   extract_date_info(query)                                                   #
 #   extract_flight_info(query, intent)                                         #
 #   parse_query_date(date_string)                                              #
@@ -97,6 +99,31 @@ question_classifier = pipeline("text-classification", model=model, tokenizer=tok
 #   chat_flight_assistant(user_input, chat_history, state_dict, sort_button)   #
 #   clear_chat(chat_history, state_dict)                                       #
 ################################################################################
+
+#############################################
+#   Functions to Choose Phrase variations   #
+#############################################
+def choose_retry_phrase():
+    retry_phrases = [
+        "Please try again.",
+        "Could you please retry?",
+        "Could you try again?",
+        "Please give it another try.",
+        "Please try your request again.",
+        "Could you please try again?",
+    ]
+    return random.choice(retry_phrases)
+
+def choose_redundant_phrase():
+    redundant_phrases = [
+        "is redundant",
+        "is superfluous",
+        "is unnecessary",
+        "isn't needed",
+        "can be removed",
+    ]
+    return random.choice(redundant_phrases)
+
 
 ####################################
 #   Extract Date Info from query   #
@@ -237,7 +264,8 @@ def extract_flight_info(query, intent):
                     1
                 ).upper()  # Ensure airline code is uppercase
                 flight_info["flight_number"] = match.group(2)
-        else:
+
+        if flight_info["flight_number"] is None:
             # If an airline code was found by name/code, now look for the flight number
             match = re.search(r"\d{1,4}", query)
             if match:
@@ -254,9 +282,9 @@ def extract_flight_info(query, intent):
             query = date_info["query_without_date"]
         else:
             # No date was found
-            errors.append("-I didn't find a valid departure date in your entry.")
+            errors.append("- I didn't find a valid departure date in your entry.")
             errors.append(
-                "-Try a format like 6-23, 6/23, or Jun 23 (year is optional for any format)."
+                "- Try a format like 6-23, 6/23, or Jun 23 (year is optional for any format)."
             )
 
         # Remove hyphens and slashes from the query
@@ -338,22 +366,23 @@ def extract_flight_info(query, intent):
 
         if origin == {}:
             errors.append(
-                "I didn't find two valid city names/airport codes in your entry."
+                "- I didn't find two valid city names/airport codes in your entry."
             )
         elif destination == {}:
             if found_locations[0]["is_code"]:
                 errors.append(
-                    f"I found '{found_locations[0]['code']}' in your entry, but a second valid city name/airport code was missing."
+                    f"- I found '{found_locations[0]['code']}' in your entry, but a second valid city name/airport code was missing."
                 )
             else:
                 errors.append(
-                    f"I found '{origin['city']}' in your entry, but a second valid city name/airport code was missing."
+                    f"- I found '{origin['city']}' in your entry, but a second valid city name/airport code was missing."
                 )
 
         if errors:
             # Update assistant_response with the error messages
             errors.insert(0, "Sorry, I couldn't understand your booking request:")
-            errors.append("Please try again.")
+            errors.append("")
+            errors.append(choose_retry_phrase())
             assistant_response = "\n".join(errors)
             flight_info = {}
 
@@ -1198,13 +1227,6 @@ def parse_multi_airport_response(
     destination_airport_codes = []
     all_airport_codes = []
     errors = []
-    redundant_phrases = [
-        "is redundant",
-        "is superfluous",
-        "is unnecessary",
-        "isn't needed",
-        "can be removed",
-    ]
 
     # Count how many valid selections are required and save airport codes of multi-airport cities only
     num_origin_airports = len(flight_info_alt["origin"]["airport"])
@@ -1298,11 +1320,11 @@ def parse_multi_airport_response(
                         city = flight_info_alt["origin"]["city"]
                         if origin_airport_match == all_airport_codes[line_number - 1]:
                             errors.append(
-                                f"- You already selected airport '{origin_airport_match}' for {city}, so repeating line number '{item}' {random.choice(redundant_phrases)}."
+                                f"- You already selected airport '{origin_airport_match}' for {city}, so repeating line number '{item}' {choose_redundant_phrase()}."
                             )
                         else:
                             errors.append(
-                                f"- You already selected airport '{origin_airport_match}' for {city}, so line number '{item}' {random.choice(redundant_phrases)}."
+                                f"- You already selected airport '{origin_airport_match}' for {city}, so line number '{item}' {choose_redundant_phrase()}."
                             )
                 else:
                     # Must be a destination line number
@@ -1326,11 +1348,11 @@ def parse_multi_airport_response(
                             == destination_airport_codes[dest_index]
                         ):
                             errors.append(
-                                f"- You already selected airport '{destination_airport_match}' for {city}, so repeating line number '{item}' {random.choice(redundant_phrases)}."
+                                f"- You already selected airport '{destination_airport_match}' for {city}, so repeating line number '{item}' {choose_redundant_phrase()}."
                             )
                         else:
                             errors.append(
-                                f"- You already selected airport '{destination_airport_match}' for {city}, so line number '{item}' {random.choice(redundant_phrases)}."
+                                f"- You already selected airport '{destination_airport_match}' for {city}, so line number '{item}' {choose_redundant_phrase()}."
                             )
 
             else:
@@ -1353,11 +1375,11 @@ def parse_multi_airport_response(
                             city = flight_info_alt["origin"]["city"]
                             if origin_airport_match == airport_code:
                                 errors.append(
-                                    f"- You already selected airport '{origin_airport_match}' for {city}, so entering '{airport_code}' again {random.choice(redundant_phrases)}."
+                                    f"- You already selected airport '{origin_airport_match}' for {city}, so entering '{airport_code}' again {choose_redundant_phrase()}."
                                 )
                             else:
                                 errors.append(
-                                    f"- You already selected airport '{origin_airport_match}' for {city}, so airport code '{airport_code}' {random.choice(redundant_phrases)}."
+                                    f"- You already selected airport '{origin_airport_match}' for {city}, so airport code '{airport_code}' {choose_redundant_phrase()}."
                                 )
                     else:
                         # Must be a destination airport code
@@ -1369,11 +1391,11 @@ def parse_multi_airport_response(
                             city = flight_info_alt["destination"]["city"]
                             if destination_airport_match == airport_code:
                                 errors.append(
-                                    f"- You already selected airport '{destination_airport_match}' for {city}, so entering '{airport_code}' again {random.choice(redundant_phrases)}."
+                                    f"- You already selected airport '{destination_airport_match}' for {city}, so entering '{airport_code}' again {choose_redundant_phrase()}."
                                 )
                             else:
                                 errors.append(
-                                    f"- You already selected airport '{destination_airport_match}' for {city}, so airport code '{airport_code}' {random.choice(redundant_phrases)}."
+                                    f"- You already selected airport '{destination_airport_match}' for {city}, so airport code '{airport_code}' {choose_redundant_phrase()}."
                                 )
         # End of for loop
 
@@ -1643,16 +1665,16 @@ def chat_flight_assistant(user_input, chat_history, state_dict, sort_button):
 
         if flight_info["airline_code"] is None:
             if flight_info["flight_number"] is None:
-                assistant_response = "Sorry, I couldn't find a valid airline code/name or flight number in your status request.\n"
-                assistant_response += "Please try again."
+                assistant_response = "Sorry, I couldn't find a valid airline code/name or flight number in your status request."
+                assistant_response += f"\n\n{choose_retry_phrase()}"
             else:
-                assistant_response = "Sorry, I couldn't find a valid airline code/name in your status request.\n"
-                assistant_response += "Please try again."
+                assistant_response = "Sorry, I couldn't find a valid airline code/name in your status request."
+                assistant_response += f"\n\n{choose_retry_phrase()}"
         elif flight_info["flight_number"] is None:
             assistant_response = (
                 "Sorry, I couldn't find a flight number in your status request."
             )
-            assistant_response += "Please try again."
+            assistant_response += f"\n\n{choose_retry_phrase()}"
         else:
             flight_ident = flight_info["airline_code"] + flight_info["flight_number"]
             flight_data = get_flight_status(flight_ident)
@@ -1845,7 +1867,7 @@ def chat_flight_assistant(user_input, chat_history, state_dict, sort_button):
     elif intent == "general":
         # Create lists of varied responses
         responses_to_general_questions = [
-            "I apologize, I don't have that information. I can help with flight status or booking requests if you'd like."
+            "I apologize, I don't have that information. I can help with flight status or booking requests if you'd like.",
             "I can only assist with flight status and booking at the moment. How else can I help with your travel?",
             "My focus is on flight information. If you have a status or booking query, I'd be happy to help!",
             "I'm not equipped to handle that type of request just yet. I can provide flight status updates or help you find flights.",
@@ -1853,7 +1875,7 @@ def chat_flight_assistant(user_input, chat_history, state_dict, sort_button):
             "For now, I can only discuss flight status and booking. Please ask me about a flight!",
         ]
         responses_to_general_input = [
-            "I'm sorry, I didn't understand that. If you make a flight status or booking request, I'm here to help."
+            "I'm sorry, I didn't understand that. If you make a flight status or booking request, I'm here to help.",
             "I'm having trouble understanding your request. Could you please rephrase or tell me if you're looking for flight status or trying to book?",
             "Could you clarify your request? I can help with flight status or finding flights.",
             "My apologies, I didn't quite catch that. Are you asking about a flight's status or looking to book a flight?",
