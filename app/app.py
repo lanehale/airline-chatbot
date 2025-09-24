@@ -366,16 +366,16 @@ def extract_flight_info(query, intent):
 
         if origin == {}:
             errors.append(
-                "- I didn't find two valid city names/airport codes in your entry."
+                "- I didn't find two valid city names or airport codes in your entry."
             )
         elif destination == {}:
             if found_locations[0]["is_code"]:
                 errors.append(
-                    f"- I found '{found_locations[0]['code']}' in your entry, but a second valid city name/airport code was missing."
+                    f"- I found '{found_locations[0]['code']}' in your entry, but a second valid city name or airport code was missing."
                 )
             else:
                 errors.append(
-                    f"- I found '{origin['city']}' in your entry, but a second valid city name/airport code was missing."
+                    f"- I found '{origin['city']}' in your entry, but a second valid city name or airport code was missing."
                 )
 
         if errors:
@@ -1665,10 +1665,10 @@ def chat_flight_assistant(user_input, chat_history, state_dict, sort_button):
 
         if flight_info["airline_code"] is None:
             if flight_info["flight_number"] is None:
-                assistant_response = "Sorry, I couldn't find a valid airline code/name or flight number in your status request."
+                assistant_response = "Sorry, I couldn't find a valid airline name/code or flight number in your status request."
                 assistant_response += f"\n\n{choose_retry_phrase()}"
             else:
-                assistant_response = "Sorry, I couldn't find a valid airline code/name in your status request."
+                assistant_response = "Sorry, I couldn't find a valid airline name/code in your status request."
                 assistant_response += f"\n\n{choose_retry_phrase()}"
         elif flight_info["flight_number"] is None:
             assistant_response = (
