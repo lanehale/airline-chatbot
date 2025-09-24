@@ -837,7 +837,7 @@ def build_status_response(flight_data, flight_ident):
     response_lines = []  # List to build the response string
     relevant_flights = []  # List to store flights relevant to the arrival date
 
-    if flight_data and flight_data.get("flights"):
+    if flight_data and "flights" in flight_data:
         # Flight data is returned newest to oldest
         diverted_flight = False
         airline_code = flight_ident[:2]
@@ -1069,7 +1069,7 @@ def build_booking_response(booking_data, departure_date, tz_finder):
     # and sorting keys for each Offer
     flight_options_list = []
 
-    if booking_data and booking_data.get("Offers"):
+    if booking_data and "Offers" in booking_data:
         departure_date_str = departure_date.strftime("%b %d, %Y")
         leg_index = len(booking_data["Segments"][0]["Legs"]) - 1
         origin_city = booking_data["Segments"][0]["Legs"][0]["DepartureAirport"]["City"]
