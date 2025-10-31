@@ -108,9 +108,10 @@ def choose_retry_phrase():
         "Please try again.",
         "Could you please retry?",
         "Could you try again?",
-        "Please give it another try.",
+        "Please check and give it another try.",
         "Please try your request again.",
         "Could you please try again?",
+        "Please recheck and try again.",
     ]
     return random.choice(retry_phrases)
 
@@ -139,6 +140,7 @@ def extract_date_info(query):
         dict: A dictionary containing the extracted date information.
     """
     date_dict = {}
+    dates = []
 
     ### Breaking down this regex:
 
@@ -146,25 +148,25 @@ def extract_date_info(query):
     # (?:...|...)   This is a non-capturing group that allows us to match one of several date formats.
 
     # \d{1,2}[-/]\d{1,2}[-/]\d{2,4}
-    # Matches numeric date formats like MM/DD/YY, MM-DD-YYYY, M/D/YY, etc. with required year.
+    # Matches numeric date formats like MM/DD/YY, MM-DD-YYYY, M/D/YY, etc. with required year:
     #   \d{1,2}     One or two digits for month or day.
     #   [-/]        Matches either a hyphen or a slash as a separator.
     #   \d{2,4}     Two or four digits for the year.
 
     # \d{1,2}[-/]\d{1,2}
-    # Matches numeric date formats like MM-DD or MM/DD.
+    # Matches numeric date formats like MM-DD or MM/DD:
     #   \d{1,2}     One or two digits for month or day.
     #   [-/]        Matches either a hyphen or a slash as a separator.
 
     # \b(?:Jan|Feb|...|December)\s+\d{1,2}(?:,\s*\d{4})?
-    # Matches date formats with month names followed by day and optional year (e.g., Jan 8, Jan 8, 2023).
+    # Matches date formats with month names followed by day and optional year (e.g., Jan 8, Jan 8, 2023):
     #   \b(?:Jan|Feb|...)   Matches a month name (abbreviated or full) as a whole word.
     #   \s+                 One or more spaces after the month name.
     #   \d{1,2}             One or two digits for the day.
     #   (?:,*\s+\d{4})?     This part is optional (?) and matches optional comma, spaces, and a four-digit year.
 
     # \b\d{1,2}\s*(?:Jan|Feb|...|December)(?:,*\s+\d{4})?
-    # Matches date formats with day followed by month name and optional year (e.g., 8 Jan, 8 Jan 2023, 8Jan 2023).
+    # Matches date formats with day followed by month name and optional year (e.g., 8 Jan, 8 Jan 2023, 8Jan 2023):
     #   \b\d{1,2}           One or two digits for the day.
     #   \s*                 Zero or more spaces.
     #   (?:Jan|Feb|...)     Matches a month name (abbreviated or full).
@@ -175,12 +177,20 @@ def extract_date_info(query):
     ###
     date_regex = r"\b(?:\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:,*\s+\d{4})?|\b\d{1,2}\s*(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)(?:,*\s+\d{4})?)\b"
 
-    match = re.search(date_regex, query, re.IGNORECASE)
+    temp_query = query
+    match = re.search(date_regex, temp_query, re.IGNORECASE)
 
-    if match:
-        date_dict["date"] = match.group(0)
+    # Use a while loop with re.search to find all non-overlapping matches
+    # in the continually updated temp_query
+    while match:
+        dates.append(match.group(0))
         # Replace the entire matched substring (group 0) with an empty string
-        date_dict["query_without_date"] = re.sub(re.escape(match.group(0)), "", query)
+        temp_query = re.sub(re.escape(match.group(0)), "", temp_query)
+        # Search again in the modified string
+        match = re.search(date_regex, temp_query, re.IGNORECASE)
+
+    date_dict["dates"] = dates
+    date_dict["query_without_date"] = temp_query
 
     return date_dict
 
@@ -191,11 +201,9 @@ def extract_date_info(query):
 def extract_flight_info(query, intent):
     """
     Extracts flight information from a natural language query.
-
     Args:
         query (str): The natural language query.
         intent (str): The intent of the query ('status' or 'booking').
-
     Returns:
         dict: A dictionary containing the extracted flight information.
         str: A string containing assistant responses.
@@ -203,9 +211,9 @@ def extract_flight_info(query, intent):
     assistant_response = ""
     errors = []
 
-    #-----------------------------------------------------#
+    # -----------------------------------------------------#
     #   Normalize common variations in city/place names   #
-    #-----------------------------------------------------#
+    # -----------------------------------------------------#
     # Create a dictionary of common variations to replace
     replacements = {
         r"\bSaint\b": "St.",
@@ -230,9 +238,9 @@ def extract_flight_info(query, intent):
     # Use the normalized_query for further processing
     query = normalized_query
 
-    #---------------------------------------------------------------------------#
+    # ---------------------------------------------------------------------------#
     #   Status: Extract airline code (e.g., AA) and flight number (e.g., 123)   #
-    #---------------------------------------------------------------------------#
+    # ---------------------------------------------------------------------------#
     if intent == "status":
 
         flight_info = {"airline_code": None, "flight_number": None, "flight_date": None}
@@ -240,9 +248,9 @@ def extract_flight_info(query, intent):
         # Look for date info and remove it from the query
         date_info = extract_date_info(query)
 
-        if "date" in date_info:
+        if date_info["dates"]:
             query = date_info["query_without_date"]
-            flight_info["flight_date"] = date_info["date"]
+            flight_info["flight_date"] = date_info["dates"][0]
 
         # Remove hyphens and slashes from the query
         query_split = re.split(r"[-/]", query)
@@ -271,21 +279,72 @@ def extract_flight_info(query, intent):
             if match:
                 flight_info["flight_number"] = match.group(0)
 
-    #---------------------------------------------------------------------------------#
+    # ---------------------------------------------------------------------------------#
     #   Booking: Extract city or airport codes (e.g., Denver to Chicago → DEN, ORD)   #
-    #---------------------------------------------------------------------------------#
+    # ---------------------------------------------------------------------------------#
     elif intent == "booking":
 
-        # Parse date info and remove it from the query
+        # Parse date info and remove date(s) from the query
+        valid_dates = []
+        invalid_dates = []
+
         date_info = extract_date_info(query)
-        if "date" in date_info:
+ 
+        if date_info["dates"]:
             query = date_info["query_without_date"]
+
+            for date_str in date_info["dates"]:
+                requested_date = parse_query_date(date_str)
+
+                if requested_date:
+                    valid_dates.append(requested_date)
+                else:
+                    invalid_dates.append(date_str)
+
+            if not invalid_dates:
+                # All dates were successfully parsed
+                date_info["dates"] = valid_dates
+
+            elif len(invalid_dates) == 1:
+                # A requested date couldn't be converted to a datetime object
+                errors.append(f"- The requested date '{invalid_dates[0]}' is invalid.")
+            else:
+                # Multiple invalid dates were found
+                quoted_invalid_dates = [
+                    f"'{date_str}'" for date_str in invalid_dates[:-1]
+                ]
+                date_string = ", ".join(quoted_invalid_dates)
+                date_string += " and " + f"'{invalid_dates[-1]}'"
+                errors.append(f"- The requested dates {date_string} are invalid.")
         else:
             # No date was found
             errors.append("- I didn't find a valid departure date in your entry.")
             errors.append(
                 "- Try a format like 6-23, 6/23, or Jun 23 (year is optional for any format)."
             )
+
+        # Check dates for too far in the future
+        today_date = date.today()  # Get today's date without time for comparison
+        max_booking_date = today_date + timedelta(days=329)
+        for date_obj in valid_dates:
+            if date_obj.date() > max_booking_date:
+                errors.append(
+                    f"- The requested date {date_obj.strftime('%m-%d-%Y')} is too far in the future."
+                )
+                errors.append(
+                    f"- The furthest date I can search is 329 days from today, which is currently {max_booking_date.strftime('%m-%d-%Y')}."
+                )
+                break
+
+        # Check dates for chronological order
+        if not errors and len(valid_dates) > 1:
+            for i in range(len(valid_dates) - 1):
+                # Compare date part only to ignore time component
+                if valid_dates[i].date() >= valid_dates[i + 1].date():
+                    errors.append(
+                        "- The requested dates are not in chronological order."
+                    )
+                    break
 
         # Remove hyphens and slashes from the query
         query_split = re.split(r"[-/]", query)
@@ -299,7 +358,9 @@ def extract_flight_info(query, intent):
             pattern = r"\b" + re.escape(name_or_code) + r"\b"
             match = re.search(pattern, temp_query, re.IGNORECASE)
 
-            if match:
+            # Use a while loop with re.search to find all non-overlapping matches
+            # in the continually updated temp_query
+            while match:
                 # Determine if the match is likely an airport code (3 capital letters)
                 is_code = bool(re.fullmatch(r"[A-Z]{3}", name_or_code))
 
@@ -316,29 +377,47 @@ def extract_flight_info(query, intent):
                 # Replace the matched substring with unmatchable text
                 start_index = match.start()
                 end_index = match.end()
-                replacement = "__" + codes[0] + "__"
+                replacement = "*" * len(name_or_code)
                 temp_query = (
                     temp_query[:start_index] + replacement + temp_query[end_index:]
                 )
+                # Search again in the modified string
+                match = re.search(pattern, temp_query, re.IGNORECASE)
 
         # Sort found locations by their index in the query to determine origin and destination
         found_locations.sort(key=lambda x: x["index"])
 
-        origin = {}
-        destination = {}
+        # Check if enough locations were found to form at least one leg
+        if not found_locations:
+            errors.append(
+                "- I didn't find any valid city names or airport codes in your entry to form an origin-destination pair. "
+            )
+        elif len(found_locations) < 2:
+            if found_locations[0]["is_code"]:
+                errors.append(
+                    f"- I only found one valid location ['{found_locations[0]['code']}'], so I couldn't form an origin-destination pair."
+                )
+            else:
+                errors.append(
+                    f"- I only found one valid location ['{found_locations[0]['name']}'], so I couldn't form an origin-destination pair."
+                )
+
+        # Build legs by grouping locations into origin/destination pairs
+        legs = []
+        current_leg = {}
 
         # Assign locations to origin and destination based on order in query
         for location in found_locations:
             airport_code = location["code"]
             airport_info = airport_codes[airport_code]
-
-            # Fetch full city, state, airport names from airport_codes
             airport_name = ""
+            # Fetch full city, state, airport names from airport_codes
             if airport_info:
                 # Split by comma and colon for "City, State: Airport Name"
                 airport_info_parts = [
                     part.strip() for part in re.split(r"[,:]", airport_info)
                 ]
+                city_names = airport_info_parts[0].split("/")
                 airport_state = airport_info_parts[1]
                 airport_name = airport_info_parts[2]
 
@@ -347,47 +426,121 @@ def extract_flight_info(query, intent):
                 "name": airport_name,
                 "state": airport_state,
             }
-            city_name = location["name"]
 
-            if origin == {}:
-                origin["city"] = city_name
-                origin["airport"] = [airport_dict]
-                origin["is_code"] = location["is_code"]
-            elif city_name == origin["city"]:
-                # If it's the same city as origin, add this airport to the origin list
-                origin["airport"].append(airport_dict)
-            elif destination == {}:
-                destination["city"] = city_name
-                destination["airport"] = [airport_dict]
-                destination["is_code"] = location["is_code"]
-            elif city_name == destination["city"]:
-                # If it's the same city as destination, add this airport to the destination list
-                destination["airport"].append(airport_dict)
+            if location["is_code"]:
+                city_name = city_names[0]
+            else:
+                city_name = location["name"]
 
-        if origin == {}:
-            errors.append(
-                "- I didn't find two valid city names or airport codes in your entry."
-            )
-        elif destination == {}:
-            if found_locations[0]["is_code"]:
+            # Start a new leg if both origin and destination are filled,
+            # and this city is different from the previous destination
+            if (
+                "origin" in current_leg
+                and "destination" in current_leg
+                and city_name != current_leg["destination"]["city"]
+            ):
+                legs.append(copy.deepcopy(current_leg))
+                current_leg["origin"] = current_leg["destination"]
+                current_leg["destination"] = {
+                    "city": city_name,
+                    "airport": [airport_dict],
+                    "is_code": location["is_code"],
+                }
+
+            # Origin is empty first time through leg 1
+            elif "origin" not in current_leg:
+                current_leg["origin"] = {
+                    "city": city_name,
+                    "airport": [airport_dict],
+                    "is_code": location["is_code"],
+                }
+            # Add airport if Origin is multi-airport city
+            elif not legs and city_name == current_leg["origin"]["city"]:
+                current_leg["origin"]["airport"].append(airport_dict)
+
+            # Destination is empty first time through leg 1
+            elif "destination" not in current_leg:
+                current_leg["destination"] = {
+                    "city": city_name,
+                    "airport": [airport_dict],
+                    "is_code": location["is_code"],
+                }
+            # Add airport if Destination is multi-airport city
+            elif city_name == current_leg["destination"]["city"]:
+                current_leg["destination"]["airport"].append(airport_dict)
+
+        # End of found_locations for loop
+
+        # Add the last leg if it exists
+        if current_leg and "destination" in current_leg:
+            legs.append(copy.deepcopy(current_leg))
+
+        # Set an error if no legs because one multi-airport has over one found locations
+        elif not legs:
+            if current_leg["origin"]["is_code"]:
                 errors.append(
-                    f"- I found '{found_locations[0]['code']}' in your entry, but a second valid city name or airport code was missing."
-                )
+                        f"- I only found one valid location ['{found_locations[0]['code']}'], so I couldn't form an origin-destination pair."
+                    )
             else:
                 errors.append(
-                    f"- I found '{origin['city']}' in your entry, but a second valid city name or airport code was missing."
+                    f"- I only found one valid location ['{found_locations[0]['name']}'], so I couldn't form an origin-destination pair."
                 )
 
+        # Skip this if no legs
+        if legs:
+            num_legs = len(legs)
+            num_dates = len(date_info["dates"])
+
+            if num_legs == 1 and num_dates == 2:
+                # Assume round trip was requested
+                return_leg = {
+                    "origin": current_leg["destination"],
+                    "destination": current_leg["origin"],
+                }
+                legs.append(return_leg)
+                num_legs += 1
+
+            # Add departure dates to each leg
+            if num_dates >= num_legs:
+                for leg, date_obj in zip(legs, date_info["dates"]):
+                    leg["date"] = date_obj
+            else:
+                if num_dates == 1:
+                    errors.append(
+                        f"- I found {num_legs} origin-destination pairs but only 1 departure date."
+                    )
+                else:
+                    errors.append(
+                        f"- I found {num_legs} origin-destination pairs but only {num_dates} departure dates."
+                    )
+
+        # Move errors to assistant_response
         if errors:
-            # Update assistant_response with the error messages
-            errors.insert(0, "Sorry, I couldn't understand your booking request:")
-            errors.append("")
-            errors.append(choose_retry_phrase())
-            assistant_response = "\n".join(errors)
+            if len(errors) == 2 and "Try a format like" in errors[1]:
+                special_error = True
+            else:
+                special_error = False
+            if len(errors) == 1 or special_error:
+                if errors[0][2] == "I":
+                    assistant_response = f"Sorry, {errors[0][2:]}"
+                else:
+                    first_letter = errors[0][2].lower()
+                    assistant_response = f"Sorry, {first_letter}{errors[0][3:]}"
+                if special_error:
+                    assistant_response += f"\n\n{errors[1][2:]}"
+                else:
+                    assistant_response += f"\n\n{choose_retry_phrase()}"
+            else:
+                errors.insert(0, "Sorry, I couldn't understand your booking request:")
+                errors.append("")
+                errors.append(choose_retry_phrase())
+                assistant_response = "\n".join(errors)
+
             flight_info = {}
 
+        # Build flight_info
         else:
-            # Expedia cabin options can be economy/first/business/premiumeconomy
+            # Expedia cabin options are economy/first/business/premiumeconomy
             cabin = "economy"  # Default cabin
             query_lower = query.lower()
 
@@ -408,15 +561,13 @@ def extract_flight_info(query, intent):
                 cabin = "first"
 
             flight_info = {
-                "origin": origin,
-                "destination": destination,
-                "date": date_info["date"],
+                "legs": legs,
                 "cabin": cabin,
             }
 
-    #-----------------------------#
+    # -----------------------------#
     #   General: return nothing   #
-    #-----------------------------#
+    # -----------------------------#
     else:
         flight_info = {}
 
@@ -432,14 +583,44 @@ def parse_query_date(date_string):
     If the date string does not include a year, it defaults to the current year.
     If the resulting date is before today's date (excluding time),
     it increments the year to handle future dates entered without a year.
+    Includes validation to ensure the parsed date is a valid calendar date.
 
     Args:
         date_string (str): The date string to parse.
 
     Returns:
-        datetime: A datetime object representing the parsed date, or None if parsing fails.
+        datetime: A datetime object representing the parsed date, or None if parsing fails or the date is invalid.
     """
     try:
+        #--- Initial Validation: Check for impossible day values like 32-99 ---
+        # extract_date_info doesn't allow days over 2-digits, or 2-digit years with month names
+
+        ### Breakdown of the combined regex:
+
+        # \b...\b       Word boundaries.
+
+        # (?:(?:\d{1,2}[-/])|(?:))
+        # A non-capturing group (?:...) that handles the two possibilities for the start of the pattern:
+        #   (?:\d{1,2}[-/])   Matches one or two digits followed by a hyphen or forward slash (e.g., 12- or 5/).
+        #   |(?:)             An empty non-capturing group that matches nothing. This allows the pattern to be
+        #                     matched without a preceding month and slash.
+
+        # (3[2-9]|[4-9]\d|\d{3,})
+        # This capturing group matches the impossible day numbers:
+        #   3[2-9]      Matches 32 through 39.
+        #   |[4-9]\d    Matches 40 through 99.
+
+        # (?:,)?        This non-capturing group matches an optional comma. The ? makes the comma optional.
+
+        impossible_day_regex = r"\b(?:(?:\d{1,2}[-/])|(?:))(3[2-9]|[4-9]\d)(?:,)?\b"
+
+        if re.search(impossible_day_regex, date_string):
+            logging.error(
+                f"parse_query_date: Found impossible day value in string: {date_string}"
+            )
+            return None
+        #--- End Initial Validation ---
+
         # Get today's date without time for comparison
         today_date = date.today()
 
@@ -455,7 +636,9 @@ def parse_query_date(date_string):
 
     except (ValueError, TypeError) as e:
         # Handle cases where parsing might fail
-        logging.error(f"parse_query_date: Could not parse date string: {date_string}. Error: {e}")
+        logging.error(
+            f"parse_query_date: Could not parse date string: {date_string}. Error: {e}"
+        )
         return None
 
 
@@ -563,58 +746,35 @@ def get_flights_to_book(flight_info, passengers, state_dict):
 
     # selectedCarriers = ['AA', 'DL', 'UA']
 
-    # 'all_airports' is only set to True when the user enters 'all' on a multi-airport
-    # prompt, and 'multi_airport_prompt_active' is then set to False.
-    # Therefore, when 'multi_airport_prompt_active' is True, 'all_airports' is False.
-    if state_dict["all_airports"]:
-    	# Use city name, state if origin has multi-airports
-        if len(flight_info["origin"]["airport"]) > 1:
-            origin = (
-                flight_info["origin"]["city"]
-                + ", "
-                + flight_info["origin"]["airport"][0]["state"]
-            )
-        else:
-            origin = flight_info["origin"]["airport"][0]["code"]
+    # Restrict search results to the airport code provided in each origin/destination
+    # parameter. This filter is ignored if a city name is used instead of an airport code.
+    params["filterNearByAirport"] = True
 
-    	# Use city name, state if destination has multi-airports
-        if (
-            state_dict["all_airports"]
-            and len(flight_info["destination"]["airport"]) > 1
-        ):
+    # Build flight segments
+    for i, leg in enumerate(flight_info["legs"]):
+
+        if state_dict["all_airports"] and len(leg["origin"]["airport"]) > 1:
+            # Use city, state for multi-airport city
+            origin = leg["origin"]["city"] + ", " + leg["origin"]["airport"][0]["state"]
+        else:
+            # Use airport code
+            origin = leg["origin"]["airport"][0]["code"]
+
+        if state_dict["all_airports"] and len(leg["destination"]["airport"]) > 1:
+            # Use city, state for multi-airport city
             destination = (
-                flight_info["destination"]["city"]
+                leg["destination"]["city"]
                 + ", "
-                + flight_info["destination"]["airport"][0]["state"]
+                + leg["destination"]["airport"][0]["state"]
             )
         else:
-            destination = flight_info["destination"]["airport"][0]["code"]
-    else:
-        # Use airport codes
-        origin = flight_info["origin"]["airport"][0]["code"]
-        destination = flight_info["destination"]["airport"][0]["code"]
+            # Use airport code
+            destination = leg["destination"]["airport"][0]["code"]
 
-    	# Set nearby airports filter if airport code(s) was input
-    	# or selected after multi-airport prompt
-        if (
-            state_dict["multi_airport_prompt_active"]
-            or flight_info["origin"]["is_code"]
-            or flight_info["destination"]["is_code"]
-        ):
-            params["filterNearByAirport"] = True
-
-    requested_date = parse_query_date(flight_info["date"])
-    departure_date = requested_date.strftime("%Y-%m-%d")
-
-    origin_destination_pairs = [
-        {"origin": origin, "destination": destination, "departureDate": departure_date},
-    ]
-
-    for i, pair in enumerate(origin_destination_pairs):
         segment = "segment" + str(i + 1)
-        params[segment + ".origin"] = pair["origin"]
-        params[segment + ".destination"] = pair["destination"]
-        params[segment + ".departureDate"] = pair["departureDate"]
+        params[segment + ".origin"] = origin
+        params[segment + ".destination"] = destination
+        params[segment + ".departureDate"] = leg["date"].strftime("%Y-%m-%d")
 
     # Make the request
     response = requests.get(request_url, headers=headers, params=params)
@@ -622,7 +782,9 @@ def get_flights_to_book(flight_info, passengers, state_dict):
     if response.status_code == 200:
         flight_data = response.json()
     else:
-        logging.error(f"Error fetching flights to book: {response.status_code} - {response.text}")
+        logging.error(
+            f"Error fetching flights to book: {response.status_code} - {response.text}"
+        )
         flight_data = None
 
     return flight_data
@@ -837,7 +999,7 @@ def build_status_response(flight_data, flight_ident):
     response_lines = []  # List to build the response string
     relevant_flights = []  # List to store flights relevant to the arrival date
 
-    if flight_data and "flights" in flight_data:
+    if flight_data and flight_data.get("flights"):
         # Flight data is returned newest to oldest
         diverted_flight = False
         airline_code = flight_ident[:2]
@@ -1052,35 +1214,53 @@ def build_status_response(flight_data, flight_ident):
 ##############################
 #   Build Booking Response   #
 ##############################
-def build_booking_response(booking_data, departure_date, tz_finder):
+def build_booking_response(booking_data, flight_info, tz_finder):
     """
     Builds a string containing booking details.
 
     Args:
         booking_data (dict): A dictionary containing booking data.
-        departure_date (datetime): The departure date.
+        flight_info (dict): A dictionary containing flight information.
         tz_finder (TimezoneFinder): An instance of TimezoneFinder for timezone lookup.
 
     Returns:
         header_string (str): A string containing the formatted booking header.
         flight_options_list (list): A list of dictionaries containing flight options.
     """
-    # Use a list of dictionaries to save response lines
-    # and sorting keys for each Offer
+    # Use a list of dictionaries to save response lines and sorting keys for each Offer
     flight_options_list = []
 
     if booking_data and "Offers" in booking_data:
+        # Build header line
+        origin_city = flight_info["legs"][0]["origin"]["city"]
+        dest_city = flight_info["legs"][0]["destination"]["city"]
+        departure_date = flight_info["legs"][0]["date"]
         departure_date_str = departure_date.strftime("%b %d, %Y")
-        leg_index = len(booking_data["Segments"][0]["Legs"]) - 1
-        origin_city = booking_data["Segments"][0]["Legs"][0]["DepartureAirport"]["City"]
-        dest_city = booking_data["Segments"][0]["Legs"][leg_index]["ArrivalAirport"][
-            "City"
-        ]
-        header_string = f"{origin_city} to {dest_city} on {departure_date_str}"
+        num_legs = len(flight_info["legs"])
+        if num_legs == 1:
+            header_string = (
+                f"{origin_city} to {dest_city} &nbsp;|&nbsp; {departure_date_str}"
+            )
+        else:
+            return_date = flight_info["legs"][-1]["date"]
+            return_date_str = return_date.strftime("%b %d, %Y")
+            if (
+                num_legs == 2
+                and origin_city == flight_info["legs"][1]["destination"]["city"]
+            ):
+                header_string = f"{origin_city} to {dest_city} (round trip) &nbsp;|&nbsp; {departure_date_str} - {return_date_str}"
+            else:
+                final_dest = flight_info["legs"][-1]["destination"]["city"]
+                if num_legs == 2:
+                    header_string = f"{origin_city}, {dest_city}, {final_dest} ({num_legs} legs) &nbsp;|&nbsp; {departure_date_str} - {return_date_str}"
+                else:
+                    header_string = f"{origin_city}, {dest_city}, ... {final_dest} ({num_legs} legs) &nbsp;|&nbsp; {departure_date_str} - {return_date_str}"
 
+        # Build flight options list
         for i, offer in enumerate(booking_data["Offers"]):
             response_lines = []  # Use a list to build the response string
             segment_ids_list = offer["SegmentIds"]
+            first_segment = True
 
             for segment_id in segment_ids_list:
                 for segment in booking_data["Segments"]:
@@ -1116,7 +1296,9 @@ def build_booking_response(booking_data, departure_date, tz_finder):
                             "%I:%M %p"
                         )
                         # Extract the time object to use in sorting later
-                        local_dep_time_object = local_departure_datetime.time()
+                        if first_segment:
+                            first_segment = False
+                            time_for_sorting = local_departure_datetime.time()
 
                         # Get destination timezone once per offer/segment
                         destination_timezone = get_timezone_name(
@@ -1175,7 +1357,7 @@ def build_booking_response(booking_data, departure_date, tz_finder):
 
             inner_dict = {
                 "price": total_price,
-                "time": local_dep_time_object,
+                "time": time_for_sorting,
                 "duration": total_seconds,
             }
             # Join the lines into a single string with HTML line breaks
@@ -1229,19 +1411,18 @@ def parse_multi_airport_response(
     errors = []
 
     # Count how many valid selections are required and save airport codes of multi-airport cities only
-    num_origin_airports = len(flight_info_alt["origin"]["airport"])
-    num_destination_airports = len(flight_info_alt["destination"]["airport"])
+    leg = flight_info_alt["legs"][0]
+    num_origin_airports = len(leg["origin"]["airport"])
+    num_destination_airports = len(leg["destination"]["airport"])
     required_selections = 0
     if num_origin_airports > 1:
         required_selections += 1
-        origin_airport_codes = [
-            airport["code"] for airport in flight_info_alt["origin"]["airport"]
-        ]
+        origin_airport_codes = [airport["code"] for airport in leg["origin"]["airport"]]
         all_airport_codes.extend(origin_airport_codes)
     if num_destination_airports > 1:
         required_selections += 1
         destination_airport_codes = [
-            airport["code"] for airport in flight_info_alt["destination"]["airport"]
+            airport["code"] for airport in leg["destination"]["airport"]
         ]
         all_airport_codes.extend(destination_airport_codes)
 
@@ -1313,19 +1494,8 @@ def parse_multi_airport_response(
                 if num_origin_airports > 1 and line_number <= num_origin_airports:
                     # Line number matches an origin airport
                     if origin_airport_match == "":
-                        # Save the first match in case too many were provided
+                        # Save the first match only
                         origin_airport_match += origin_airport_codes[line_number - 1]
-                    else:
-                        # More than 1 origin airport provided
-                        city = flight_info_alt["origin"]["city"]
-                        if origin_airport_match == all_airport_codes[line_number - 1]:
-                            errors.append(
-                                f"- You already selected airport '{origin_airport_match}' for {city}, so repeating line number '{item}' {choose_redundant_phrase()}."
-                            )
-                        else:
-                            errors.append(
-                                f"- You already selected airport '{origin_airport_match}' for {city}, so line number '{item}' {choose_redundant_phrase()}."
-                            )
                 else:
                     # Must be a destination line number
                     if required_selections == 1:
@@ -1335,26 +1505,11 @@ def parse_multi_airport_response(
                         # Both cities have multi-airports
                         dest_index = line_number - num_origin_airports - 1
 
+                    # Save the first match only
                     if destination_airport_match == "":
-                        # Save the first match in case too many were provided
                         destination_airport_match += destination_airport_codes[
                             dest_index
                         ]
-                    else:
-                        # More than 1 destination airport provided
-                        city = flight_info_alt["destination"]["city"]
-                        if (
-                            destination_airport_match
-                            == destination_airport_codes[dest_index]
-                        ):
-                            errors.append(
-                                f"- You already selected airport '{destination_airport_match}' for {city}, so repeating line number '{item}' {choose_redundant_phrase()}."
-                            )
-                        else:
-                            errors.append(
-                                f"- You already selected airport '{destination_airport_match}' for {city}, so line number '{item}' {choose_redundant_phrase()}."
-                            )
-
             else:
                 # Item is 3-char alpha
                 airport_code = item.upper()
@@ -1364,48 +1519,28 @@ def parse_multi_airport_response(
                         f"- Selected airport '{airport_code}' isn't one of the choices listed."
                     )
                 else:
-                    # Provided airport code matches one in multi-airport list
+                    # Airport code matches one in multi-airport list
                     if airport_code in origin_airport_codes:
-                        # Provided airport code matches an origin airport
+                        # It matches an origin airport. Save the first match only.
                         if origin_airport_match == "":
-                            # Save the first match in case too many were provided
                             origin_airport_match += airport_code
-                        else:
-                            # More than 1 origin airport provided
-                            city = flight_info_alt["origin"]["city"]
-                            if origin_airport_match == airport_code:
-                                errors.append(
-                                    f"- You already selected airport '{origin_airport_match}' for {city}, so entering '{airport_code}' again {choose_redundant_phrase()}."
-                                )
-                            else:
-                                errors.append(
-                                    f"- You already selected airport '{origin_airport_match}' for {city}, so airport code '{airport_code}' {choose_redundant_phrase()}."
-                                )
                     else:
-                        # Must be a destination airport code
+                        # Must be a destination airport code. Save the first match only.
                         if destination_airport_match == "":
-                            # Save the first match in case too many were provided
                             destination_airport_match += airport_code
-                        else:
-                            # More than 1 destination airport provided
-                            city = flight_info_alt["destination"]["city"]
-                            if destination_airport_match == airport_code:
-                                errors.append(
-                                    f"- You already selected airport '{destination_airport_match}' for {city}, so entering '{airport_code}' again {choose_redundant_phrase()}."
-                                )
-                            else:
-                                errors.append(
-                                    f"- You already selected airport '{destination_airport_match}' for {city}, so airport code '{airport_code}' {choose_redundant_phrase()}."
-                                )
-        # End of for loop
+
+        # End of valid_input for loop
 
     if errors:
         # Update assistant_response with error messages and original multi-airports list for redisplay
         if len(errors) > 1:
             header = "\nSorry, your selection had some issues:"
+            errors.insert(0, header)
         else:
-            header = "\nSorry, your selection had an issue:"
-        errors.insert(0, header)
+            first_letter = errors[0][2].lower()
+            header = f"\nSorry, {first_letter}{errors[0][3:]}"
+            errors.insert(0, header)
+            del errors[1]
         # Add a blank line after the last error message
         errors.append("")
         if required_selections == 1:
@@ -1417,7 +1552,7 @@ def parse_multi_airport_response(
                 f"Please try again using {required_selections} unique airport codes or line numbers from the list above."
             )
         errors.append(
-            "Otherwise, type 'all' for all airports or 'done' to start a new query."
+            "You can also type 'all' for all airports or 'done' to start a new query."
         )
         # Use \n in .join for markdown text
         assistant_response = (
@@ -1428,19 +1563,19 @@ def parse_multi_airport_response(
         # Update flight_info_alt with the selected airport code(s)
         updated_origin_airports = [
             airport
-            for airport in flight_info_alt["origin"]["airport"]
+            for airport in leg["origin"]["airport"]
             if origin_airport_match == airport["code"]
         ]
         updated_destination_airports = [
             airport
-            for airport in flight_info_alt["destination"]["airport"]
+            for airport in leg["destination"]["airport"]
             if destination_airport_match == airport["code"]
         ]
 
         if updated_origin_airports:
-            flight_info_alt["origin"]["airport"] = updated_origin_airports
+            leg["origin"]["airport"] = updated_origin_airports
         if updated_destination_airports:
-            flight_info_alt["destination"]["airport"] = updated_destination_airports
+            leg["destination"]["airport"] = updated_destination_airports
 
     return flight_info_alt, assistant_response
 
@@ -1678,7 +1813,7 @@ def chat_flight_assistant(user_input, chat_history, state_dict, sort_button):
         else:
             flight_ident = flight_info["airline_code"] + flight_info["flight_number"]
             flight_data = get_flight_status(flight_ident)
-            assistant_response = build_flight_status_response(flight_data, flight_ident)
+            assistant_response = build_status_response(flight_data, flight_ident)
 
     #------------------------#
     #   Booking processing   #
@@ -1689,173 +1824,179 @@ def chat_flight_assistant(user_input, chat_history, state_dict, sort_button):
 
         # Parsing errors for booking queries were already processed in extract_flight_info.
         # If here, all flight_info keys will have values.
-        requested_date = parse_query_date(flight_info["date"])
         requested_cabin = flight_info["cabin"]
+        num_legs = len(flight_info["legs"])
 
-        if requested_date:
-            origin_airports = flight_info["origin"].get("airport", [])
-            destination_airports = flight_info["destination"].get("airport", [])
+        if num_legs > 1:
+            # Ignore multi-airport prompt for now
+            state_dict["all_airports"] = True
 
-            # Check if origin and/or destination cities have multiple airports
-            if state_dict["all_airports"] == False and (
-                len(origin_airports) > 1 or len(destination_airports) > 1
-            ):
+        # Check multi-airport cities for one-ways only
+        leg = flight_info["legs"][0]
+        origin_airports = leg["origin"]["airport"]
+        destination_airports = leg["destination"]["airport"]
 
-                # Store the flight info in state_dict for a follow-up user reply
-                state_dict["altered_flight_info"] = flight_info
-                # Save all multi-airports once in case the user wants to retry with different airports
-                if state_dict["multi_airport_prompt_active"] == False:
-                    state_dict["original_flight_info"] = copy.deepcopy(flight_info)
-                    state_dict["multi_airport_prompt_active"] = True
+        # Check if origin and/or destination cities have multiple airports
+        if state_dict["all_airports"] == False and (
+            len(origin_airports) > 1 or len(destination_airports) > 1
+        ):
 
-                # Ask the user for clarification and list options
-                # (header will be inserted after updating state_dict)
-                origin_code = None
-                destination_code = None
+            # Store the flight info in state_dict for a follow-up user reply
+            state_dict["altered_flight_info"] = flight_info
+            # Save all multi-airports once in case the user wants to retry with different airports
+            if state_dict["multi_airport_prompt_active"] == False:
+                state_dict["original_flight_info"] = copy.deepcopy(flight_info)
+                state_dict["multi_airport_prompt_active"] = True
 
-                current_line_number = 0
-                if len(origin_airports) > 1:
-                    origin_code = flight_info["origin"]["airport"][0]["code"]
-                    response_lines.append(
-                        f"For origin '{flight_info['origin']['city']}', multiple airports were found:"
-                    )
-                    for i, airport in enumerate(origin_airports):
-                        # Display the entire string from airport_codes for key ['airport code']
-                        # e.g. "SPI": "Springfield, IL: Abraham Lincoln Capital",
-                        city_airport_str = (
-                            airport_codes[airport["code"]] + f" ({airport['code']})"
-                        )
-                        response_lines.append(f"  {i+1}. {city_airport_str}")
-                        current_line_number += 1
-                    response_lines.append("")
+            # Ask the user for clarification and list options
+            # (header will be inserted after updating state_dict)
+            origin_code = None
+            destination_code = None
 
-                if len(destination_airports) > 1:
-                    destination_code = flight_info["destination"]["airport"][0]["code"]
-                    response_lines.append(
-                        f"For destination '{flight_info['destination']['city']}', multiple airports were found:"
-                    )
-                    for i, airport in enumerate(
-                        destination_airports, start=current_line_number
-                    ):
-                        # Display the entire string from airport_codes for key ['airport code']
-                        # e.g. "SGF": "Springfield, MO: Springfield-Branson National",
-                        city_airport_str = (
-                            airport_codes[airport["code"]] + f" ({airport['code']})"
-                        )
-                        response_lines.append(f"  {i+1}. {city_airport_str}")
-                    response_lines.append("")
-
-                if origin_code is not None and destination_code is not None:
-                    first_destination_line_number = len(origin_airports) + 1
-                    response_lines.append(
-                        f"Please specify which airports you'd like to use (e.g., 1,{first_destination_line_number} or {origin_code}-{destination_code})."
-                    )
-                elif origin_code is not None:
-                    response_lines.append(
-                        f"Please specify which airport you'd like to use (e.g., 1 or {origin_code})."
-                    )
-                else:
-                    response_lines.append(
-                        f"Please specify which airport you'd like to use (e.g., 1 or {destination_code})."
-                    )
-
-                # Join the lines into a single string
-                state_dict["multi_airport_display_string"] = "<br>".join(response_lines)
-
-                # Add trailer and header first time only to avoid redisplaing them when flights aren't found
+            current_line_number = 0
+            if len(origin_airports) > 1:
+                origin_code = leg["origin"]["airport"][0]["code"]
                 response_lines.append(
-                    "Otherwise, type 'all' for all airports or 'done' to start a new query."
+                    f"For origin '{leg['origin']['city']}', multiple airports were found:"
                 )
-                response_lines.insert(0, "Multiple airports exist for your search.\n")
+                for i, airport in enumerate(origin_airports):
+                    # Display the entire string from airport_codes for key ['airport code']
+                    # e.g. "SPI": "Springfield, IL: Abraham Lincoln Capital",
+                    city_airport_str = (
+                        airport_codes[airport["code"]] + f" ({airport['code']})"
+                    )
+                    response_lines.append(f"  {i+1}. {city_airport_str}")
+                    current_line_number += 1
+                response_lines.append("")
 
-            # Case where exactly one airport is found for each city,
-            # or 'all' was selected for multi-airports
-            elif origin_airports and destination_airports:
-                origin_code = origin_airports[0]["code"]
-                destination_code = destination_airports[0]["code"]
-                passengers = {}
-                passengers["adult"] = 1
-                passengers["senior"] = 0
-                passengers["childrenAges"] = [0]
-                passengers["infantInLap"] = 0
-                passengers["infantInSeat"] = 0
+            if len(destination_airports) > 1:
+                destination_code = leg["destination"]["airport"][0]["code"]
+                response_lines.append(
+                    f"For destination '{leg['destination']['city']}', multiple airports were found:"
+                )
+                for i, airport in enumerate(
+                    destination_airports, start=current_line_number
+                ):
+                    # Display the entire string from airport_codes for key ['airport code']
+                    # e.g. "SGF": "Springfield, MO: Springfield-Branson National",
+                    city_airport_str = (
+                        airport_codes[airport["code"]] + f" ({airport['code']})"
+                    )
+                    response_lines.append(f"  {i+1}. {city_airport_str}")
+                response_lines.append("")
 
-                booking_data = get_flights_to_book(flight_info, passengers, state_dict)
-
-                header_str, options_list = build_booking_response(
-                    booking_data, requested_date, timezone_finder
+            if origin_code is not None and destination_code is not None:
+                first_destination_line_number = len(origin_airports) + 1
+                response_lines.append(
+                    f"Please specify which airports you'd like to use (e.g., 1,{first_destination_line_number} or {origin_code}-{destination_code})."
+                )
+            elif origin_code is not None:
+                response_lines.append(
+                    f"Please specify which airport you'd like to use (e.g., 1 or {origin_code})."
+                )
+            else:
+                response_lines.append(
+                    f"Please specify which airport you'd like to use (e.g., 1 or {destination_code})."
                 )
 
-                # No flights were found
-                if "No flights" in header_str:
-                    if state_dict["multi_airport_prompt_active"] == True:
-                        # This was after a multi-airport selection
-                        original_flight_info = state_dict["original_flight_info"]
-                        origin_airports = original_flight_info["origin"]["airport"]
-                        destination_airports = original_flight_info["destination"][
-                            "airport"
-                        ]
-                        num_multi_airport_cities = 0
-                        if len(origin_airports) > 1:
-                            num_multi_airport_cities += 1
-                        if len(destination_airports) > 1:
-                            num_multi_airport_cities += 1
-                        # Add follow-up display lines
-                        response_lines.append(
-                            "_" + state_dict["multi_airport_display_string"] + "_"
-                        )
-                        response_lines.append(
-                            f"\nNo flights were found for the requested airports ({origin_code}-{destination_code}).\n"
-                        )
-                        if num_multi_airport_cities > 1:
-                            response_lines.append(
-                                "You can try again with different airports from the list above."
-                            )
-                        else:
-                            response_lines.append(
-                                "If you'd like to try again, select a different airport from the list above."
-                            )
-                        response_lines.append(
-                            "Otherwise, type 'all' for all airports or 'done' to start a new query."
-                        )
+            # Join the lines into a single string
+            state_dict["multi_airport_display_string"] = "<br>".join(response_lines)
 
-                        state_dict["altered_flight_info"] = copy.deepcopy(
-                            state_dict["original_flight_info"]
+            # Add trailer and header first time only to avoid redisplaing them when flights aren't found
+            response_lines.append(
+                "You can also type 'all' for all airports or 'done' to start a new query."
+            )
+            response_lines.insert(0, "Multiple airports exist for your search.\n")
+
+        # Case where exactly one airport is found for each city,
+        # or 'all' was selected for multi-airports
+        elif origin_airports and destination_airports:
+            origin_code = origin_airports[0]["code"]
+            destination_code = destination_airports[0]["code"]
+            passengers = {}
+            passengers["adult"] = 1
+            passengers["senior"] = 0
+            passengers["childrenAges"] = [0]
+            passengers["infantInLap"] = 0
+            passengers["infantInSeat"] = 0
+
+            booking_data = get_flights_to_book(flight_info, passengers, state_dict)
+
+            header_str, options_list = build_booking_response(
+                booking_data, flight_info, timezone_finder
+            )
+
+            # No flights were found
+            if "No flights" in header_str:
+                if state_dict["multi_airport_prompt_active"] == True:
+                    # This was after a multi-airport selection
+                    original_flight_info = state_dict["original_flight_info"]
+                    origin_airports = original_flight_info["origin"]["airport"]
+                    destination_airports = original_flight_info["destination"][
+                        "airport"
+                    ]
+                    num_multi_airport_cities = 0
+                    if len(origin_airports) > 1:
+                        num_multi_airport_cities += 1
+                    if len(destination_airports) > 1:
+                        num_multi_airport_cities += 1
+                    # Add follow-up display lines
+                    response_lines.append(
+                        "_" + state_dict["multi_airport_display_string"] + "_"
+                    )
+                    response_lines.append(
+                        f"\nNo flights were found for the requested airports ({origin_code}-{destination_code}).\n"
+                    )
+                    if num_multi_airport_cities > 1:
+                        response_lines.append(
+                            "You can try again with different airports from the list above."
                         )
                     else:
-                        header_str = f"No flights were found for the requested airports ({origin_code}-{destination_code})."
-                        response_lines.append(header_str)
-
-                # Flights were found
-                else:
-                    # Sort options based on the selected button
-                    sorted_options = sort_flight_options(options_list, sort_button)
-
-                    # Store the booking info in state_dict for follow-up user requests
-                    state_dict["multi_airport_prompt_active"] = False
-                    state_dict["all_airports"] == False
-                    state_dict["active_sort_preference"] = sort_button
-                    state_dict["flight_options_batch_n"] = 1
-                    state_dict["header_string"] = header_str
-                    state_dict["flight_options_list"] = sorted_options
-
-                    # Build the response string for the first 10 options
+                        response_lines.append(
+                            "If you'd like to try again, select a different airport from the list above."
+                        )
                     response_lines.append(
-                        f"--- Flight Options (sorted by {sort_button}) ---"
+                        "You can also type 'all' for all airports or 'done' to start a new query."
                     )
-                    response_lines.append(header_str)
-                    response_lines.append(build_flight_options_batch(sorted_options, 0))
 
+                    state_dict["altered_flight_info"] = copy.deepcopy(
+                        state_dict["original_flight_info"]
+                    )
+                else:
+                    if num_legs == 1:
+                        header_str = f"No flights were found for the requested airports ({origin_code}-{destination_code})."
+                    elif num_legs == 2:
+                        leg_2 = flight_info["legs"][1]
+                        dest_code_2 = leg_2["destination"]["airport"][0]["code"]
+                        header_str = f"No flights were found for the requested airports ({origin_code}-{destination_code}-{dest_code_2})."
+                    else:
+                        header_str = f"No flights were found for the requested itinerary. Please check your locations and dates and try again."
+                    response_lines.append(header_str)
+
+            # Flights were found
             else:
-                # Shouldn't get here since origin, destination errors were checked before building flight_info
+                # Sort options based on the selected button
+                sorted_options = sort_flight_options(options_list, sort_button)
+
+                # Store the booking info in state_dict for follow-up user requests
+                state_dict["multi_airport_prompt_active"] = False
+                state_dict["all_airports"] == False
+                state_dict["active_sort_preference"] = sort_button
+                state_dict["flight_options_batch_n"] = 1
+                state_dict["header_string"] = header_str
+                state_dict["flight_options_list"] = sorted_options
+
+                # Build the response string for the first 10 options
                 response_lines.append(
-                    "I had a problem extracting origin, destination airports. Could you retry?"
+                    f"--- Flight Options (sorted by {sort_button}) ---"
                 )
+                response_lines.append(header_str)
+                response_lines.append(build_flight_options_batch(sorted_options, 0))
 
         else:
-            # The requested date couldn't be converted to a datetime object
+            # Shouldn't get here since origin, destination errors were checked before building flight_info
             response_lines.append(
-                f"The requested date '{flight_info['date']}' is invalid. Please recheck and try again."
+                "I had a problem extracting origin, destination airports. Could you retry?"
             )
 
         # Join the lines into a single string
