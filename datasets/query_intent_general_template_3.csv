@@ -1,0 +1,402 @@
+query,intent
+Does my flight have wifi?,general
+What's the customer service number?,general
+how heavy can my carry on be?,general
+are CC flights back in service?,general
+"I forgot my PNR number, can i still check in?",general
+What bags can I take on board,general
+contact Capcxr1 Airlines customer service,general
+Could you help with luggage requirements,general
+How much is parking at airptNm1 ?,general
+when does the airport open?,general
+Whats the carryon price?,general
+hotels near airptCd1,general
+What are the required carryon dimensions?,general
+Does Capcxr1 have in-flight entertainment?,general
+Are Capcxr1 flights back to normal?,general
+will CC pay for my hotel,general
+Help with baggage policy,general
+can I board with my food?,general
+is there food on my flight?,general
+retrieve baggage rules,general
+how many checked bags can i have,general
+How many personal items can I bring with me,general
+What is considered a personal item,general
+What's the checked bag fee?,general
+how big can carry-ons be,general
+what is the leg room like on CC ?,general
+what type of aircraft am I flying?,general
+car rentals at airptNm1,general
+What is Capcxr1 's domestic bag policy,general
+file a complaint,general
+What luggage is allowed on my flight?,general
+please find CC 's bag policy,general
+CC customer assistance,general
+bag weight,general
+How do I find a lost bag?,general
+cheapest hotels by airptCd1,general
+How much to carry on my bag?,general
+Where is the CC ticket counter?,general
+What bags does CC allow?,general
+where can i rent a vehicle at airptNm1,general
+Will Capcxr1 provide snacks and a drink,general
+what are the taxes and fees for my trip,general
+Can you get Capcxr1 's bag policy?,general
+allowed luggage on Capcxr1 ?,general
+what is the refund policy,general
+Can I upgrade my seat?,general
+Please upgrade my seat to business,general
+does my flight have wheelchair access,general
+where do I put my stroller when boarding,general
+how many exit row seats on my flight?,general
+how much more for an exit row seat?,general
+Can you get the bag policy?,general
+how long is the trip to airptNm1 ?,general
+What's the weight limit for carry ons?,general
+how many bags are allowed on board?,general
+CC client services,general
+who can I contact about the flight attendants on my trip?,general
+Can you explain the luggage policy?,general
+does airptNm1 have a shuttle,general
+Where is Capcxr1 's ticket counter,general
+domestic bag weights,general
+how many bags can I check,general
+Does CC offer drinks on board?,general
+how much is it to change flights?,general
+Can I take a personal item on board?,general
+allowed bag weights in pounds,general
+does Capcxr1 use etickets?,general
+will CC ask for my record locator?,general
+Where is the ticket counter for my flight?,general
+permitted luggage size,general
+can I change my flight to tomorrow,general
+How do I contact the CC help desk?,general
+do I need my pnr to check in?,general
+can i fly with checked luggage?,general
+how many suitcases can I take with me?,general
+Does CC have a lounge at this airport?,general
+closest hotels to airptNm1,general
+taxi pickup at airptCd1,general
+Can you explain CC 's baggage policy?,general
+what is the largest suitcase I can check?,general
+will I need to pass through security for my connecting flight?,general
+Are carryons free on Capcxr1 ?,general
+Are carryons free on CC ?,general
+does my seat recline?,general
+Can you get CC 's bag policy?,general
+what plane is CC using for my flight,general
+how do I change my seat,general
+cancellation policy,general
+refund policy,general
+how many empty seats are left on my flight,general
+Could you call CC 's customer service?,general
+change fee amount for my flight,general
+how do I change to an earlier departure,general
+What bags can I bring on the plane?,general
+What do I do if my flight is cancelled?,general
+where do I file a grievance with CC ?,general
+"I lost my record locator, how do I find my flight number",general
+where are lost suitcases sent,general
+Do Capcxr1 flights offer wifi,general
+domestic baggage size,general
+explain the bag policy,general
+Are drinks complimentary,general
+What beverages does CC have,general
+can I bring 3 suitcases,general
+Where do I find my lost bag,general
+how many delays has my flight had this year?,general
+does CC have a lot of delays?,general
+how often are Capcxr1 flights delayed?,general
+will I be able to eat on board,general
+who can I speak to about my flight?,general
+find bag requirements,general
+what luggage can I keep with me,general
+Assist with baggage policy,general
+Can you explain Capcxr1 's baggage policy?,general
+Can you find my PNR with my name and flight number?,general
+bag dimensions,general
+What is a personal item?,general
+please find Capcxr1 's bag policy,general
+When will my found bag arrive,general
+what's the biggest suitcase I can carry on,general
+Does CC have free wifi?,general
+baggage measurements,general
+get baggage policy,general
+What movies does CC show,general
+please find the baggage policy,general
+What is the domestic bag policy,general
+What is CC 's international bag policy,general
+how many seats on this plane,general
+Capcxr1 customer support,general
+Connect me with customer service please,general
+flight cancellation policy,general
+"my flight was horrible, what can I do?",general
+does WS have reserved seats now?,general
+when does Southwest start reserved seating?,general
+Does AA serve Dr Pepper?,general
+Does American serve Mountain Dew?,general
+When is the best time to travel?,general
+What is the best day to book flights?,general
+When is airptNm1 's low season?,general
+What is the cheapest airline?,general
+Where can I go for the sun in December?,general
+What islands have the warmest water?,general
+Where are the bluest waters to visit?,general
+Where's a warm place to visit in the winter?,general
+When will prices go down for flights to airptNm1 ?,general
+How many people visit airptNm1 in the summer?,general
+Will you find the best place to visit for whale watching?,general
+What city is best for shopping?,general
+Where can I go that has wind surfing?,general
+I'd like to book a flight to a place in the mountains,general
+"When I travel, I prefer flying over driving",general
+I like taking the train instead of flying,general
+"When I book travel, I prefer using a travel agent",general
+I prefer the help of a travel agent to book my trips,general
+Can you find hotels too?, general
+Will you book me a car for my trip?, general
+Can you reserve a car in airptNm1 for the week of MM +/ DD ?,general
+Will you book a hotel in airptNm1 on DD MMM ?,general
+How full is my flight?,general
+How many people are on today's flight,general
+What is tomorrow's weather for my flight?,general
+Do you speak other languages?,general
+What languages do you speak?,general
+Hello,general
+How are you doing?,general
+What kind of things can you do?,general
+Do you know how to play chess?,general
+Where is the bathroom?,general
+How many flights have you booked today?,general
+How many reservations have you made already?,general
+What's the point of this chatbot?,general
+When will AI take over the world?,general
+Are you smarter than humans?,general
+Why can't you book hotels or cars?,general
+Can you only book flights?,general
+Can you only find flights?,general
+What data do you search to find flights?,general
+I'm tall and thin. How about you?,general
+Where do you live?,general
+Do you like tacos?,general
+I have a cold and can't fly until next month,general
+My friends are planning a trip to airptNm1 . Can you help?,general
+It's too bad you can't understand other questions,general
+It's too bad you can't converse.,general
+hi,general
+howdy,general
+what's up?,general
+How can I help you?,general
+Can you tell me where to get the best hamburgers in airptNm2 ?,general
+Do you know where to fly for ice climbing?,general
+Do you know where to go for art museums?,general
+This training data is a pain.,general
+Creating general queries is tedious,general
+What should we talk about now?,general
+What kind of music do you like?,general
+What movies are they showing from airptNm1 to airptNm2 ?,general
+"I'm bored, where can I go next weekend?",general
+"I'm tired of airptNm1 , where's a fun place to go?",general
+What is the most expensive flight you've booked?,general
+Do many people use your service?,general
+Travel to airptNm1 is long.,general
+I'm tired of Capcxr1 's delays,general
+CC always has delays. Can you find a different flight?,general
+Why doesn't CC fly to airptNm1 anymore?,general
+I'm almost done planning my trip. All I need now are flights.,general
+When will Capcxr1 begin service to airptNm1 ?,general
+Why is CC cancelling flights to airptNm1,general
+What is the best family friendly airline?,general
+Can you compare flights from airptNm1 to airptNm2 with flights from airptNm2 to airptNm1 ?,general
+What's the shortest flight available?,general
+What's the longest flight in the U.S.?,general
+What's the longest flight in the world?,general
+I can't fly over 5 hours without resting. Can you find flights shorter than that?,general
+Will you check what CC 's refund policy is?,general
+how many hours before I can cancel my reservation?,general
+Do you know what Capcxr1 does if my flight is cancelled?,general
+Will I get a hotel if my connecting flight is late?,general
+What is the best airline for legroom?,general
+I don't know what else to say,general
+How do I exchange my ticket for my airptNm1 to airptNm2 flight?,general
+When can I check in for my airptNm1 flight to airptNm2 ?,general
+Does my flight from airptNm1 to airptNm2 have early boarding?,general
+I want an aisle seat on my CC flight 9999_,general
+what is the best way to travel?,general
+what is the best way to fly?,general
+what is the best way to fly from airptNm2 to airptNm1 ?,general
+when is the best time to fly to airptNm1 ?,general
+when is the best time to fly from airptNm1 to airptNm2,general
+how many flights a day does airptCd1 have to airptCd2 ?,general
+can I catch a train to airptNm2 from airptCd1 ?,general
+can I take a train from airptCd1 to the city?,general
+What time does the airptNm1 airport open?,general
+When does CC 's ticket counter open?,general
+What time does check in start?,general
+Which airline has the best service?,general
+Which airline serves the best meals?,general
+How many places in Europe does Capcxr1 fly to?,general
+Where in Asia does CC fly to?,general
+Does Capcxr1 have international flights?,general
+What is the biggest airline in the U.S.?,general
+Which airline has the most routes to Africa?,general
+Is CC a north american carrier?,general
+What is Capcxr1 's hub?,general
+I'd like to avoid CC 's main hubs if possible.,general
+When is airptNm1 's new airport going to be done?,general
+When will the renovations at airptCd1 be completed?,generals
+DIA has been under renovation since it opened!,general
+what's the busiest airport in America?,general
+how long are security lines at airptCd2 ?,general
+how far is long-term parking from the airport?,general
+Is airptNm1 warm this time of year?,general
+What will the weather be like in airptNm2 when I arrive?,general
+where is the best 5-star hotel near airptCd1 ?,general
+are taxes included in the booking?,general
+where in the world is Carmen San Diego?,general
+who knows roger rabbit?,general
+"I watched the NFL yesterday, did you see any games?",general
+I can't believe the Broncos won!,general
+I wish I could go to Hawaii again,general
+When is the first World Series game this year? I'd like to go.,general
+"if I could afford it, I would visit Hawaii every year.",general
+how many commercial pilots are there?,general
+I'm interested in going some place warm in January.,general
+I'd like to look for cheap flights to a place near snow skiing.,general
+Will Christmas fares be a lot higher?,general
+Is Thanksgiving the busiest time to fly?,general
+Who has the best deals this summer?,general
+what days does CC fly to airptNm1 ?,general
+Any low fares coming up this month?,general
+who can help my elderly parent off the plane?,general
+Does airptCd1 have automated passport control?,general
+What is the usual wait times for passport control at DFW?,general
+Do most people like to travel?,general
+a lot of people prefer driving over flying,general
+"With driving to the airport, parking, security lines, and flight delays, you can practically drive to airptNm1 from airptNm2 faster.",general
+Can I charter a flight from airptNm1 to airptNm2 ?,general
+I hope my plane is a triple 7!,general
+Good morning! I need your help.,general
+Any low fares coming up this month?,general
+Can I charter a flight from airptNm1 to airptNm2 ?,general
+"There are 3 things to bring when you travel: id, money, and patience",general
+the stewardess complimented my kids on their behavior,general
+Too many people fly nowadays,general
+"What's the closest airport to Disneyland, CA?",general
+Is Disney World closer or Disneyland to airptNm1 ?,general
+do you book cruises?,general
+can you book me a vacation package?,general
+what questions do you have for me?,general
+"my name is Phil, last name, Donkahue",general
+Where can I go for good food?,general
+What can you tell me about Capcxr1 's service?,general
+How is Capcxr1 's service?,general
+How is the service on CC ?,general
+Are CC 's planes comfortable?,general
+Are Capcxr1 's planes quiet?,general
+Are CC 's planes new?,general
+Does Capcxr1 use new aircraft?,general
+How much is jet fuel these days?,general
+What's the price of jet fuel this year?,general
+How are fares calculated? Why are they always changing?,general
+Why does Capcxr1 make its pricing so confusing?,general
+Most flights are delayed lately?,general
+Most flights depart late these days.,general
+Airport food is expensive,general
+Philadelphia's airport has the most expensive food.,general
+PHL's food costs more than JFK's!,general
+Why is popcorn from Chicago so popular?,general
+Which airport has the best guac?,general
+Have you ever had the chips and guacamole at DFW terminal E?,general
+I love flying from SNA to SFO for the day.,general
+What kind of metal does Capcxr1 use?,general
+Who flies from airptNm1 to airptNm2 ?,general
+Who would fly from airptCd1 to airptCd2 ?,general
+Why would anyone fly from airptNm2 to airptNm1 ?,general
+I hate flying from airptCd1 to airptCd2,general
+The flight from airptNm1 to airptNm2 is too long. It's no fun.,general
+I'll be too tired if I fly airptCd1 +- airptCd2 without a stop.,general
+The new nonstop airptCd1 to airptCd2 is great!,general
+I wish airptNm1 to airptNm2 had a nonstop flight.,general
+The direct flight from airptCd1 to airptCd2 is nice.,general
+I take the nonstop airptCd1 to airptNm2,general
+Why are connection flights cheaper airptNm1 to airptNm2,general
+Why do connecting flights often have lower fares than nonstops?,general
+Who wants a longer flight when you can get their sooner?,general
+"I didn't realize CC 9999_ was delayed, how did it happen?",general
+Do you know why CC + 9999_ was late?,general
+Where is the Capcxr1 agent?,general
+can I use a self-service kiosk for my CC flight?,general
+why does Capcxr1 have so many kiosks now?,general
+I can't get the CC kiosk to work,general
+I'm having trouble checking in for my Capcxr1 flight. Who should I contact?,general
+When will the CC agents arrive?,general
+I have to ask general questions for fine-tuning,general
+Does Capcxr1 have its own ticket counter?,general
+Why are 737s so popular with the airlines?,general
+How many flights a year does Capcxr1 make to airptNm1 ?,general
+I wish I could fly to airptNm2 once a month,general
+So many places have interesting things to see,general
+"Why do they charge for extra bag weight for a skinny person, but a heavy person doesn't pay extra?",general
+"airptNm1 has gotten too popular, so now I travel to airptNm2 instead",general
+How does Santa fit down the chimney?,general
+Kids should fly free if they stay quiet.,general
+Most of CC 's flights are nonstop,general
+Capcxr1 's flights are usually on time,general
+I don't know when I can go to airptNm1,general
+too many people bring food on the plane,general
+You should drink a lot of water when flying,general
+Which carrier has the best in-flight safety presentation?,general
+cotton candy is messy,general
+who won the game last night?,general
+Can I bring my pet on CC flight 9999_ ?,general
+does Capcxr1 allow pets on board?,general
+does CC allow pets,general
+what airlines permit travel with pets?,general
+I want to bring my dog to airptNm1 . Will CC allow it?,general
+I'm bringing my cat to airptNm2 if it's permitted. Do you know Capcxr1 's pet policy?,general
+Why are flights to airptNm1 so expensive right now?,general
+airptNm2 flights are so cheap right now.,general
+I like Capcxr1 's new 787s!,general
+Capcxr1 is the best airline,general
+CC is the worst airline. I never fly with them.,general
+I never fly on Capcxr1 .,general
+Around the world in 80 days is a good book.,general
+Have you seen the new CSI?,general
+I like the exit rows on Capcxr1,general
+how many flights a day from airptCd1 to airptCd2 ?,general
+How many flights are there from airptNm1 to airptNm2 ?,general
+What is my question?,general
+what was your question?,general
+I have a question about cancellations,general
+What happens if I cancel my flight?,general
+How long does it take Capcxr1 to refund my flight?,general
+The best is saved for last.,general
+I like jazz. What music do you like?,general
+In-flight entertainment has become pretty good,general
+What is CC 's in-flight entertainment options?,general
+Can I bring my laptop on Capcxr1 flights?,general
+Can I watch videos on my phone on CC flights?,general
+Can I text during CC flights?,general
+Can I make calls during Capcxr1 flights?,general
+how many more questions do I need?,general
+twenty or so will do,general
+dogs are nicer than cats,general
+cats are softer than dogs,general
+People can be dumb sometimes.,general
+I'm tired of airport food. Does airptNm1 have any restaurants nearby?,general
+Is public transportation available from airptNm2 ?,general
+what kind of public transportation is available at airptNm1 ?,general
+I wonder what movie CC is showing on this flight,general
+What movie is CC featuring on this flight?,general
+Take your time when opening the overhead bins.,general
+An apple a day keeps what away?,general
+do flight attendants stay at nice hotels during layovers?,general
+where do pilots stay during layovers?,general
+I like the Marriott at airptNm1,general
+"We're close to the end, do you know what time it is?",general
+we're about to land. I can't wait!,general
+First one off carrys the bags,general
+How spicy is Cholula hot sauce?,general
+What is your favorite fruit?,general
+"Do not go gentle into that good night. Fly, fly against the dying of the light."general

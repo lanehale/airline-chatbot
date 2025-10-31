@@ -1,0 +1,521 @@
+query,intent
+"Is flight CC + 9999_ on time?",status
+"Is flight CC 9999_ on time?",status
+"is flight cc + 9999_ on time?",status
+"is flight cc 9999_ on MM +/ DD on time?",status
+"is flight CC + 9999_ on MM +- DD on time",status
+"Is tomorrow's flight cc 9999_ on time",status
+"is flight cc + 9999_ on time",status
+"is flight cc 9999_ on time",status
+"is flight Capcxr1 9999_ on time",status
+"is flight lowcxr1 lowcxr2 9999_ on MM +/ DD +/ YY on time",status
+"is flight Capcxr1 lowcxr2 CC + 9999_ on time",status
+"is MM +- DD flight Capcxr1 + Capcxr2 9999_ on time",status
+"Is tonight's flight Capcxr1 + Capcxr2 + 9999_ on time",status
+"Is CC + 9999_ late?",status
+"Is CC 9999_ late?",status
+"Is cc + 9999_ late?",status
+"Is WEEKDAY +'s cc 9999_ late?",status
+"is cc + 9999_ on MM +/ DD late?",status
+"is MM +- DD cc 9999_ late?",status
+"is cc + 9999_ late",status
+"is cc 9999_ late",status
+"is lowcxr1 9999_ late",status
+"is lowcxr1 + 9999_ late",status
+"is lowcxr1 cc 9999_ MM +/ DD late",status
+"is lowcxr1 lowcxr2 9999_ late",status
+"is Capcxr1 + Capcxr2 9999_ late",status
+"is lowcxr1 + lowcxr2 + 9999_ late",status
+"When does tomorrow morning's Capcxr1 9999_ arrive?",status
+"When does MM +/ DD lowcxr1 9999_ arrive?",status
+"when does Capcxr1 + 9999_ arrive?",status
+"When does lowcxr1 + 9999_ arrive?",status
+"when does lowcxr1 9999_ arrive",status
+"when does lowcxr1 + 9999_ arrive",status
+"when does lowcxr1 Capcxr2 9999_ arrive",status
+"when does lowcxr1 lowcxr2 + 9999_ arrive on MM +- DD ?",status
+"when does lowcxr1 + Capcxr2 + 9999_ arrive",status
+"when does Capcxr1 Capcxr2 9999_ arrive",status
+"when does cc + 9999_ arrive",status
+"when does cc 9999_ arrive",status
+"when does CC + 9999_ arrive",status
+"when does today's CC 9999_ arrive",status
+"Did Capcxr1 9999_ arrive?",status
+"did lowcxr1 9999_ arrive?",status
+"Did the MM +/ DD lowcxr1 9999_ arrive",status
+"did lowcxr1 9999_ arrive today, MM +- DD ?",status
+"Did lowcxr1 lowcxr2 9999_ arrive",status
+"Did Capcxr1 lowcxr2 9999_ arrive",status
+"Did cc 9999_ arrive",status
+"Did cc + 9999_ arrive",status
+"Did CC + 9999_ arrive",status
+"Did CC 9999_ arrive",status
+"Did Capcxr1 9999_ get in?",status
+"did lowcxr1 9999_ get in?",status
+"Did lowcxr1 9999_ get in",status
+"did lowcxr1 9999_ get in",status
+"did CC 9999_ get in",status
+"did cc 9999_ get in",status
+"did CC + 9999_ get in",status
+"did cc + 9999_ get in",status
+"did Capcxr1 + lowcxr1 9999_ get in",status
+"did Capcxr1 lowcxr2 9999_ get in",status
+"did lowcxr1 lowcxr2 + 9999_ get in",status
+"Did Capcxr1 9999_ come in?",status
+"did lowcxr1 9999_ come in?",status
+"Did lowcxr1 9999_ come in",status
+"did lowcxr1 9999_ come in",status
+"Did CC 9999_ come in?",status
+"did cc 9999_ come in?",status
+"Did cc + 9999_ come in",status
+"did lowcxr1 lowcxr2 9999_ come in",status
+"Was today's Capcxr1 9999_ late?",status
+"Was Capcxr1 + 9999_ late?",status
+"was Capcxr1 9999_ late?",status
+"was lowcxr1 + 9999_ late?",status
+"was lowcxr1 9999_ late",status
+"was yesterday's lowcxr1 + 9999_ late",status
+"Was CC 9999_ late?",status
+"Was CC + 9999_ late?",status
+"was Capcxr1 cc 9999_ late?",status
+"was cc + 9999_ late?",status
+"was the MM +- DD lowcxr1 lowcxr2 9999_ late",status
+"was lowcxr1 + lowcxr2 + 9999_ late",status
+"was Capcxr1 + Capcxr2 + 9999_ late",status
+"when lowcxr1 9999_ arrive?",status
+"when lowcxr1 + 9999_ arrive DD MMM ?",status
+"when lowcxr1 9999_ arrives?",status
+"when lowcxr1 + 9999_ arrives?",status
+"when lowcxr1 9999_ arrive",status
+"when lowcxr1 + 9999_ arrive",status
+"when this afternoon's lowcxr1 9999_ arrives",status
+"when lowcxr1 + 9999_ arrives",status
+"when CC 9999_ arrive",status
+"when CC + 9999_ arrive",status
+"when lowcxr1 lowcxr2 9999_ arrives",status
+"when lowcxr1 Capcxr2 + 9999_ arrives",status
+"lowcxr1 9999_ MM +/ DD arrived?",status
+"lowcxr1 9999_ arrives?",status
+"lowcxr1 9999_ arrive?",status
+"DD MMM lowcxr1 + 9999_ arrived?",status
+"lowcxr1 + 9999_ MM +- DD arrives?",status
+"lowcxr1 + 9999_ arrive?",status
+"lowcxr1 9999_ arrived",status
+"lowcxr1 9999_ arrives",status
+"lowcxr1 9999_ arrive",status
+"CC + 9999_ arrives?",status
+"cc + 9999_ arrive?",status
+"CC 9999_ arrived",status
+"cc 9999_ arrives",status
+"cc 9999_ arrive",status
+"lowcxr1 9999_ arrival?",status
+"lowcxr1 + 9999_ arrival?",status
+"lowcxr1 9999_ arrival",status
+"lowcxr1 + 9999_ arrival",status
+"WEEKDAY +'s CC 9999_ arrival?",status
+"MM +- DD CC + 9999_ arrival?",status
+"cc 9999_ arrival",status
+"cc + 9999_ arrival",status
+"lowcxr1 lowcxr2 9999_ arrival?",status
+"lowcxr1 + lowcxr2 + 9999_ arrival?",status
+"lowcxr1 lowcxr2 9999_ DD MMM arrival",status
+"Capcxr1 + Capcxr2 + 9999_ arrival",status
+"Capcxr1 cc + 9999_ arrival",status
+"Is flight CC + 9999_ at the gate?",status
+"Is flight CC 9999_ at the gate?",status
+"is flight cc + 9999_ at the gate?",status
+"is MM +/ DD flight cc 9999_ at the gate?",status
+"is flight CC + 9999_ at the gate",status
+"Is flight cc 9999_ at the gate",status
+"is flight cc + 9999_ at the gate",status
+"is flight cc 9999_ at the gate",status
+"is cc flight 9999_ at the gate?",status
+"is CC flight + 9999_ at the gate",status
+"Is lowcxr1 flight cc 9999_ at the gate",status
+"is flight lowcxr1 9999_ at the gate?",status
+"is MM +- DD flight lowcxr1 + 9999_ at the gate",status
+"Is lowcxr1 flight 9999_ at the gate",status
+"is lowcxr1 lowcxr2 flight 9999_ at the gate",status
+"is Capcxr1 + lowcxr2 flight 9999_ at the gate",status
+"CC 9999_ arrival time?",status
+"CC + 9999_ arrival time?",status
+"cc 9999_ arrival time?",status
+"cc + 9999_ arrival time?",status
+"Capcxr1 Capcxr2 9999_ arrival time?",status
+"Capcxr1 Capcxr2 + 9999_ arrival time?",status
+"lowcxr1 lowcxr2 9999_ arrival time?",status
+"lowcxr1 lowcxr2 + 9999_ arrival time?",status
+"Capcxr1 lowcxr2 9999_ arrival time",status
+"lowcxr1 lowcxr2 + 9999_ arrival time",status
+"CC 9999_ gate time?",status
+"CC + 9999_ gate time?",status
+"lowcxr1 lowcxr2 cc + 9999_ gate time?",status
+"lowcxr1 lowcxr2 cc 9999_ gate time?",status
+"lowcxr1 cc 9999_ gate time?",status
+"Capcxr1 Capcxr2 9999_ gate time?",status
+"MM +/ DD Capcxr1 Capcxr2 + 9999_ gate time?",status
+"lowcxr1 lowcxr2 9999_ gate time?",status
+"lowcxr1 lowcxr2 + 9999_ gate time?",status
+"Capcxr1 lowcxr2 9999_ MM +- DD gate time",status
+"lowcxr1 lowcxr2 + 9999_ gate time",status
+"CC 9999_ on time?",status
+"CC + 9999_ on time?",status
+"lowcxr1 lowcxr2 + 9999_ on time?",status
+"lowcxr1 + lowcxr2 + 9999_ on time?",status
+"MM +- DD Capcxr1 Capcxr2 9999_ on time?",status
+"Capcxr1 Capcxr2 + 9999_ on time?",status
+"lowcxr1 lowcxr2 9999_ DD MMM on time?",status
+"lowcxr1 lowcxr2 + 9999_ on time?",status
+"Capcxr1 lowcxr2 9999_ on time",status
+"lowcxr1 lowcxr2 + 9999_ on time",status
+"CC 9999_ time?",status
+"CC + 9999_ time?",status
+"lowcxr1 lowcxr2 cc 9999_ time?",status
+"lowcxr1 lowcxr2 cc + 9999_ time?",status
+"lowcxr1 cc + 9999_ time?",status
+"Capcxr1 Capcxr2 9999_ time?",status
+"Capcxr1 Capcxr2 + 9999_ time?",status
+"lowcxr1 lowcxr2 9999_ DD MMM time?",status
+"lowcxr1 lowcxr2 + 9999_ time?",status
+"Capcxr1 lowcxr2 9999_ MM +/ DD time",status
+"lowcxr1 lowcxr2 + 9999_ time",status
+"cc 9999_ flight time?",status
+"cc + 9999_ flight time?",status
+"lowcxr1 cc 9999_ flight time?",status
+"lowcxr1 cc + 9999_ flight time?",status
+"Capcxr1 + Capcxr2 + 9999_ flight time?",status
+"Capcxr1 Capcxr2 9999_ flight time?",status
+"MM +/ DD Capcxr1 Capcxr2 + 9999_ flight time?",status
+"DD MMM lowcxr1 lowcxr2 9999_ flight time?",status
+"lowcxr1 lowcxr2 + 9999_ flight time?",status
+"Capcxr1 lowcxr2 9999_ flight time",status
+"lowcxr1 lowcxr2 + 9999_ flight time on MM +- DD",status
+"What's the status of CC + 9999_?",status
+"What's status of CC 9999_?",status
+"Whats the status of CC + 9999_?",status
+"Whats status of CC + 9999_?",status
+"What is the status of CC 9999_ on MM +/ DD ?",status
+"what's the status of today's cc + 9999_?",status
+"what's the status of DD MMM cc 9999_",status
+"whats the status of cc + 9999_",status
+"whats status of cc + 9999_",status
+"what is status of cc 9999_",status
+"what's the status of lowcxr1 9999_",status
+"whats the status of tomorrow's lowcxr1 + 9999_",status
+"whats status of MM +- DD lowcxr1 lowcxr2 9999_?",status
+"what is status of lowcxr1 + lowcxr2 + 9999_?",status
+"status of CC 9999_",status
+"status of CC + 9999_",status
+"status of MM +/ DD CC 9999_?",status
+"status of CC + 9999_",status
+"status of Capcxr1 + Capcxr2 9999_",status
+"status of Capcxr1 9999_",status
+"status of Capcxr1 lowcxr2 9999_?",status
+"status of lowcxr1 + 9999_ DD MMM",status
+"Give me the status of CC 9999_ MM +- DD +- YY",status
+"Give me the status of CC + 9999_",status
+"give me the status of cc 9999_ for MM +/ DD",status
+"give me the status of cc + 9999_",status
+"give the status of cc 9999_",status
+"give the status of cc + 9999_",status
+"give status for CC 9999_",status
+"Give status for cc + 9999_",status
+"give me the status of lowcxr1 9999_ for DD MMM",status
+"give me the status of lowcxr1 + 9999_",status
+"give the status of DD MMM lowcxr1 lowcxr2 9999_",status
+"give the status of lowcxr1 + lowcxr2 + 9999_",status
+"give status for lowcxr1 9999_",status
+"Find me the status of CC 9999_",status
+"Find me the status of CC + 9999_",status
+"find me the status of cc 9999_",status
+"find me the status of cc + 9999_",status
+"find the status of cc 9999_",status
+"find the status of cc + 9999_",status
+"Find status for MM +/ DD CC 9999_",status
+"find status for cc + 9999_",status
+"find me the status of lowcxr1 + 9999_",status
+"find the status of WEEKDAY +'s lowcxr1 9999_",status
+"find the status of lowcxr1 lowcxr2 + 9999_",status
+"Find status for Capcxr1 lowcxr2 9999_",status
+"is lowcxr1 9999_ delayed?",status
+"is lowcxr1 9999_ postponed?",status
+"is lowcxr1 9999_ suspended?",status
+"is lowcxr1 9999_ on MM +/ DD cancelled?",status
+"is lowcxr1 + 9999_ delayed today?",status
+"is lowcxr1 + 9999_ postponed tomorrow, MM +- DD ?",status
+"is lowcxr1 + 9999_ suspended?",status
+"is lowcxr1 + 9999_ cancelled?",status
+"is cc + 9999_ delayed?",status
+"is cc 9999_ postponed?",status
+"is the MM +/ DD cc + 9999_ suspended?",status
+"is cc 9999_ cancelled?",status
+"has lowcxr1 9999_ arrived?",status
+"has lowcxr1 9999_ gotten in?",status
+"is lowcxr1 9999_ in?",status
+"is lowcxr1 9999_ here?",status
+"has lowcxr1 + 9999_ arrived",status
+"has lowcxr1 + 9999_ gotten in from last night",status
+"is lowcxr1 + 9999_ in",status
+"is lowcxr1 + 9999_ here",status
+"where is lowcxr1 9999_?",status
+"is cc flight + 9999_ delayed?",status
+"is cc flight 9999_ postponed?",status
+"is cc flight + 9999_ suspended?",status
+"is cc flight 9999_ cancelled?",status
+"has lowcxr1 flight 9999_ arrived?",status
+"has lowcxr1 flight 9999_ gotten in?",status
+"is lowcxr1 flight 9999_ in?",status
+"is lowcxr1 flight 9999_ here?",status
+"has lowcxr1 flight + 9999_ arrived",status
+"has lowcxr1 flight + 9999_ from MM +/ DD gotten in",status
+"is lowcxr1 flight + 9999_ in",status
+"is lowcxr1 flight + 9999_ here",status
+"where is lowcxr1 flight 9999_?",status
+"has cc + 9999_ on MM +- DD arrived",status
+"has cc 9999_ gotten in",status
+"is cc 9999_ in",status
+"is cc + 9999_ here",status
+"where is DD MMM +'s cc 9999_?",status
+"has cc flight + 9999_ arrived",status
+"has cc flight 9999_ gotten in",status
+"is cc flight 9999_ in",status
+"is cc flight + 9999_ here",status
+"where is cc flight 9999_?",status
+"was lowcxr1 lowcxr2 9999_ cancelled?",status
+"Capcxr1 9999_ status?",status
+"Is cc + 9999_ early?",status
+"Is cc + 9999_ on schedule",status
+"is cc 9999_ late",status
+"is cc 9999_ ahead of schedule?"
+"was lowcxr1 lowcxr2 9999_ cancelled?",status
+"Capcxr1 9999_ status?",status
+"Is lowcxr1 + 9999_ early?",status
+"Is lowcxr1 + 9999_ on schedule?",status
+"is lowcxr1 9999_ MM +/ DD late",status
+"is lowcxr1 lowcxr2 9999_ ahead of schedule"
+"where is lowcxr1 flight 9999_?",status
+"where is lowcxr1 lowcxr2 9999_?",status
+"where is lowcxr1 lowcxr2 flight 9999_?",status
+"where is lowcxr1 flight + 9999_?",status
+"where is lowcxr1 lowcxr2 flight + 9999_?",status
+"where is lowcxr1 + lowcxr2 flight + 9999_?",status
+"Check PNR ABC123 flight.",status
+"Check record locator ABC123 flight.",status
+"where is pnr ABC123 lowcxr1 lowcxr2 flight?",status
+"is pnr ABC123 + 's flight on time?",status
+"when does rec loc ABC123 arrive?",status
+"what gate will pnr ABC123 flight use tomorrow?",status
+"when does MM +/ DD pnr ABC123 come in",status
+"what time will record loc ABC123 get in",status
+"how late is pnr ABC123 flight",status
+"is pnr ABC123 delayed",status
+"Check ABC123 flight.",status
+"Check recloc ABC123 flight.",status
+"where is ABC123 lowcxr1 lowcxr2 flight?",status
+"is ABC123 flight on time?",status
+"when does pnr ABC123 arrive?",status
+"will ABC123 arrive soon?",status
+"what is record ABC123 flight's status",status
+"PNR ABC123 arrival time",status
+"PNR ABC123 departure time",status
+"has record loc ABC123 left yet",status
+"is rec locator ABC123 in",status
+"did ABC123 get in",status
+"where is record locator ABC123 + 's flight",status
+"when will the flight for pnr ABC123 get in",status
+"pnr ABC123 flight status",status
+"pnr ABC123 flight arrival",status
+"is ABC123 + 's flight early?",status
+"when can I board aa 9999_ Chicago to DFW, MM +/ DD ?",status
+when can I board my flight LAX to SFO,status
+When can I board CC + 9999_ Miami to New York?,status
+when does boarding start?,status
+when does boarding begin for CC 9999_ ?,status
+when will they start boarding Capcxr1 9999_,status
+I hope CC 9999_ boards soon,status
+I hope my flight begins boarding soon,status
+Did my gate change?,status
+has my gate changed?,status
+where is my new gate,status
+I'm late. Will I still make my flight?,status
+I'm afraid my flight will be delayed.,status
+"If my flight is delayed, I'll be ticked. CC is never on time.",status
+I hope Capcxr1 delays are over. I need my flight to depart on time!,status
+Do I still have time to make my flight?,status
+Which gate is my MM +/ DD flight departing from?,status
+which terminal is my flight in?,status
+I forgot my MM +- DD flight's terminal,status
+Is my flight still in terminal B?,status
+Is my flight still at gate 35C?,status
+when does my flight leave?,status
+was American 1 early WEEKDAY ?,status
+was American 2 on time?,status
+is American 3 early?,status
+is American 4 MM +/ DD late?,status
+was American 5 late?,status
+when is American 6 coming?,status
+how late is american 1,status
+how late is united 2,status
+how late is aa1,status
+how late is aa9 MM +- DD,status
+how late is aa999,status
+how late is aa 999,status
+how late is aa 99,status
+how late is aa 9,status
+how late is aa 5000,status
+how late is american 1000,status
+how late is united 10,status
+how late is american 99,status
+how late is american 100,status
+how late is delta 3 DD MMM,status
+how late is delta 1000,status
+how late is southwest 400?,status
+how late is southwest 4000?,status
+"how late is my friend's united flight",status
+"how late is my son's american flight?",status
+"how late is my wife's delta flight?",status
+how early is my flight?,status
+how early is american 7,status
+how early is united 8,status
+how early was delta 9?,status
+will I arrive early?,status
+will I arrive late?,status
+will I be on time?,status
+how late is wn 5?,status
+how late is dl 4?,status
+how late is tonight's ua 3,status
+how late is dl2?,status
+how late is ua3?,status
+how late is wn5?,status
+how early is ua5,status
+when should my airptNm1 flight be leaving?,status
+when should my flight depart?,status
+what time should my flight depart?,status
+when should my flight arrive?,status
+when should my flight be arriving?,status
+when time should my flight arrive?,status
+when should my MM +/ DD flight get in?,status
+is my flight still late,status
+is my flight still on time?,status
+is my flight going to be on time?,status
+is my flight going to be late?,status
+will my flight be early?,status
+is my CC flight delayed?,status
+is flight 9999_ late?,status
+is my lowcxr1 flight on time?,status
+Where are the bag carousels at airptNm1,status
+Where is my bag carousel for flight 9999_ ?,status
+Where is baggage claim at airptCd2,status
+Where is baggage claim for my flight?,status
+Which baggage claim do I go to?,status
+Where do I get my bags?,status
+Where do I get my suitcases?,status
+Where do I pick up my luggage after my flights?,status
+Where do I pick up my suitcase after my CC 9999_ flight?,status
+did they change my baggage claim number?,status
+Has the carousel changed for my bags?,status
+Where is Capcxr1 dropping off our suitcases?,status
+carousel where I can find my suitcase,status
+baggage claim number,status
+baggage claim,status
+bag claim carousel,status
+what is my flight's bag carousel,status
+what is my flight's baggage claim number?,status
+where do I get my gate-checked bag after deboarding,status
+where do I pick up my stroller when getting off?,status
+They gate-checked our car seat. Where do I get it after my flight?,status
+"Our stroller was checked at the gate. Will it be on the jetway when we unboard, or do they send it to baggage claim?",status
+Where do they put my car seat after we land?,status
+"My bag was gate checked, should I pick it up at baggage claim?",status
+"I checked my carry on at the gate, but I don't know where to get it when we land.",status
+They checked my carry-on bag at the gate but didn't tell me where to retrieve it after the flight.,status
+Where is my bag carousel?,status
+What floor is the bag carousel on?,status
+I don't know where my bag carousel is.,status
+Do you know which floor baggage claim is on?,status
+Can you help my find the floor for baggage claim?,status
+What side of the airport is baggage claim on?,status
+What floor is the bag carousel on at airptCd1 ?,status
+I don't know where my bag carousel is for flight 9999_,status
+I can't find baggage claim for CC,status
+help with baggage claim,status
+need help finding baggage claim for Capcxr1,status
+is baggage claim on the 4th or 5th floor at airptCd1 ?,status
+Where do I pick up my bags at airptNm1 ?,status
+Baggage claim for my flight to airptNm1 ?,status
+Where's the carousel for bags at airptCd1 ?,status
+How do I find my luggage at airptNm2 Airport?,status
+How do I get my large suitcase at airptNm2 Airport?,status
+Need to pick up my suitcase in airptNm1,status
+Bags for Capcxr1 flight 9999_ in airptNm2 ?,status
+where do they put oversized luggage at airptCd1 ?,status
+where do they drop oversized bags at airptNm1 airport?,status
+where are oversized bags left at airptCd1,status
+where will my oversized bag be after flight 9999_ on CC ?,status
+where should I go for my oversized bag after flight 9999_ on Capcxr1 ?,status
+where are CC + 's gates?,status
+how far is the CC gate,status
+how far is the gate,status
+am I close to my gate?,status
+Where is my flight's gate?,status
+What gate am I at?,status
+where is my gate?,status
+what gate is my Capcxr1 flight at?,status
+where is my gate for CC 9999_ ?,status
+where is my flight 9999_ gate?,status
+where is my CC gate?,status
+are Capcxr1 +'s gates far?,status
+how long until I reach my gate?,status
+gate/terminal info,status
+gate number please,status
+Do you have my gate?,status
+do you have my CC gate?,status
+do you have my CC gate for 9999_ ?,status
+do you have CC +'s gate for flight 9999_,status
+CC gate for flight 9999_,status
+Capcxr1 gate for 9999_,status
+where's the gate for my flight?,status
+where's the gate for CC 9999_ ?,status
+where is Capcxr1 flight 9999_ +'s gate?,status
+could you tell me the gate for Capcxr1 9999_ ?,status
+I'm looking for CC 9999_ +'s gate.,status
+I want to find the departure gate for Capcxr1 9999_ .,status
+find gate CC 9999_,status
+tell me the gate of Capcxr1 9999_,status
+my gate and terminal please?,status
+How do I reach my terminal in 15 minutes,status
+is there a shuttle to my terminal?,status
+where is Capcxr1 + 's terminal,status
+what terminal does Capcxr1 use,status
+where are CC + 's terminals?,status
+how far is the CC terminal,status
+how far is the terminal,status
+am I close to my terminal?,status
+Where is my flight's terminal?,status
+What terminal am I at?,status
+where is my terminal?,status
+what terminal is my Capcxr1 flight at?,status
+where is my terminal for CC 9999_ ?,status
+where is my flight 9999_ terminal?,status
+where is my CC terminal?,status
+are Capcxr1 +'s terminals far?,status
+how long until I reach my terminal?,status
+terminal/terminal info,status
+terminal number please,status
+Do you have my terminal?,status
+do you have my CC terminal?,status
+do you have my CC terminal for 9999_ ?,status
+do you have CC +'s terminal for flight 9999_,status
+CC terminal for flight 9999_,status
+Capcxr1 terminal for 9999_,status
+where's the terminal for my flight?,status
+where's the terminal for CC 9999_ ?,status
+where is Capcxr1 flight 9999_ +'s terminal?,status
+could you tell me the terminal for Capcxr1 9999_ ?,status
+I'm looking for CC 9999_ +'s terminal.,status
+I want to find the departure terminal for Capcxr1 9999_ .,status
+find terminal CC 9999_,status
+tell me the terminal of Capcxr1 9999_,status
+How long is my flight,status
+I forgot when my flight arrives,status
+how late is my flight?,status

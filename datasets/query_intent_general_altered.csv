@@ -1,0 +1,402 @@
+query,intent
+what luggage can I keep with me,general
+Paducah flights are so cheap right now.,general
+What bags can I bring on the plane?,general
+where in the world is Carmen San Diego?,general
+When can I check in for my Ashland flight to Lawton?,general
+Do many people use your service?,general
+howdy,general
+This training data is a pain.,general
+Are Endeavor's planes quiet?,general
+Too many people fly nowadays,general
+Whats the carryon price?,general
+get baggage policy,general
+Take your time when opening the overhead bins.,general
+I wish I could go to Hawaii again,general
+Does QX have free wifi?,general
+How many places in Europe does Frontier fly to?,general
+Can I watch videos on my phone on FL flights?,general
+how long is the trip to Akron?,general
+Can you reserve a car in Lihue for the week of 10/1?,general
+I'd like to book a flight to a place in the mountains,general
+Could you call G4's customer service?,general
+What is Hawaiian's domestic bag policy,general
+"I'm tired of Mobile, where's a fun place to go?",general
+Have you ever had the chips and guacamole at DFW terminal E?,general
+Where can I go that has wind surfing?,general
+Will US provide snacks and a drink,general
+will QX pay for my hotel,general
+is there food on my flight?,general
+Assist with baggage policy,general
+Which airline has the best service?,general
+how many flights a day does GRI have to AUS?,general
+what's up?,general
+who knows roger rabbit?,general
+What is considered a personal item,general
+Do you know what Frontier does if my flight is cancelled?,general
+Do you like tacos?,general
+I have a question about cancellations,general
+What is your favorite fruit?,general
+what is the leg room like on DL?,general
+I like the Marriott at Erie,general
+What is the most expensive flight you've booked?,general
+please find the baggage policy,general
+What beverages does VX have,general
+What is SkyWest's hub?,general
+What bags can I take on board,general
+WN always has delays. Can you find a different flight?,general
+what's the busiest airport in America?,general
+Can I take a personal item on board?,general
+domestic baggage size,general
+Why are flights to Provo so expensive right now?,general
+What is the best airline for legroom?,general
+How full is my flight?,general
+what is the best way to fly?,general
+What's the price of jet fuel this year?,general
+Which airline serves the best meals?,general
+what is the best way to travel?,general
+allowed bag weights in pounds,general
+How many reservations have you made already?,general
+I'm interested in going some place warm in January.,general
+What is tomorrow's weather for my flight?,general
+Do you speak other languages?,general
+Will you book a hotel in Charleston on 22 Sep?,general
+I love flying from SNA to SFO for the day.,general
+Help with baggage policy,general
+What is the biggest airline in the U.S.?,general
+are B6 flights back in service?,general
+retrieve baggage rules,general
+can I use a self-service kiosk for my UA flight?,general
+How many personal items can I bring with me,general
+When is the best time to travel?,general
+Hello,general
+Can you find my PNR with my name and flight number?,general
+I'm tired of airport food. Does Las Vegas have any restaurants nearby?,general
+I can't fly over 5 hours without resting. Can you find flights shorter than that?,general
+Where is the bathroom?,general
+What happens if I cancel my flight?,general
+cats are softer than dogs,general
+taxi pickup at MBS,general
+Could you help with luggage requirements,general
+"I forgot my PNR number, can i still check in?",general
+Creating general queries is tedious,general
+where do pilots stay during layovers?,general
+Do you know how to play chess?,general
+What are the required carryon dimensions?,general
+"What's the closest airport to Disneyland, CA?",general
+change fee amount for my flight,general
+the stewardess complimented my kids on their behavior,general
+How many flights a year does AirTran make to Peoria?,general
+who can I speak to about my flight?,general
+Do you know where to go for art museums?,general
+Will you check what B6's refund policy is?,general
+where do I file a grievance with OO?,general
+How many flights are there from St. Louis to Boston?,general
+Can you explain American Eagle's baggage policy?,general
+car rentals at Belleville,general
+Can you explain QX's baggage policy?,general
+I wish Eagle to Saipan had a nonstop flight.,general
+When will Mesa begin service to Hayden?,general
+I'd like to avoid UA's main hubs if possible.,general
+Where is the YV ticket counter?,general
+Which airline has the most routes to Africa?,general
+how long are security lines at EKO?,general
+I wish I could fly to Springfield once a month,general
+"I'm bored, where can I go next weekend?",general
+Where in Asia does G4 fly to?,general
+can I board with my food?,general
+I'm having trouble checking in for my Horizon flight. Who should I contact?,general
+will I be able to eat on board,general
+Where is the ticket counter for my flight?,general
+I don't know what else to say,general
+do I need my pnr to check in?,general
+Who would fly from SNA to RDD?,general
+Can you find hotels too?,general
+Does FL offer drinks on board?,general
+What is my question?,general
+What languages do you speak?,general
+when does Southwest start reserved seating?,general
+I'm bringing my cat to Traverse City if it's permitted. Do you know US's pet policy?,general
+does YV allow pets,general
+baggage measurements,general
+how many delays has my flight had this year?,general
+what days does QX fly to King Salmon?,general
+What's the checked bag fee?,general
+how many hours before I can cancel my reservation?,general
+I don't know when I can go to Pasco,general
+When does AA's ticket counter open?,general
+"my name is Phil, last name, Donkahue",general
+I prefer the help of a travel agent to book my trips,general
+How are you doing?,general
+When is Dubuque's low season?,general
+How long does it take Republic to refund my flight?,general
+"Do not go gentle into that good night. Fly, fly against the dying of the light.general",general
+"There are 3 things to bring when you travel: id, money, and patience",general
+how many exit row seats on my flight?,general
+The new nonstop FLL to LIH is great!,general
+Are FL's planes comfortable?,general
+Is Disney World closer or Disneyland to Mammoth Lakes?,general
+When will my found bag arrive,general
+DIA has been under renovation since it opened!,general
+Can I charter a flight from Lawton to Garden City?,general
+How much is jet fuel these days?,general
+cheapest hotels by RDU,general
+how many more questions do I need?,general
+What is VX's in-flight entertainment options?,general
+Most flights are delayed lately?,general
+Can I text during 9E flights?,general
+What movies are they showing from Cheyenne to Cedar Rapids?,general
+Can you only find flights?,general
+does JetBlue use etickets?,general
+explain the bag policy,general
+how much more for an exit row seat?,general
+"With driving to the airport, parking, security lines, and flight delays, you can practically drive to Wilmington from Klamath Falls faster.",general
+Do Republic flights offer wifi,general
+Does UA have a lounge at this airport?,general
+When is the first World Series game this year? I'd like to go.,general
+What will the weather be like in Bakersfield when I arrive?,general
+I'll be too tired if I fly FLO-HGR without a stop.,general
+Please upgrade my seat to business,general
+Most flights depart late these days.,general
+Why is EV cancelling flights to Brownsville,general
+First one off carrys the bags,general
+What islands have the warmest water?,general
+The direct flight from JLN to DBQ is nice.,general
+Can I bring my laptop on US flights?,general
+domestic bag weights,general
+My friends are planning a trip to Minneapolis. Can you help?,general
+So many places have interesting things to see,general
+Travel to Provo is long.,general
+Where can I go for the sun in December?,general
+Where are the bluest waters to visit?,general
+I like jazz. What music do you like?,general
+will DL ask for my record locator?,general
+I want an aisle seat on my UA flight 5700,general
+Who has the best deals this summer?,general
+Can I make calls during American flights?,general
+"I watched the NFL yesterday, did you see any games?",general
+Hawaiian's flights are usually on time,general
+Can you explain the luggage policy?,general
+People can be dumb sometimes.,general
+What is the best day to book flights?,general
+I like taking the train instead of flying,general
+what's the biggest suitcase I can carry on,general
+Alaska is the best airline,general
+I take the nonstop SHR to Kansas City,general
+who won the game last night?,general
+Will you find the best place to visit for whale watching?,general
+Can I upgrade my seat?,general
+What city is best for shopping?,general
+Around the world in 80 days is a good book.,general
+where is the best 5-star hotel near GTR?,general
+who can help my elderly parent off the plane?,general
+allowed luggage on American?,general
+do you book cruises?,general
+Does my flight from Kona to Valparaiso have early boarding?,general
+I have a cold and can't fly until next month,general
+OO customer assistance,general
+The flight from Atlantic City to Sioux City is too long. It's no fun.,general
+we're about to land. I can't wait!,general
+Can you get Endeavor's bag policy?,general
+cotton candy is messy,general
+cancellation policy,general
+What movie is OO featuring on this flight?,general
+Why are 737s so popular with the airlines?,general
+can I catch a train to Wendover from BIS?,general
+file a complaint,general
+does Flagstaff have a shuttle,general
+I like the exit rows on Hawaiian,general
+Why doesn't YX fly to Asheville anymore?,general
+I can't believe the Broncos won!,general
+how many suitcases can I take with me?,general
+can I change my flight to tomorrow,general
+what is the largest suitcase I can check?,general
+I want to bring my dog to Baltimore. Will VX allow it?,general
+how do I change to an earlier departure,general
+what is the refund policy,general
+Where is ExpressJet's ticket counter,general
+It's too bad you can't understand other questions,general
+please find OH's bag policy,general
+What's the longest flight in the world?,general
+Are Republic flights back to normal?,general
+It's too bad you can't converse.,general
+What is the cheapest airline?,general
+contact Allegiant Airlines customer service,general
+flight cancellation policy,general
+I'm tired of United's delays,general
+When is Palm Springs's new airport going to be done?,general
+refund policy,general
+where do I put my stroller when boarding,general
+Are AA's planes new?,general
+Who flies from Devils Lake to New York?,general
+Can I bring my pet on YX flight 7097?,general
+how much is it to change flights?,general
+Can you get the bag policy?,general
+Does American serve Mountain Dew?,general
+What is 9E's international bag policy,general
+How is the service on US?,general
+does my seat recline?,general
+Why would anyone fly from Rochester to College Station?,general
+B6 is the worst airline. I never fly with them.,general
+how many checked bags can i have,general
+"When I travel, I prefer flying over driving",general
+Do you know where to fly for ice climbing?,general
+permitted luggage size,general
+What should we talk about now?,general
+What luggage is allowed on my flight?,general
+will I need to pass through security for my connecting flight?,general
+"Lynchburg has gotten too popular, so now I travel to Scranton instead",general
+Is Gunnison warm this time of year?,general
+bag weight,general
+Can you only book flights?,general
+How much to carry on my bag?,general
+"I lost my record locator, how do I find my flight number",general
+"Why do they charge for extra bag weight for a skinny person, but a heavy person doesn't pay extra?",general
+Can I charter a flight from Monroe to Charlotte?,general
+how many empty seats are left on my flight,general
+Why can't you book hotels or cars?,general
+PHL's food costs more than JFK's!,general
+Kids should fly free if they stay quiet.,general
+does my flight have wheelchair access,general
+What's the point of this chatbot?,general
+What bags does EV allow?,general
+does AA have a lot of delays?,general
+who can I contact about the flight attendants on my trip?,general
+Why is popcorn from Chicago so popular?,general
+What is a personal item?,general
+what questions do you have for me?,general
+What is the domestic bag policy,general
+find bag requirements,general
+Philadelphia's airport has the most expensive food.,general
+I hope my plane is a triple 7!,general
+"When I book travel, I prefer using a travel agent",general
+Any low fares coming up this month?,general
+What's the shortest flight available?,general
+How does Santa fit down the chimney?,general
+What movies does VX show,general
+How can I help you?,general
+"I didn't realize NK 5641 was delayed, how did it happen?",general
+Do you know why OH290 was late?,general
+What can you tell me about ExpressJet's service?,general
+What is the usual wait times for passport control at DFW?,general
+Who wants a longer flight when you can get their sooner?,general
+"my flight was horrible, what can I do?",general
+how many flights a day from LGB to CEC?,general
+I'm almost done planning my trip. All I need now are flights.,general
+Will you book me a car for my trip?,general
+What time does the Santa Fe airport open?,general
+What kind of music do you like?,general
+I have to ask general questions for fine-tuning,general
+You should drink a lot of water when flying,general
+Is public transportation available from Decatur?,general
+hi,general
+Does AA serve Dr Pepper?,general
+can i fly with checked luggage?,general
+how many commercial pilots are there?,general
+when is the best time to fly to Waco?,general
+Any low fares coming up this month?,general
+"We're close to the end, do you know what time it is?",general
+Are you smarter than humans?,general
+can I bring 3 suitcases,general
+When will AI take over the world?,general
+what airlines permit travel with pets?,general
+Are carryons free on US?,general
+Why do connecting flights often have lower fares than nonstops?,general
+can I take a train from HRL to the city?,general
+Are carryons free on Virgin?,general
+An apple a day keeps what away?,general
+what type of aircraft am I flying?,general
+closest hotels to Green Bay,general
+Is Thanksgiving the busiest time to fly?,general
+How many flights have you booked today?,general
+What's the longest flight in the U.S.?,general
+What data do you search to find flights?,general
+Does Alaska use new aircraft?,general
+how many bags can I check,general
+what was your question?,general
+Why does Allegiant make its pricing so confusing?,general
+Connect me with customer service please,general
+what is the best way to fly from Bozeman to Houston?,general
+Why are connection flights cheaper Helena to Wichita Falls,general
+What is the best family friendly airline?,general
+how many bags are allowed on board?,general
+Where do you live?,general
+"if I could afford it, I would visit Hawaii every year.",general
+Where is the SkyWest agent?,general
+I can't get the YX kiosk to work,general
+how many seats on this plane,general
+bag dimensions,general
+What's the customer service number?,general
+how do I change my seat,general
+How much is parking at Charlotte Amalie?,general
+where are lost suitcases sent,general
+How many people are on today's flight,general
+what plane is AA using for my flight,general
+Can you get 9E's bag policy?,general
+How many people visit Redding in the summer?,general
+Good morning! I need your help.,general
+too many people bring food on the plane,general
+I'd like to look for cheap flights to a place near snow skiing.,general
+Can you compare flights from Syracuse to Pullman with flights from Pullman to Syracuse?,general
+how big can carry-ons be,general
+what kind of public transportation is available at Cheyenne?,general
+Most of G4's flights are nonstop,general
+Alaska customer support,general
+does WS have reserved seats now?,general
+Does Southwest have in-flight entertainment?,general
+I never fly on Delta.,general
+When will the renovations at STX be completed?,general
+where can i rent a vehicle at Honolulu,general
+I wonder what movie OH is showing on this flight,general
+Does Virgin have its own ticket counter?,general
+How do I exchange my ticket for my Lake Charles to Hyannis flight?,general
+how far is long-term parking from the airport?,general
+how heavy can my carry on be?,general
+Airport food is expensive,general
+What do I do if my flight is cancelled?,general
+Where do I find my lost bag,general
+How do I find a lost bag?,general
+What kind of things can you do?,general
+I like American's new 787s!,general
+can you book me a vacation package?,general
+What time does check in start?,general
+What's the weight limit for carry ons?,general
+are taxes included in the booking?,general
+What kind of metal does Mesa use?,general
+when is the best time to fly from Stockton to Helena,general
+does Horizon allow pets on board?,general
+How are fares calculated? Why are they always changing?,general
+Does my flight have wifi?,general
+How do I contact the MQ help desk?,general
+I'm tall and thin. How about you?,general
+dogs are nicer than cats,general
+Are drinks complimentary,general
+Can you tell me where to get the best hamburgers in Valparaiso?,general
+why does Southwest have so many kiosks now?,general
+a lot of people prefer driving over flying,general
+The best is saved for last.,general
+WN client services,general
+Where can I go for good food?,general
+when does the airport open?,general
+I hate flying from TVC to APN,general
+Will I get a hotel if my connecting flight is late?,general
+hotels near CLD,general
+In-flight entertainment has become pretty good,general
+Does Hawaiian have international flights?,general
+Where's a warm place to visit in the winter?,general
+twenty or so will do,general
+Will Christmas fares be a lot higher?,general
+When will prices go down for flights to Nantucket?,general
+How is Virgin's service?,general
+Does SLN have automated passport control?,general
+Do most people like to travel?,general
+what are the taxes and fees for my trip,general
+Which airport has the best guac?,general
+please find United's bag policy,general
+Have you seen the new CSI?,general
+Which carrier has the best in-flight safety presentation?,general
+Is OH a north american carrier?,general
+do flight attendants stay at nice hotels during layovers?,general
+How spicy is Cholula hot sauce?,general
+how often are Alaska flights delayed?,general
+When will the YV agents arrive?,general

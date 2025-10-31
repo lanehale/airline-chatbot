@@ -1,328 +1,521 @@
 query,intent
-has f9 flight 8170 gotten in,status
-is o87dmy's flight early?,status
-when does American Eagle320 arrive?,status
-find the status of delta 5115,status
-has horizon flight381 arrived,status
-is mq flight 7738 postponed?,status
-when does Horizon Air 2561 arrive,status
-Was YX3374 late?,status
-what is record mj75vy flight's status,status
-did endeavor 98 arrive?,status
-is flight PSA airlines OH8172 on time,status
-give me the status of united7380,status
-Is flight EV1963 at the gate?,status
-status of VX 1145?,status
-Did B6 8794 come in?,status
-did alaska 2691 come in,status
-frontier f96167 time?,status
-give status for horizon 3758,status
-find me the status of vx 3179,status
-is DeltaAir Lines 9926 late,status
-PSA 1331 status?,status
-where is pnr hx5xb7 allegiant air flight?,status
-expressjet 284 arrived,status
-has fl1347 arrived,status
-has dl flight503 arrived,status
-is aa 2753 in,status
-is flight b6 7104 on time?,status
-is endeavor 2701 in?,status
-where is xw9x3t allegiant air flight?,status
-did QX1838 get in,status
-is fl 5791 late,status
-AS6231 gate time?,status
-give the status of republicairline8254,status
-is skywest4321 delayed?,status
-is ev3037 suspended?,status
-how late is pnr wsby39 flight,status
-is frontierairlines3499 late,status
-b6 5141 arrive,status
-is frontier6213 here,status
-Did AirTran 8857 come in?,status
-oh 37 arrival,status
-endeavor air7100 on time,status
-frontier f9 3906 gate time?,status
-when HA 5059 arrive,status
-when airtran 5203 arrive?,status
-where is allegiant 6217?,status
-Was WN 3660 late?,status
-spirit air lines8002 gate time?,status
-us airways903 on time?,status
-is flight us2849 at the gate?,status
-find status for as5114,status
-when does united Air Lines 8197 arrive,status
-Is flight 9E7573 on time?,status
-is flight american eagle5801 at the gate,status
-was virginamerica8945 late,status
-is jetblue airways 3369 late,status
-where is b6 6629?,status
-is expressjet flight4390 in,status
-has united flight 7981 gotten in?,status
-is virgin flight2366 here,status
-did allegiant air 9821 come in,status
-AS8633 time?,status
-PNR q44mdj departure time,status
-Mesa Airlines 1121 on time?,status
-is airtran airways 5043 ahead of schedule,status
-Did f9 4097 arrive,status
-Allegiant Air 2562 time?,status
-american airlines7321 flight time,status
-when does skywest4174 arrive,status
-AA 8603 arrived,status
-delta 9640 arrival?,status
-AA 5997 gate time?,status
-whats status of republic airline 6568?,status
-Is yv 1566 late?,status
-virgin 5052 arrives,status
-is oh flight 238 cancelled?,status
-is flight 9E8884 at the gate,status
-oo8080 arrival,status
-give me the status of f9 7370,status
-when frontier 5641 arrives,status
-when MQ4294 arrive,status
-is g4 flight 8955 in,status
-was USAirways6139 late,status
-Did american 3527 arrive,status
-Find status for Allegiant air 3779,status
-What's status of B6 9787?,status
-is o33vgn flight on time?,status
-republic908 arrived?,status
-southwestairlines9888 arrival?,status
-frontier6579 arrival?,status
-UA 4421 arrival time?,status
-NK8789 arrival?,status
-has mesa flight8858 gotten in,status
-status of alaska3747,status
-When does Allegiant 9770 arrive?,status
-is us2893 late,status
-american eagle airlines 2612 time?,status
-WN6071 on time?,status
-is hawaiian 1563 delayed?,status
-is flight ha 9243 on time,status
-has record loc tt19qb left yet,status
-Did Spirit 1304 get in?,status
-Whats status of F91703?,status
-is flight as1769 on time?,status
-UA 6611 on time?,status
-Is expressjet3673 early?,status
-was skywest 2640 late,status
-when psa Airlines3422 arrives,status
-whats the status of southwest57,status
-give status for NK 8826,status
-skywest 9566 arrived?,status
-9e2011 arrive?,status
-is flight b6 3601 at the gate,status
-Did HA769 arrive,status
-Check sshr51 flight.,status
-has alaska4269 arrived,status
-when does VX7375 arrive,status
-is flight American Eagle 4904 on time,status
-FL6243 arrives?,status
-when alaska3953 arrives?,status
-when does rec loc bd3dj2 arrive?,status
-was expressjet airlines 8548 late,status
-Did Delta air lines 2783 arrive,status
-delta air lines dl 7541 gate time?,status
-Mesa yv7186 arrival,status
-is republic3428 cancelled?,status
-Is qx6502 late?,status
-is nk flight1294 suspended?,status
-what's the status of ha2841?,status
-did dl 6289 come in?,status
-Did jetblue airways 4005 arrive,status
-give me the status of g4930,status
-Find me the status of EV985,status
-when does pnr q1hjt5 come in,status
-is spirit 8687 suspended?,status
-where is mq flight 2047?,status
-is delta5717 in,status
-is pnr iqlw45 delayed,status
-is dl flight 2920 at the gate?,status
-jetblue airways b6 4867 time?,status
-give the status of southwest airlines 8819,status
-Whats the status of DL1649?,status
-Is YX 9600 late?,status
-is yv 2017 postponed?,status
-has 9e 740 gotten in,status
-skywest airlines4752 time,status
-when does yv7971 arrive,status
-has us 632 arrived?,status
-when does republicAirline654 arrive,status
-is southwest7432 suspended?,status
-whats status of oh3739,status
-where is jetblue flight7456?,status
-Was American Eagle4768 late?,status
-did Virgin america 5948 get in,status
-Is WN4639 late?,status
-find the status of frontier airlines6552,status
-where is endeavor flight 4648?,status
-ExpressJet Airlines220 arrival time?,status
-was yv8324 late?,status
-what is status of oo 9341,status
-did yx 1341 get in,status
-is southwest flight 297 in?,status
-is american9365 late,status
-when spirit air lines 7392 arrives,status
-Give status for oh1776,status
-horizon qx4825 flight time?,status
-has airtran 758 gotten in?,status
-Allegiant Air 9814 gate time?,status
-is republic flight 1844 here?,status
-when does ev 5801 arrive,status
-us 6070 arrive,status
-is rec locator urq91z in,status
-is vx 4070 cancelled?,status
-is american 291 here?,status
-when does psa 5164 arrive,status
-Give me the status of DL164,status
-is flight DL1317 on time,status
-where is delta air lines flight1570?,status
-PSA airlines 1979 time,status
-is as70 here,status
-was Spirit 1154 late?,status
-virgin america 3323 on time?,status
-virgin america 4274 arrival time?,status
-Was Hawaiian 145 late?,status
-was horizon air 4953 cancelled?,status
-republic airline 3684 arrival,status
-Hawaiian Airlines7096 time?,status
-what is status of horizonair8612?,status
-MesaAirlines4443 flight time?,status
-has jetblue680 gotten in,status
-Is virgin890 on schedule?,status
-is F9 flight2411 at the gate,status
-pnr lvno13 flight arrival,status
-did alaska 3587 arrive,status
-will k25olu arrive soon?,status
-status of EV1325,status
-where is record locator h1sox3's flight,status
-Is allegiant flight g4 6117 at the gate,status
-horizonair3803 on time?,status
-when does southwest airlines884 arrive,status
-when delta6159 arrive,status
-allegiant 8186 arrival,status
-AirTran airways 5661 on time,status
-ua 2174 flight time?,status
-what's the status of mq 619,status
-where is alaska airlines flight 1364?,status
-What is the status of G4 3248?,status
-Is oo3601 early?,status
-give the status of ha 4929,status
-is psa 9471 cancelled?,status
-is SkyWestairlines flight 4714 at the gate,status
-is wn 1677 late,status
-Did american 2906 come in,status
-has skywest flight 186 arrived?,status
-ExpressJet Airlines 8091 flight time?,status
-did us airways7400 get in,status
-jetblue airways b66556 gate time?,status
-is pnr wuk57j's flight on time?,status
-is ha flight666 delayed?,status
-is flight spirit air lines 3371 on time,status
-Mesa Airlines 987 arrival time?,status
-american eagle airlines 7207 gate time?,status
-MQ 7166 arrival?,status
-status of American airlines 9764?,status
-when allegiant1033 arrives,status
-when american 367 arrives?,status
-Did f97186 come in,status
-Did MQ 8384 arrive,status
-united air lines 5010 arrival?,status
-Did AirTran 9204 arrive?,status
-delta air lines dl8362 time?,status
-is qx7949 delayed?,status
-what's the status of united 9427,status
-is alaska as 3687 late,status
-PSA airlines 8291 gate time,status
-is flight fl 9011 at the gate?,status
-find me the status of us20,status
-PNR yxqj32 arrival time,status
-find the status of fl 6458,status
-is flight hawaiian 1511 at the gate?,status
-is ha flight8028 here,status
-what time will record loc cdcv64 get in,status
-horizon3661 arrives?,status
-when will the flight for pnr v8s5qe get in,status
-When does spirit5774 arrive?,status
-southwest 309 arrive?,status
-Check recloc n57ziu flight.,status
-Find me the status of YV 1941,status
-Mesa 8762 status?,status
-as 4767 arrives,status
-what gate will pnr jdxr23 flight use?,status
-Check record locator pl17en flight.,status
-where is us flight 4157?,status
-was Horizon qx 6279 late?,status
-us airways 9988 flight time?,status
-yx 8186 arrival time?,status
-is vx 3523 late?,status
-Endeavor air 3600 flight time,status
-is ev1442 late?,status
-Is flight aa 7850 at the gate,status
-did ExpressJetexpressjet 9805 get in,status
-WN4166 arrival time?,status
-wn2713 flight time?,status
-ExpressJet Airlines3587 on time?,status
-pnr dusu66 flight status,status
-Hawaiian Airlines7928 gate time?,status
-whats the status of nk238,status
-endeavor air7265 arrival time,status
-republic airline2620 on time?,status
-AA 7694 time?,status
-status of AirTranAirways 7986,status
-did psa 6681 get in?,status
-Is flight VX 6850 at the gate?,status
-status of Endeavor 6008,status
-status of US9953,status
-skywest airlines7048 gate time,status
-Is ua7680 on schedule,status
-Is flight AA 4943 on time?,status
-mesa7908 arrive?,status
-find me the status of jetblue2514,status
-Did g45139 arrive,status
-is american eagle 3985 postponed?,status
-is flight SkyWestAirlines 9115 on time,status
-Did skywest 5005 get in,status
-AirTran airways 4060 arrival time,status
-is yx 5587 ahead of schedule?,status
-united 1575 arrives?,status
-HorizonAir6167 arrival,status
-when does pnr bs66rz arrive?,status
-Is flight UnitedAir Lines5020 on time,status
-Is flight f9 9369 on time,status
-Check PNR lyha97 flight.,status
-is endeavor 4174 late,status
-Is spirit flight 5310 at the gate,status
-did united 5861 get in,status
-give me the status of skywest 9454,status
-find the status of 9e8532,status
-was spirit air lines 3461 cancelled?,status
-is psa airlines flight 5164 at the gate,status
-spirit air lines211 time?,status
-Virgin America1372 flight time?,status
-Find status for AA 8259,status
-where is frontierairlines flight7178?,status
-did vrm29a get in,status
-did yv2502 get in,status
-is flight g48351 on time,status
-when jetblue 81 arrive,status
-is united8248 postponed?,status
-did WN 8593 get in,status
-us airways4859 arrival time?,status
-was psa3636 late?,status
-is flight as1620 at the gate,status
-airtran airways3565 flight time?,status
-was united8792 late,status
-Give me the status of B6 3209,status
-When does hawaiian 6690 arrive?,status
-when does US 5036 arrive,status
-hawaiian4362 arrival,status
-qx3500 arrival time?,status
-What's the status of AS2077?,status
-where is american airlines 8175?,status
-when endeavor4897 arrive?,status
-is us 9336 late,status
-did endeavor 6866 come in?,status
-republic yx 1551 flight time?,status
-status of YV 3548,status
-give the status of mq1569,status
+where do I pick up my stroller when getting off?,status
+give the status of mq8139,status
+where's the terminal for 9E 9985?,status
+qx5806 arrival time?,status
+Did jetblue airways 6810 arrive,status
+american eagle airlines 1838 gate time?,status
+Find me the status of EV9039,status
+are Virgin +'s gates far?,status
+Bags for American flight 6676 in San Jose?,status
+whats the status of nk9164,status
+where are HA +'s gates?,status
+where are FL +'s terminals?,status
+which terminal is my flight in?,status
+How do I find my luggage at Carlsbad Airport?,status
+where is my flight 8322 terminal?,status
+Did the 6/4 american 13 arrive,status
+I'm looking for OO 1063 +'s gate.,status
+Where is my flight's gate?,status
+is mq flight 9862 postponed?,status
+when HA 6768 arrive,status
+did ExpressJetexpressjet 3865 get in,status
+how late is aa1,status
+skywest airlines960 gate time,status
+9e698 arrive?,status
+expressjet 6823 arrived,status
+whats the status of tomorrow's southwest6643,status
+where is endeavor flight 5504?,status
+when will they start boarding SkyWest 4638,status
+us airways6973 arrival time?,status
+gate number please,status
+how early was delta 9?,status
+Is my flight still in terminal B?,status
+Where is PSA dropping off our suitcases?,status
+Did g45180 arrive,status
+american eagle airlines 4555 22 Mar time?,status
+was psa586 late?,status
+Mesa yv6936 arrival,status
+Baggage claim for my flight to Rochester?,status
+PSA airlines 6939 8/6 time,status
+find gate WN 4258,status
+what gate will pnr u63lnn flight use tomorrow?,status
+"did alaska 7050 arrive today, 5-9?",status
+Where's the carousel for bags at VLD?,status
+What side of the airport is baggage claim on?,status
+what terminal does US use,status
+is ha flight4562 here,status
+Which baggage claim do I go to?,status
+Mesa Airlines 6749 arrival time?,status
+skywest airlines4211 time,status
+is yv 4924 postponed?,status
+how late is american 1,status
+Is flight EV8077 at the gate?,status
+how late is wn5?,status
+did yv4127 get in,status
+Is YX 5851 late?,status
+will pg3j9n arrive soon?,status
+Do I still have time to make my flight?,status
+horizon1404 2-17 arrives?,status
+is expressjet flight4891 in,status
+is rec locator ebz75o in,status
+is my flight going to be late?,status
+will I arrive late?,status
+when does 6/14 pnr lt4y2w come in,status
+what gate is my Republic flight at?,status
+what time should my flight depart?,status
+where is mq flight 5179?,status
+where is 3 May +'s b6 9593?,status
+find the status of 9e1419,status
+25 Nov us airways 6745 flight time?,status
+has fl5473 on 1-21 arrived,status
+how early is united 8,status
+how far is the 9E terminal,status
+did WN 8462 get in,status
+how long until I reach my gate?,status
+when does boarding start?,status
+is pnr hi5h5t +'s flight on time?,status
+how late is american 100,status
+has f9 flight 1373 gotten in,status
+is my EV flight delayed?,status
+was Spirit 8904 late?,status
+status of YV 6770,status
+where is my gate for QX 2899?,status
+when time should my flight arrive?,status
+did alaska 1116 come in,status
+ua 5508 flight time?,status
+is endeavor 7682 late,status
+is p17qig +'s flight early?,status
+Where is my bag carousel for flight 1410?,status
+where is my NK terminal?,status
+give the status of republicairline979,status
+when alaska6221 arrives?,status
+is southwest5101 suspended?,status
+us 7277 arrive,status
+where is american airlines 601?,status
+F9 gate for flight 398,status
+Did B6 9492 come in?,status
+What floor is the bag carousel on?,status
+I'm late. Will I still make my flight?,status
+pnr d1u5es flight status,status
+Do you have my gate?,status
+AA 2451 arrived,status
+is airtran airways 4841 ahead of schedule,status
+spirit air lines7498 gate time?,status
+was American 1 early Monday?,status
+did QX2333 get in,status
+when does united Air Lines 2669 arrive,status
+has 9e 5864 gotten in,status
+PSA 6267 status?,status
+where is Spirit flight 2992 +'s gate?,status
+Did american 6162 come in,status
+bag claim carousel,status
+where's the gate for MQ 806?,status
+Need to pick up my suitcase in Salina,status
+Where is baggage claim for my flight?,status
+is as9817 here,status
+when should my flight arrive?,status
+did endeavor 6693 come in?,status
+when is American 6 coming?,status
+is endeavor 3835 in?,status
+Did skywest 8537 get in,status
+status of 7/21 VX 9995?,status
+Did Spirit 7672 get in?,status
+Is flight aa 138 at the gate,status
+I can't find baggage claim for UA,status
+baggage claim,status
+is aa 6749 in,status
+american airlines445 flight time on 11-20,status
+where is American flight 8800 +'s terminal?,status
+give status for NK 1001,status
+Where do I get my bags?,status
+when does today's US 1685 arrive,status
+I'm looking for B6 454 +'s terminal.,status
+Check PNR qhff51 flight.,status
+where is allegiant 3751?,status
+What terminal am I at?,status
+Is spirit flight 2847 at the gate,status
+UA 7743 arrival time?,status
+12 Jan republic1845 arrived?,status
+am I close to my gate?,status
+I hope my flight begins boarding soon,status
+Where do I get my suitcases?,status
+do you have my AS gate?,status
+oh 2338 arrival,status
+airtran airways9856 flight time?,status
+I want to find the departure gate for United 1367.,status
+Is oo5354 early?,status
+AA 9885 time?,status
+5/17 Hawaiian Airlines3519 gate time?,status
+AS643 gate time?,status
+how late is aa999,status
+Was today's Hawaiian 1600 late?,status
+Find status for Allegiant air 4908,status
+Did f9249 come in,status
+did endeavor 855 arrive?,status
+has airtran 4441 gotten in?,status
+could you tell me the gate for PSA 7991?,status
+give me the status of g45222,status
+HorizonAir4644 arrival,status
+is flight hawaiian 1485 at the gate?,status
+Did f9 3202 arrive,status
+is hawaiian 8374 delayed?,status
+how late is tonight's ua 3,status
+Is my flight still at gate 35C?,status
+They gate-checked our car seat. Where do I get it after my flight?,status
+where is my terminal?,status
+was the 2-23 expressjet airlines 5677 late,status
+delta 7150 arrival?,status
+"If my flight is delayed, I'll be ticked. US is never on time.",status
+how late is ua3?,status
+where is my terminal for HA 245?,status
+is ev3067 on 12/20 late?,status
+will I be on time?,status
+is us9506 late,status
+Has the carousel changed for my bags?,status
+Hawaiian Airlines8377 time?,status
+Where do I pick up my suitcase after my HA 1685 flight?,status
+find the status of Tuesday +'s delta 7677,status
+"My bag was gate checked, should I pick it up at baggage claim?",status
+when american 1419 arrives?,status
+where is my EV gate?,status
+find the status of fl 4386,status
+I forgot when my flight arrives,status
+where do they put oversized luggage at BHM?,status
+Is tomorrow's flight f9 5876 on time,status
+ExpressJet Airlines 8290 flight time?,status
+Do you know which floor baggage claim is on?,status
+when jetblue 9976 arrive,status
+do you have DL +'s gate for flight 40,status
+where's the terminal for my flight?,status
+how late is american 1000,status
+is American 4 10/12 late?,status
+AirTran airways 7644 arrival time,status
+when does psa 9221 arrive,status
+how late is wn 5?,status
+is my us flight on time?,status
+has mesa flight9769 from 5/28 gotten in,status
+what's the status of today's ha5217?,status
+wn2357 flight time?,status
+Give status for oh7090,status
+When does spirit2492 arrive?,status
+are PSA +'s terminals far?,status
+is skywest6223 delayed today?,status
+Allegiant gate for 7363,status
+is yx 1961 ahead of schedule?,status
+Did Delta air lines 4356 arrive,status
+When does 11/17 hawaiian 3283 arrive?,status
+how late is united 10,status
+WN7787 arrival time?,status
+Did HA5802 arrive,status
+where is my flight 8923 gate?,status
+how late is my wife's delta flight?,status
+is flight b6 6166 at the gate,status
+did psa 1895 get in?,status
+US terminal for 8030,status
+is us 1387 10/27 late,status
+give me the status of f9 2780 for 1/18,status
+when should my flight be arriving?,status
+was USAirways7157 late,status
+help with baggage claim,status
+what is record g6fd6l flight's status,status
+did Virgin america 1944 get in,status
+is pnr opk56v delayed,status
+when can I board my flight LAX to SFO,status
+Whats status of F924?,status
+I don't know where my bag carousel is.,status
+is wn 6768 late,status
+how far is the gate,status
+am I close to my terminal?,status
+They checked my carry-on bag at the gate but didn't tell me where to retrieve it after the flight.,status
+when should my Owensboro flight be leaving?,status
+When does tomorrow morning's Allegiant 5564 arrive?,status
+how late is dl 4?,status
+was yesterday's united8537 late,status
+will I arrive early?,status
+when does pnr gl5x6l arrive?,status
+tell me the gate of Republic 2333,status
+What is the status of G4 6228 on 9/10?,status
+is nk flight888 suspended?,status
+what time will record loc z8azh2 get in,status
+is flight PSA airlines OH3442 on time,status
+where is jetblue flight5374?,status
+when does yv6665 arrive,status
+Can you help my find the floor for baggage claim?,status
+was skywest 2050 late,status
+is frontier1409 here,status
+horizonair134 on time?,status
+I want to find the departure terminal for Delta 4597.,status
+when should my flight depart?,status
+how late is pnr nw3n6k flight,status
+"is united5264 postponed tomorrow, 6-11?",status
+is my flight still on time?,status
+is flight 1781 late?,status
+frontier f98731 time?,status
+Find status for 10/22 AA 2812,status
+Where are the bag carousels at Sault Ste. Marie,status
+virgin 6616 arrives,status
+Did my gate change?,status
+where is us flight 8027?,status
+find the status of frontier airlines2388,status
+Where is my flight's terminal?,status
+is virgin flight3591 here,status
+is g4 flight 902 in,status
+is flight us1178 at the gate?,status
+Is expressjet4830 early?,status
+Is virgin8861 on schedule?,status
+was American 2 on time?,status
+my gate and terminal please?,status
+how late is my friend's united flight,status
+is 4-24 vx 6019 late?,status
+delta air lines dl 754 gate time?,status
+do you have my QX terminal?,status
+is flight 9E3218 at the gate,status
+is flight b6 5204 on 2/9 on time?,status
+Whats the status of DL3265?,status
+united air lines 1385 arrival?,status
+do you have EV +'s terminal for flight 8860,status
+where is frontierairlines flight6912?,status
+is american 5350 here?,status
+VX terminal for flight 4327,status
+when does VX8399 arrive,status
+is frontierairlines3104 late,status
+"when can I board aa 5445 Chicago to DFW, 10/23?",status
+tell me the terminal of Allegiant 1024,status
+11/27 Virgin America1662 flight time?,status
+delta air lines dl4999 time?,status
+is flight American Eagle 9738 on time,status
+is oh flight 5214 cancelled?,status
+allegiant 1585 arrival,status
+MesaAirlines5341 flight time?,status
+did yx 1115 get in,status
+was yv4519 late?,status
+is my flight still late,status
+how late is aa9 9-8,status
+Where do I pick up my bags at Eau Claire?,status
+where is my gate?,status
+did us airways482 get in,status
+is southwest flight 3267 in?,status
+where is f3ndu9 allegiant air flight?,status
+Is flight VX 3782 at the gate?,status
+1-1 Mesa Airlines 760 on time?,status
+what is my flight's baggage claim number?,status
+what is status of oo 1600,status
+has dl flight5237 arrived,status
+is flight spirit air lines 1955 on 11/14/25 on time,status
+is 1/31 flight fl 8807 at the gate?,status
+how late is my son's american flight?,status
+has united flight 5933 gotten in?,status
+frontier1474 arrival?,status
+How do I get my large suitcase at Ogden Airport?,status
+status of alaska7338 13 Nov,status
+Give me the status of DL4511,status
+Did MQ 9288 arrive,status
+when this afternoon's frontier 846 arrives,status
+Where is baggage claim at LBE,status
+was spirit air lines 1805 cancelled?,status
+how late is aa 99,status
+hawaiian5908 arrival,status
+was virginamerica5256 late,status
+where's the gate for my flight?,status
+How long is my flight,status
+is 10-12 flight SkyWestAirlines 7350 on time,status
+PNR cgou77 departure time,status
+has alaska8304 arrived,status
+did atf45m get in,status
+was horizon air 7202 cancelled?,status
+What gate am I at?,status
+when will the flight for pnr xy55zq get in,status
+will my flight be early?,status
+what is status of horizonair616?,status
+I hope AirTran delays are over. I need my flight to depart on time!,status
+find terminal F9 9832,status
+Was WN 6640 late?,status
+Where is my bag carousel?,status
+has my gate changed?,status
+Do you have my terminal?,status
+Is Saturday +'s yv 8408 late?,status
+Sunday +'s MQ 9504 arrival?,status
+where is pnr f7uht9 allegiant air flight?,status
+is american eagle 7512 postponed?,status
+has skywest flight 2602 arrived?,status
+Allegiant Air 6389 gate time?,status
+is flight as4243 at the gate,status
+Is ua3939 on schedule,status
+how early is my flight?,status
+is F9 flight4945 at the gate,status
+has horizon flight6854 arrived,status
+what is my flight's bag carousel,status
+Did AirTran 25 come in?,status
+2-19 NK5077 arrival?,status
+how late is aa 5000,status
+status of AirTranAirways 2708,status
+when should my 11/21 flight get in?,status
+republic airline 156 7 Mar arrival,status
+where do they drop oversized bags at Macon airport?,status
+did allegiant air 4019 come in,status
+how late is aa 999,status
+PNR d42car arrival time,status
+Allegiant Air 5089 time?,status
+skywest 8354 12/2 arrived?,status
+ExpressJet Airlines3087 on time?,status
+when endeavor8953 arrive 17 Aug?,status
+is there a shuttle to my terminal?,status
+What's the status of AS9558?,status
+united 1263 arrives?,status
+how late is united 2,status
+Was YX1438 late?,status
+where is Virgin +'s terminal,status
+is flight ha 1444 on time,status
+Check record locator mhl2g3 flight.,status
+has us 7777 arrived?,status
+how far is the MQ gate,status
+oo4696 arrival,status
+Is qx366 late?,status
+where is my new gate,status
+when does ev 9719 arrive,status
+is w7okl2 flight on time?,status
+when does skywest9462 arrive,status
+where do I get my gate-checked bag after deboarding,status
+how early is american 7,status
+is the 5/24 ev1977 suspended?,status
+when spirit air lines 355 arrives,status
+baggage claim number,status
+AirTran airways 3386 on time,status
+when does Horizon Air 1227 arrive,status
+whats status of 8-26 republic airline 8349?,status
+has record loc vqmq38 left yet,status
+is flight g43139 on time,status
+"Our stroller was checked at the gate. Will it be on the jetway when we unboard, or do they send it to baggage claim?",status
+PSA airlines 6688 7-28 gate time,status
+when does rec loc c1dg5a arrive?,status
+where will my oversized bag be after flight 17 on F9?,status
+What's status of B6 5601?,status
+when does southwest airlines3011 arrive on 7-25?,status
+how far is the terminal,status
+status of American airlines 1929?,status
+what terminal is my Allegiant flight at?,status
+endeavor air3672 on time,status
+give the status of ha 3192,status
+Where do I pick up my luggage after my flights?,status
+I hope UA 5556 boards soon,status
+was American 5 late?,status
+status of US8541,status
+AS7391 time?,status
+whats status of oh150,status
+Is tonight's flight UnitedAir Lines3844 on time,status
+did they change my baggage claim number?,status
+Check y54htz flight.,status
+find status for as849,status
+when does American Eagle4593 arrive?,status
+is baggage claim on the 4th or 5th floor at PSM?,status
+do you have my YV terminal for 228?,status
+is qx4759 delayed?,status
+Is WN4421 late?,status
+when allegiant2101 arrives,status
+is american4027 late,status
+is ha flight6502 delayed?,status
+how late is american 99,status
+Mesa 4595 status?,status
+Where do they put my car seat after we land?,status
+jetblue airways b6 3040 time?,status
+is delta9999 in,status
+When can I board MQ897 Miami to New York?,status
+is DeltaAir Lines 8153 late,status
+what's the status of united 3709,status
+southwestairlines2433 arrival?,status
+How do I reach my terminal in 15 minutes,status
+when MQ5768 arrive,status
+mesa8225 arrive?,status
+UA 2553 on time?,status
+when delta7216 arrive,status
+where should I go for my oversized bag after flight 8921 on Allegiant?,status
+status of Endeavor 4333,status
+what's the status of 10 Aug mq 7794,status
+jetblue airways b68023 gate time?,status
+I'm afraid my flight will be delayed.,status
+terminal/terminal info,status
+Is flight 9E5333 on time?,status
+did dl 9228 come in?,status
+find me the status of jetblue7159,status
+did united 3292 get in,status
+I don't know where my bag carousel is for flight 6222,status
+is 4-23 flight american eagle7184 at the gate,status
+What floor is the bag carousel on at PGD?,status
+do you have my B6 gate for 2427?,status
+Check recloc io23so flight.,status
+WN4936 on time?,status
+republic yx 3486 flight time?,status
+was Horizon qx 6256 late?,status
+give status for horizon 4934,status
+where is delta air lines flight1867?,status
+how long until I reach my terminal?,status
+is jetblue airways 7522 late,status
+how late is southwest 400?,status
+FL2230 arrives?,status
+how late is delta 3 17 Jan,status
+spirit air lines2961 time?,status
+is American 3 early?,status
+endeavor air1955 arrival time,status
+frontier f9 7783 gate time?,status
+I forgot my 5-11 flight's terminal,status
+is flight DL5446 on 1-26 on time,status
+is vx 7539 cancelled?,status
+when does republicAirline5511 arrive,status
+virgin america 2876 31 Oct on time?,status
+AA 6481 gate time?,status
+republic airline3105 on time?,status
+yx 8509 arrival time?,status
+status of EV5250,status
+as 1668 arrives,status
+gate/terminal info,status
+when psa Airlines9618 arrives,status
+has jetblue3371 gotten in from last night,status
+ExpressJet Airlines2673 arrival time?,status
+southwest 5447 arrive?,status
+us airways1814 on time?,status
+is alaska as 3576 6/24 late,status
+Find me the status of YV 7242,status
+give me the status of united2252,status
+need help finding baggage claim for Republic,status
+horizon qx8961 flight time?,status
+Give me the status of B6 1160 9-10-26,status
+where are oversized bags left at LWS,status
+is fl 3587 late,status
+virgin america 9951 arrival time?,status
+is my flight going to be on time?,status
+is spirit 9874 suspended?,status
+is republic1870 cancelled?,status
+Is flight AA 6219 on time?,status
+is republic flight 9199 here?,status
+when airtran 5604 arrive?,status
+Endeavor air 2903 flight time,status
+is psa 4251 on 5/18 cancelled?,status
+how late is my flight?,status
+Did AirTran 8500 arrive?,status
+how late is dl2?,status
+how late is delta 1000,status
+pnr vn3d9b flight arrival,status
+when does my flight leave?,status
+Was American Eagle6029 late?,status
+where is alaska airlines flight 2144?,status
+how late is southwest 4000?,status
+give me the status of skywest 4798 for 22 May,status
+give the status of 29 May southwest airlines 3422,status
+is SkyWestairlines flight 4317 at the gate,status
+terminal number please,status
+where is record locator h36ips +'s flight,status
+b6 4821 arrive,status
+how late is aa 9,status
+could you tell me the terminal for Alaska 7?,status
+find me the status of vx 8210,status
+carousel where I can find my suitcase,status
+find me the status of us9105,status
+how early is ua5,status
+Is allegiant flight g4 8633 at the gate,status
+"I checked my carry on at the gate, but I don't know where to get it when we land.",status
+is psa airlines flight 1673 at the gate,status
+when does boarding begin for OH 6897?,status
+Which gate is my 1/23 flight departing from?,status
+is flight as7750 on time?,status
+is dl flight 4288 at the gate?,status

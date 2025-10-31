@@ -1,0 +1,511 @@
+query,intent
+"Book an early flight from airptNm1 to airptNm2 tomorrow",booking
+"Book an early flight airptNm1 to airptNm2 tomorrow evening",booking
+"Book an early flight airptNm1 - airptNm2 next WEEKDAY",booking
+"Book an early flight airptNm1 +- airptNm2 next DDD",booking
+"Book an early flight from airptCd1 to airptNm2 tomorrow night",booking
+"Book a late flight airptNm1 airptNm2 the DDth of next month",booking
+"flight airptNm1 to airptCd2 book next month on the DDth",booking
+"a late flight booking airptCd1 - airptNm2 MONTH DD please",booking
+"airptNm1 +- airptCd2 book the DDth of MMM flight",booking
+"airptNm1 airptCd2 book MMM DD YYYY",booking
+"Book anything from airptCd1 to airptCd2 NUM days from now",booking
+"Book anything airptCd1 to airptCd2 for MM +/ DD",booking
+"Book anything airptCd1 - airptCd2 on MM +/ DD +/ YY",booking
+"Book anything airptCd1 +- airptCd2 on MM +- DD",booking
+"Book anything airptCd1 airptCd2 for MM +- DD +- YY",booking
+"Book a flight from airptNm1 to airptNm2 tomorrow",booking
+"Book a flight airptNm1 to airptNm2 tomorrow evening",booking
+"Book a flight airptNm1 - airptNm2 next WEEKDAY",booking
+"Get a flight airptNm1 +- airptNm2 next DDD",booking
+"Could you get me a flight from airptCd1 to airptNm2 tomorrow night",booking
+"Book a seat airptNm1 airptNm2 the DDth of next month",booking
+"Book a seat airptNm1 to airptCd2 next month on the DDth",booking
+"Get two seats airptCd1 - airptNm2 MONTH DD",booking
+"Could you get a seat airptNm1 +- airptCd2 the DDth of MMM",booking
+"Book a seat airptNm1 airptCd2 MMM DD YYYY",booking
+"Book seats from airptNm1 to airptNm2 for early tomorrow",booking
+"Book seats airptNm1 to airptNm2 tomorrow afternoon",booking
+"Can you book seats airptNm1 - airptNm2 next WEEKDAY",booking
+"Will you book seats airptNm1 +- airptNm2 next DDD",booking
+"Try booking seats from airptCd1 to airptNm2 tomorrow night",booking
+"Please book the DDth of next month airptNm1 airptNm2",booking
+"Could you book next month on the DDth airptNm1 to airptCd2",booking
+"Would you book MONTH DD airptCd1 - airptNm2",booking
+"Book the DDth of MMM airptNm1 +- airptCd2",booking
+"Book MMM DD YYYY airptNm1 airptCd2",booking
+"Book NUM days from now from airptCd1 to airptCd2",booking
+"Book on MM +/ DD airptCd1 to airptCd2",booking
+"Book airptCd1 to airptCd2 on MM +/ DD",booking
+"reserve airptCd1 - airptCd2 for MM +/ DD +/ YY",booking
+"reserve airptCd1 +- airptCd2 MM +- DD",booking
+"reserve airptCd1 +- airptCd2 MM +- DD am",booking
+"reserve airptCd1 +- airptCd2 MM +- DD a.m.",booking
+"Search airptCd1 +- airptCd2 MM +- DD early",booking
+"Search for airptCd1 +- airptCd2 MM +- DD morning",booking
+"reserve airptCd1 airptCd2 MM +- DD +- YY",booking
+"reserve a airptNm1 to airptNm2 flight tomorrow",booking
+"reserve a airptNm1 - airptNm2 flight next WEEKDAY",booking
+"Please reserve a airptNm1 +- airptNm2 flight next DDD",booking
+"Try reserving a airptNm1 airptNm2 flight the DDth of next month",booking
+"reserve a airptNm1 to airptCd2 flight next month on the DDth",booking
+"reserve a airptCd1 - airptNm2 flight on MONTH DD",booking
+"reserve a airptNm1 +- airptCd2 flight the DDth of MMM",booking
+"reserve a airptNm1 airptCd2 flight MMM DD YYYY",booking
+"Can you reserve a airptCd1 to airptCd2 flight MM +/ DD after 6:00?",booking
+"Could you reserve a airptCd1 - airptCd2 flight MM +/ DD +/ YY",booking
+"Will you reserve a airptCd1 +- airptCd2 flight for MM +- DD",booking
+"Would you reserve a airptCd1 +- airptCd2 flight MM +- DD pm?",booking
+"reserve a airptCd1 +- airptCd2 flight MM +- DD pm",booking
+"reserve a airptCd1 +- airptCd2 flight MM +- DD p.m.",booking
+"reserve a airptCd1 +- airptCd2 flight for MM +- DD late",booking
+"reserve a airptCd1 +- airptCd2 flight MM +- DD at night",booking
+"A reservation airptCd1 airptCd2 MM +- DD +- YY please",booking
+"reserve the DDth of next month airptNm1 airptNm2",booking
+"reserve next month on the DDth airptNm1 to airptCd2",booking
+"reserve MONTH DD airptCd1 - airptNm2",booking
+"What are my chances of flying the DDth of MMM airptNm1 +- airptCd2",booking
+"How does MMM DD YYYY airptNm1 airptCd2 look?",booking
+"reserve NUM days from now from airptCd1 to airptCd2",booking
+"reserve on MM +/ DD airptCd1 to airptCd2",booking
+"reserve airptCd1 to airptCd2 on MM +/ DD",booking
+"Make a reservation airptCd1 to airptCd2 on MM +/ DD",booking
+"Make a reservation airptCd1 airptCd2 MM +- DD",booking
+"schedule an early flight from airptNm1 to airptNm2 tomorrow",booking
+"schedule an early flight airptNm1 to airptNm2 tomorrow evening",booking
+"schedule an early flight airptNm1 - airptNm2 next WEEKDAY",booking
+"Could you schedule an early flight airptNm1 +- airptNm2 next DDD",booking
+"schedule an early flight from airptCd1 to airptNm2 tomorrow night",booking
+"schedule a late flight airptNm1 airptNm2 the DDth of next month",booking
+"flight airptNm1 to airptCd2 schedule next month on the DDth",booking
+"a late flight scheduling airptCd1 - airptNm2 MONTH DD please",booking
+"airptNm1 +- airptCd2 schedule the DDth of MMM flight",booking
+"airptNm1 airptCd2 schedule MMM DD YY",booking
+"schedule anything from airptCd1 to airptCd2 NUM days from now",booking
+"schedule anything airptCd1 to airptCd2 for MM +/ DD",booking
+"schedule anything airptCd1 - airptCd2 on MM +/ DD +/ YY",booking
+"search availability airptCd1 +- airptCd2 on MM +- DD",booking
+"schedule anything airptCd1 airptCd2 for MM +- DD +- YY",booking
+"schedule a flight from airptNm1 to airptNm2 tomorrow",booking
+"schedule a flight airptNm1 to airptNm2 tomorrow evening",booking
+"schedule a flight airptNm1 - airptNm2 next WEEKDAY",booking
+"schedule a flight airptNm1 +- airptNm2 next DDD",booking
+"schedule a flight from airptCd1 to airptNm2 tomorrow night",booking
+"schedule a seat airptNm1 airptNm2 the DDth of next month",booking
+"schedule a seat airptNm1 to airptCd2 next month on the DDth",booking
+"see what's available airptCd1 - airptNm2 MONTH DD",booking
+"schedule a seat airptNm1 +- airptCd2 the DDth of MMM",booking
+"schedule a seat airptNm1 airptCd2 MMM DD YY",booking
+"schedule seats from airptNm1 to airptNm2 for early tomorrow",booking
+"schedule seats airptNm1 to airptNm2 tomorrow afternoon",booking
+"Can you schedule seats airptNm1 - airptNm2 next WEEKDAY",booking
+"Will you schedule seats airptNm1 +- airptNm2 next DDD",booking
+"Try scheduling seats from airptCd1 to airptNm2 tomorrow night",booking
+"Please schedule the DDth of next month airptNm1 airptNm2",booking
+"Could you schedule next month on the DDth airptNm1 to airptCd2",booking
+"Would you schedule MONTH DD airptCd1 - airptNm2",booking
+"schedule the DDth of MMM airptNm1 +- airptCd2",booking
+"schedule MMM DD YY airptNm1 airptCd2",booking
+"schedule NUM days from now from airptCd1 to airptCd2",booking
+"schedule on MM +/ DD airptCd1 to airptCd2",booking
+"schedule airptCd1 to airptCd2 on MM +/ DD",booking
+"Find an early flight from airptNm1 to airptNm2 tomorrow",booking
+"Find an early flight airptNm1 to airptNm2 tomorrow evening",booking
+"Find an early flight airptNm1 - airptNm2 next WEEKDAY",booking
+"Find an early flight airptNm1 +- airptNm2 next DDD",booking
+"Find an early flight from airptCd1 to airptNm2 tomorrow night",booking
+"Find a late flight airptNm1 airptNm2 the DDth of next month",booking
+"check airptCd1 to airptCd2 next month on the DDth",booking
+"Find a late flight airptCd1 - airptNm2 MONTH DD",booking
+"Find a late flight airptNm1 +- airptCd2 the DDth of MMM",booking
+"Find a late flight airptNm1 airptCd2 MMM DD YY",booking
+"Find anything from airptCd1 to airptCd2 NUM days from now",booking
+"Find anything airptCd1 to airptCd2 for MM +/ DD",booking
+"Find anything airptCd1 - airptCd2 on MM +/ DD +/ YY",booking
+"Find anything airptCd1 +- airptCd2 on MM +- DD",booking
+"Find anything airptCd1 airptCd2 for MM +- DD +- YY",booking
+"Find a flight from airptNm1 to airptNm2 tomorrow",booking
+"Find available flights airptNm1 to airptNm2 tomorrow evening",booking
+"search available flights airptNm1 - airptNm2 next WEEKDAY",booking
+"Find a flight airptNm1 +- airptNm2 next DDD",booking
+"Find a flight from airptCd1 to airptNm2 tomorrow night",booking
+"Find a flight airptNm1 airptNm2 the DDth of next month",booking
+"Find a flight airptNm1 to airptCd2 next month on the DDth",booking
+"check airptCd1 - airptNm2 MONTH DD",booking
+"Find a flight airptNm1 +- airptCd2 the DDth of MMM",booking
+"Find a flight airptNm1 airptCd2 MMM DD YY",booking
+"Find a flight from airptCd1 to airptCd2 NUM days from now",booking
+"Find a flight airptCd1 to airptCd2 MM +/ DD",booking
+"Can you find a flight airptCd1 - airptCd2 MM +/ DD +/ YY",booking
+"Can you find a flight airptCd1 +- airptCd2 MM +- DD",booking
+"Can you find a flight airptCd1 airptCd2 MM +- DD +- YY",booking
+"Can you find from airptNm1 to airptNm2 for early tomorrow",booking
+"Check airptNm1 to airptNm2 tomorrow afternoon",booking
+"Can you find airptNm1 - airptNm2 next WEEKDAY",booking
+"Can you find airptNm1 +- airptNm2 next DDD",booking
+"Can you find from airptCd1 to airptNm2 tomorrow night",booking
+"Can you find airptNm1 airptNm2 the DDth of next month",booking
+"Can you find airptNm1 to airptCd2 next month on the DDth",booking
+"Find airptCd1 - airptNm2 MONTH DD",booking
+"Find airptNm1 +- airptCd2 the DDth of MMM",booking
+"Find airptNm1 airptCd2 DD MMM",booking
+"Find from airptCd1 to airptCd2 NUM days from now",booking
+"Find airptCd1 to airptCd2 on MM +/ DD",booking
+"Find airptCd1 - airptCd2 for MM +/ DD +/ YY",booking
+"Find airptCd1 +- airptCd2 MM +- DD",booking
+"Find airptCd1 +- airptCd2 MM +- DD am",booking
+"Try finding airptCd1 +- airptCd2 MM +- DD a.m.",booking
+"Try finding airptCd1 +- airptCd2 MM +- DD early",booking
+"check for a flight airptCd1 +- airptCd2 MM +- DD morning",booking
+"Try finding airptCd1 airptCd2 MM +- DD +- YY",booking
+"Try finding an available flight tomorrow airptNm1 to airptNm2",booking
+"Try finding a flight next WEEKDAY airptNm1 - airptNm2",booking
+"Try finding a flight next DDD airptNm1 +- airptNm2",booking
+"Try finding a flight the DDth of next month airptNm1 airptNm2",booking
+"Try finding a flight next month on the DDth airptNm1 to airptCd2",booking
+"Try finding a flight on MONTH DD airptCd1 - airptNm2",booking
+"Try finding a flight the DDth of MMM airptNm1 +- airptCd2",booking
+"Find a flight DD MMM airptNm1 airptCd2",booking
+"Find a flight MM +/ DD after 6:00 airptCd1 to airptCd2",booking
+"Find a airptCd1 - airptCd2 flight MM +/ DD +/ YY",booking
+"Find a airptCd1 +- airptCd2 flight for MM +- DD",booking
+"Find a airptCd1 +- airptCd2 flight MM +- DD pm",booking
+"Find a airptCd1 +- airptCd2 flight MM +- DD pm",booking
+"Find a airptCd1 +- airptCd2 flight MM +- DD p.m.",booking
+"Please find a airptCd1 +- airptCd2 flight for MM +- DD late",booking
+"Please find a airptCd1 +- airptCd2 flight MM +- DD at night",booking
+"What can you find airptCd1 airptCd2 MM +- DD +- YY",booking
+"Please find a airptCd1 - airptCd2 trip MM +/ DD +/ YY",booking
+"What can you find airptCd1 +- airptCd2 for MM +- DD",booking
+"Please find a airptCd1 +- airptCd2 trip MM +- DD pm",booking
+"Please find a airptCd1 +- airptCd2 trip MM +- DD pm",booking
+"Find a airptCd1 +- airptCd2 trip MM +- DD p.m.",booking
+"Find a airptCd1 +- airptCd2 trip for MM +- DD late",booking
+"Find a airptCd1 +- airptCd2 trip MM +- DD at night",booking
+"Find a airptCd1 airptCd2 trip MM +- DD +- YY",booking
+"Find airptCd1 - airptCd2 seats MM +/ DD +/ YY",booking
+"Find airptCd1 +- airptCd2 seats for MM +- DD",booking
+"check seats airptCd1 +- airptCd2 MM +- DD pm",booking
+"Find airptCd1 +- airptCd2 seats MM +- DD pm",booking
+"Find airptCd1 +- airptCd2 seats MM +- DD p.m.",booking
+"Find airptCd1 +- airptCd2 seats for MM +- DD late",booking
+"what can you find airptCd1 +- airptCd2 MM +- DD at night?",booking
+"Find airptCd1 airptCd2 seats MM +- DD +- YY",booking
+"Find travel from airptNm1 to airptNm2 for early tomorrow",booking
+"Find travel airptNm1 to airptNm2 tomorrow afternoon",booking
+"Find travel airptNm1 - airptNm2 next WEEKDAY",booking
+"Find availability airptNm1 +- airptNm2 next DDD",booking
+"Find travel from airptCd1 to airptNm2 tomorrow night",booking
+"Find travel airptNm1 airptNm2 the DDth of next month",booking
+"Find travel airptNm1 to airptCd2 next month on the DDth",booking
+"Find availability airptCd1 - airptNm2 MONTH DD",booking
+"Find travel airptNm1 +- airptCd2 the DDth of MMM",booking
+"Find travel airptNm1 airptCd2 DD MMM",booking
+"Find travel from airptCd1 to airptCd2 NUM days from now",booking
+"Look for travel from airptNm1 to airptNm2 for early tomorrow",booking
+"Look for travel airptNm1 to airptNm2 tomorrow afternoon",booking
+"Look for travel airptNm1 - airptNm2 next WEEKDAY",booking
+"Look for travel airptNm1 +- airptNm2 next DDD",booking
+"Look for travel from airptCd1 to airptNm2 tomorrow night",booking
+"Look for travel airptNm1 airptNm2 the DDth of next month",booking
+"Try looking for travel airptNm1 to airptCd2 next month on the DDth",booking
+"Try looking for travel airptCd1 - airptNm2 MONTH DD",booking
+"Try looking for travel airptNm1 +- airptCd2 the DDth of MMM",booking
+"Can I fly airptNm1 airptCd2 on DD MMM",booking
+"Try looking for travel from airptCd1 to airptCd2 NUM days from now",booking
+"Try looking from airptNm1 to airptNm2 for early tomorrow",booking
+"Try looking for airptNm1 to airptNm2 tomorrow afternoon",booking
+"Try looking for airptNm1 - airptNm2 next WEEKDAY",booking
+"Try looking for airptNm1 +- airptNm2 next DDD",booking
+"Try looking at airptCd1 to airptNm2 for tomorrow night",booking
+"Look for airptNm1 airptNm2 the DDth of next month",booking
+"Look for airptNm1 to airptCd2 next month on the DDth",booking
+"Look at airptCd1 - airptNm2 MONTH DD",booking
+"Look up airptNm1 +- airptCd2 the DDth of MMM",booking
+"Look up airptNm1 airptCd2 DD MMM",booking
+"Look at airptCd1 to airptCd2 NUM days from now",booking
+"Anything from airptNm1 to airptNm2 for early tomorrow?",booking
+"Anything airptNm1 to airptNm2 tomorrow afternoon?",booking
+"Anything airptNm1 - airptNm2 next WEEKDAY ?",booking
+"Anything airptNm1 +- airptNm2 next DDD ?",booking
+"Anything from airptCd1 to airptNm2 tomorrow night?",booking
+"Anything airptNm1 airptNm2 the DDth of next month?",booking
+"Is it possible to fly airptNm1 to airptNm2 next month on the DDth ?",booking
+"Anything airptCd1 - airptNm2 MONTH DD ?",booking
+"Anything airptNm1 +- airptCd2 the DDth of MMM ?",booking
+"Anything airptNm1 airptCd2 DD MMM YY ?",booking
+"Anything from airptCd1 to airptCd2 NUM days from now?",booking
+"Is there anything for early tomorrow from airptNm1 to airptNm2 ?",booking
+"Is there anything tomorrow afternoon airptNm1 to airptNm2 ?",booking
+"Is there anything next WEEKDAY airptNm1 - airptNm2 ?",booking
+"Is there anything next DDD airptNm1 +- airptNm2 ?",booking
+"Is there anything tomorrow night from airptCd1 to airptNm2 ?",booking
+"Is there anything the DDth of next month airptNm1 airptNm2 ?",booking
+"Is there anything next month on the DDth airptNm1 to airptCd2 ?",booking
+"Is there anything MONTH DD airptCd1 - airptNm2 ?",booking
+"Is there anything the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"Is there anything DD MMM YY airptNm1 airptCd2 ?",booking
+"Is there anything NUM days from now from airptCd1 to airptCd2 ?",booking
+"Are there any flights for early tomorrow from airptNm1 to airptNm2 ?",booking
+"Are there any flights tomorrow afternoon airptNm1 to airptNm2 ?",booking
+"Are there any flights next WEEKDAY airptNm1 - airptNm2 ?",booking
+"Are there any flights next DDD airptNm1 +- airptNm2 ?",booking
+"Are there any flights tomorrow night from airptCd1 to airptNm2 ?",booking
+"Are there any flights the DDth of next month airptNm1 airptNm2 ?",booking
+"Are there any flights next month on the DDth airptNm1 to airptCd2 ?",booking
+"Are there any flights MONTH DD airptCd1 - airptNm2 ?",booking
+"Are there any flights the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"Are there any flights DD MMM YY airptNm1 airptCd2 ?",booking
+"Are there any flights NUM days from now from airptCd1 to airptCd2 ?",booking
+"any trips for early tomorrow from airptNm1 to airptNm2 ?",booking
+"any trips tomorrow afternoon airptNm1 to airptNm2 ?",booking
+"any trips next WEEKDAY airptNm1 - airptNm2 ?",booking
+"any trips next DDD airptNm1 +- airptNm2 ?",booking
+"any flights tomorrow night from airptCd1 to airptNm2 ?",booking
+"any trips the DDth of next month airptNm1 airptNm2 ?",booking
+"any trips next month on the DDth airptNm1 to airptCd2 ?",booking
+"any trips MONTH DD airptCd1 - airptNm2 ?",booking
+"any trips the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"any trips DD MMM YY airptNm1 airptCd2 ?",booking
+"any trips NUM days from now from airptCd1 to airptCd2 ?",booking
+"Do you have any trips next DDD airptNm1 +- airptNm2 ?",booking
+"Do you have any trips tomorrow night from airptCd1 to airptNm2 ?",booking
+"Do you have any trips the DDth of next month airptNm1 airptNm2 ?",booking
+"Do you have any trips next month on the DDth airptNm1 to airptCd2 ?",booking
+"Do you have any trips MONTH DD airptCd1 - airptNm2 ?",booking
+"Do you have any trips the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"Do you have any trips DD MMM YYYY airptNm1 airptCd2 ?",booking
+"Do you have any trips NUM days from now from airptCd1 to airptCd2 ?",booking
+"Do you see any trips next DDD airptNm1 +- airptNm2 ?",booking
+"check United tomorrow night from airptCd1 to airptNm2",booking
+"check Delta for the DDth of next month airptNm1 airptNm2",booking
+"check American next month on the DDth airptNm1 to airptCd2",booking
+"Do you see any trips MONTH DD airptCd1 - airptNm2 ?",booking
+"Do you see any trips the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"Do you see any trips DD MMM YYYY airptNm1 airptCd2 ?",booking
+"Do you see any trips NUM days from now from airptCd1 to airptCd2 ?",booking
+"did you see anything next DDD airptNm1 +- airptNm2 ?",booking
+"did you see anything tomorrow night from airptCd1 to airptNm2 ?",booking
+"did you see anything the DDth of next month airptNm1 airptNm2 ?",booking
+"did you see anything next month on the DDth airptNm1 to airptCd2 ?",booking
+"did you see anything MONTH DD airptCd1 - airptNm2 ?",booking
+"did you see anything the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"did you see anything DD MMM airptNm1 airptCd2 ?",booking
+"did you see anything NUM days from now from airptCd1 to airptCd2 ?",booking
+"did you find anything tomorrow night from airptCd1 to airptNm2 ?",booking
+"did you find anything the DDth of next month airptNm1 airptNm2 ?",booking
+"did you find anything next month on the DDth airptNm1 to airptCd2 ?",booking
+"check MONTH DD airptCd1 - airptNm2 ?",booking
+"did you find anything the DDth of MMM airptNm1 +- airptCd2 ?",booking
+"did you find anything MMM DD YYYY airptNm1 airptCd2 ?",booking
+"did you find anything NUM days from now from airptCd1 to airptCd2 ?",booking
+"rebook CC 9999_ departing tomorrow",booking
+"rebook CC 9999_ for next WEEKDAY",booking
+"rebook CC 9999_ for MM +- DD",booking
+"Reserve CC 9999_ for WEEKDAY",booking
+"Reserve CC 9999_ for DD MMM",booking
+"Reserve CC 9999_ for MMM DD",booking
+"Schedule CC 9999_ for late tomorrow",booking
+"Schedule CC 9999_ for early morning tomorrow",booking
+"Schedule CC 9999_ for tomorrow night",booking
+"See if I can fly out tomorrow on CC 9999_",booking
+"See if I can fly out tomorrow on CC 9999_",booking
+"Check if I can fly back next week on CC 9999_",booking
+"Check if I can fly back next week on CC 9999_",booking
+"Can I fly in NUM days from now on CC 9999_",booking
+"Can I fly in NUM days from now on CC 9999_",booking
+"rebook Capcxr1 9999_ arriving tomorrow",booking
+"rebook Capcxr1 9999_ for next WEEKDAY",booking
+"rebook Capcxr1 9999_ for MM +- DD",booking
+"Reserve Capcxr1 9999_ for WEEKDAY",booking
+"Reserve Capcxr1 9999_ for DD MMM",booking
+"Reserve Capcxr1 9999_ for MMM DD",booking
+"Schedule Capcxr1 9999_ for late tomorrow",booking
+"Schedule Capcxr1 9999_ for early morning tomorrow",booking
+"Schedule Capcxr1 9999_ for tomorrow night",booking
+"See if I can fly out tomorrow on Capcxr1 9999_",booking
+"See if I can fly out tomorrow on Capcxr1 9999_",booking
+"Check if I can fly back next week on Capcxr1 9999_",booking
+"Check if I can fly back next week on Capcxr1 9999_",booking
+"Can I fly in NUM days from now on Capcxr1 9999_",booking
+"Can I fly in NUM days from now on Capcxr1 9999_",booking
+"rebook CC airptCd1 +- airptCd2 for tomorrow",booking
+"rebook CC airptCd1 +- airptCd2 for next WEEKDAY",booking
+"rebook CC airptCd1 +- airptCd2 for MM +- DD",booking
+"Reserve CC airptCd1 +- airptCd2 for WEEKDAY",booking
+"Reserve CC airptCd1 +- airptCd2 for DD MMM",booking
+"Reserve CC airptCd1 +- airptCd2 for MONTH DD",booking
+"Schedule CC airptCd1 +- airptCd2 for late tomorrow",booking
+"Schedule CC airptCd1 +- airptCd2 for early tomorrow morning",booking
+"Schedule CC airptCd1 +- airptCd2 for tomorrow night",booking
+"See if I can fly out tomorrow on CC airptCd1 +- airptCd2",booking
+"See if I can fly out tomorrow on CC airptCd1 +- airptCd2",booking
+"See if I can fly out tomorrow airptCd1 +- airptCd2 on CC",booking
+"Check if I can fly back next week on CC airptCd1 +- airptCd2",booking
+"Check if I can fly back next week on CC airptCd1 +- airptCd2",booking
+"Check if I can fly back next week airptCd1 +- airptCd2 on CC",booking
+"Can I fly in NUM days from now on CC airptCd1 +- airptCd2",booking
+"Can I fly in NUM days from now on CC airptCd1 +- airptCd2",booking
+"Can I fly in NUM days from now airptCd1 +- airptCd2 on CC",booking
+"rebook Capcxr1 airptCd1 +- airptCd2 for tomorrow",booking
+"rebook Capcxr1 airptCd1 +- airptCd2 for next WEEKDAY",booking
+"rebook Capcxr1 airptCd1 +- airptCd2 for MM +- DD",booking
+"Reserve Capcxr1 airptCd1 +- airptCd2 for WEEKDAY",booking
+"Reserve Capcxr1 airptCd1 +- airptCd2 for DD MMM",booking
+"Reserve Capcxr1 airptCd1 +- airptCd2 for MONTH DD",booking
+"Schedule Capcxr1 airptCd1 +- airptCd2 for late tomorrow",booking
+"Schedule Capcxr1 airptCd1 +- airptCd2 for early tomorrow morning",booking
+"Schedule Capcxr1 airptCd1 +- airptCd2 for tomorrow night",booking
+"See if I can fly out tomorrow on Capcxr1 airptCd1 +- airptCd2",booking
+"See if I can fly out tomorrow on Capcxr1 airptCd1 +- airptCd2",booking
+"See if I can fly out tomorrow airptCd1 +- airptCd2 on Capcxr1",booking
+"Check if I can fly home next week on Capcxr1 airptCd1 +- airptCd2",booking
+"Check if I can fly out next week on Capcxr1 airptCd1 +- airptCd2",booking
+"Check if I can fly back next week airptCd1 +- airptCd2 on Capcxr1",booking
+"Can I fly in NUM days from now on Capcxr1 airptCd1 +- airptCd2",booking
+"Can I fly in NUM days from now on Capcxr1 airptCd1 +- airptCd2",booking
+"Can I fly in NUM days from now airptCd1 +- airptCd2 on Capcxr1",booking
+"Book Capcxr1 airptNm1 +- airptNm2 for tomorrow",booking
+"Book Capcxr1 airptNm1 +- airptNm2 for next WEEKDAY",booking
+"Book Capcxr1 airptNm1 +- airptNm2 for MM +- DD",booking
+"Reserve Capcxr1 airptNm1 +- airptNm2 for WEEKDAY",booking
+"Reserve Capcxr1 airptNm1 +- airptNm2 for DD MMM",booking
+"Reserve Capcxr1 airptNm1 +- airptNm2 for MONTH DD",booking
+"Schedule Capcxr1 airptNm1 +- airptNm2 for late tomorrow",booking
+"Schedule Capcxr1 airptNm1 +- airptNm2 for early tomorrow morning",booking
+"Schedule Capcxr1 airptNm1 +- airptNm2 for tomorrow night",booking
+"See if I can fly out tomorrow on Capcxr1 airptNm1 +- airptNm2",booking
+"See if I can fly out tomorrow on Capcxr1 airptNm1 +- airptNm2",booking
+"See if I can fly out tomorrow airptNm1 +- airptNm2 on Capcxr1",booking
+"Check if I can fly back next week on Capcxr1 airptNm1 +- airptNm2",booking
+"Check if I can fly back next week on Capcxr1 airptNm1 +- airptNm2",booking
+"Check if I can fly home next week airptNm1 +- airptNm2 on Capcxr1",booking
+"Can I fly in NUM days from now on Capcxr1 airptNm1 +- airptNm2",booking
+"Can I fly in NUM days from now on Capcxr1 airptNm1 +- airptNm2",booking
+"Can I fly home NUM days from now from airptNm1 to airptNm2 on Capcxr1",booking
+"create a PNR for MM +- DD airptCd1 +- airptCd2",booking
+"book a pnr airptNm1 +- airptNm2 for next WEEKDAY afternoon",booking
+"reserve airptCd1 to airptCd2 on DD MMM and send me the record locator",booking
+"create a record locator airptCd1 airptCd2 MM +/ DD",booking
+"book airptCd1 airptCd2 MM +- DD YYYY and give me the PNR",booking
+"i need a pnr for airptNm1 airptNm2 MMM DDth",booking
+How can I book a flight?,booking
+Can you help with my booking?,booking
+Can you help with cheap flights LA to Denver?,booking
+Can you help book cheap flights Denver to LA?,booking
+Can you find cheap flights LA to New York?,booking
+Can you book me a flight nyc to LA?,booking
+Can you book me a flight?,booking
+book me a flight LA to den,booking
+Flying from airptNm1 to airptNm2 could be nice.,booking
+how long does it take to fly from airptNm1 to airptNm2 ?,booking
+will you find flights from airptNm1 to anywhere on the West coast?,booking
+will you find flights from airptNm1 to airptNm2 without stops?,booking
+can you find flights from airptCd1 to airptCd2 with no connections?,booking
+will you find flights with free wifi?,booking
+"Good morning, can you help me find a flight?",booking
+"Can you look into flights for the MLB playoffs between the Tigers and Cubs?",booking
+"I'd like to go to St. Johns some time.",booking
+"my kids want to come from France in June",booking
+Find airptCd1 +- airptCd2 seats,booking
+Anything airptNm1 +- airptNm2,booking
+Check if I can fly back on CC airptCd1 +- airptCd2,booking
+Find a flight from airptNm1 to airptNm2,booking
+See if I can fly out on Capcxr1 9999_,booking
+Anything airptCd1 +- airptNm2 ?,booking
+Try finding a flight airptNm1 +- airptCd2,booking
+Will you schedule seats airptNm1 +- airptNm2 ?,booking
+Find travel airptNm1 +- airptCd2,booking
+Try finding an available flight from airptNm1 to airptNm2,booking
+Is it possible to fly airptNm1 to airptNm2 ?,booking
+Schedule CC airptCd1 +- airptCd2,booking
+did you find anything from airptCd1 to airptCd2 ?,booking
+Do you see any trips from airptCd1 to airptCd2 ?,booking
+Try looking for travel from airptCd1 to airptCd2,booking
+See if I can fly out on CC airptCd1 +- airptCd2,booking
+Book an early flight airptNm1 to airptNm2,booking
+Will you book seats airptNm1 +- airptNm2 ?,booking
+Find a late flight airptCd1 - airptNm2,booking
+Can you find from airptNm1 to airptNm2 ?,booking
+search available flights airptNm1 - airptNm2,booking
+Check if I can fly home airptNm1 +- airptNm2 on Capcxr1,booking
+See if I can fly out on CC airptCd1 +- airptCd2,booking
+Find a flight airptNm1 to airptCd2,booking
+Look for airptNm1 to airptCd2,booking
+any trips airptNm1 airptCd2 ?,booking
+schedule a flight airptNm1 - airptNm2,booking
+Check if I can fly home on Capcxr1 airptCd1 +- airptCd2,booking
+Can you find airptNm1 airptNm2 flights?,booking
+Book airptCd1 to airptCd2,booking
+a late flight scheduling airptCd1 +- airptNm2 please,booking
+Find available flights airptNm1 to airptNm2,booking
+Find an early flight airptNm1 to airptNm2,booking
+Look for travel airptNm1 +- airptNm2,booking
+Can I fly on Capcxr1 airptCd1 +- airptCd2 ?,booking
+Can you find airptNm1 to airptCd2,booking
+Could you get a seat airptNm1 +- airptCd2 ?,booking
+Schedule airptNm1 +- airptNm2,booking
+Try looking from airptNm1 to airptNm2,booking
+Find airptCd1 - airptCd2,booking
+Find airptCd1 +- airptCd2,booking
+See if I can fly airptNm1 +- airptNm2 on Capcxr1,booking
+Anything from airptCd1 to airptCd2 ?,booking
+Are there any flights from airptCd1 to airptNm2 ?,booking
+rebook Southwest airptCd1 +- airptCd2,booking
+Schedule CC 9999_,booking
+Are there any flights airptNm1 +- airptNm2 ?,booking
+did you see anything airptCd1 - airptNm2 ?,booking
+Book anything airptCd1 - airptCd2,booking
+check airptCd1 to airptCd2,booking
+Search for airptCd1 +- airptCd2,booking
+did you see anything from airptCd1 to airptCd2 ?,booking
+Reserve Capcxr1 9999_,booking
+Look up airptCd1 to airptCd2,booking
+Try looking for airptNm1 +- airptNm2,booking
+did you see anything from airptCd1 to airptNm2 ?,booking
+A reservation airptCd1 airptCd2 please,booking
+Find airptCd1 - airptCd2 seats,booking
+Look for travel airptNm1 airptNm2,booking
+Book a seat airptNm1 to airptCd2,booking
+Find trips from airptCd1 to airptCd2,booking
+Reserve CC 9999_,booking
+Do you see any trips airptNm1 +- airptCd2 ?,booking
+Schedule Capcxr1 9999_,booking
+Is there anything airptNm1 airptCd2 ?,booking
+Are there any flights airptNm1 to airptCd2 ?,booking
+Do you have any trips airptNm1 +- airptNm2 ?,booking
+Check if I can fly back on Capcxr1 airptNm1 +- airptNm2,booking
+Are there any flights from airptCd1 to airptCd2 ?,booking
+Do you have any trips airptNm1 to airptCd2 ?,booking
+Reserve CC airptCd1 +- airptCd2,booking
+Find travel airptNm1 to airptNm2,booking
+reserve airptNm1 airptNm2,booking
+Book a flight airptNm1 to airptNm2,booking
+Check if I can fly back on CC 9999_,booking
+Book seats from airptNm1 to airptNm2,booking
+reserve airptCd1 - airptCd2 for me and my kids,booking
+Can you find a flight airptCd1 - airptCd2 for 2 adults?,booking
+Book an early flight from airptNm1 to airptNm2,booking
+Would you reserve a airptCd1 +- airptCd2 flight?,booking
+What can you find airptCd1 airptCd2 for me and my infant?,booking
+Could you schedule airptNm1 to airptCd2,booking
+"Schedule CC airptCd1 +- airptCd2 for two kids, ages 10 and 13",booking
+Can you reserve a airptCd1 to airptCd2 flight for 5 people?,booking
+What are my chances of flying airptNm1 +- airptCd2 ?,booking
+Find travel from airptCd1 to airptNm2,booking
+Schedule AirTran airptCd1 +- airptCd2,booking
+Find a flight from airptCd1 to airptNm2,booking
+any trips airptNm1 to airptNm2 ?,booking
+reserve a airptNm1 +- airptCd2 flight,booking
+Can you find airptNm1 +- airptNm2 flights?,booking
+Look for airptNm1 airptNm2 nonstops,booking
+schedule an early flight airptNm1 - airptNm2,booking
+Find a airptCd1 airptCd2 trip,booking
+Please find a airptCd1 +- airptCd2 trip,booking
+did you see anything airptNm1 airptCd2 ?,booking
+Is there anything from airptNm1 to airptNm2 ?,booking
+check airptCd1 - airptNm2,booking
+book airptNm1 to airptNm2 via Denver on Capcxr1,booking
+reserve airptCd1 airptCd2 via DFW on Capcxr1,booking
+schedule airptNm1 - airptNm2 thru Atlanta on MM +- DD,booking
+"I want to go through airptNm2 , airptNm1 to Paris, MM +/ DD",booking
