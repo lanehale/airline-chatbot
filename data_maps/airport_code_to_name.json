@@ -392,5 +392,10 @@
     "YAK": "Yakutat, AK: Yakutat Airport",
     "YKM": "Yakima, WA: Yakima Air Terminal/McAllister Field",
     "YNG": "Youngstown/Warren, OH: Youngstown-Warren Regional",
-    "YUM": "Yuma, AZ: Yuma MCAS/Yuma International"
+    "YUM": "Yuma, AZ: Yuma MCAS/Yuma International",
+    "CDG": "Paris, FR: Paris Charles de Gaulle Airport",
+    "ORY": "Paris, FR: Paris Orly Airport",
+    "LHR": "London, UK: London Heathrow Airport",
+    "LGW": "London, UK: London Gatwick Airport",
+    "PTP": "Pointe-à-Pitre, GP: Pointe-à-Pitre International Airport/Guadeloupe Pôle Caraïbes Airport/Le Raizet Airport"
 }
