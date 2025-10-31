@@ -15,6 +15,7 @@ import uuid
 
 from datetime import datetime, date, timedelta
 from dateutil import parser
+from dateutil.relativedelta import relativedelta, MO, TU, WE, TH, FR, SA, SU
 from timezonefinder import TimezoneFinder
 from transformers import pipeline, AutoTokenizer, AutoModelForSequenceClassification
 
@@ -27,7 +28,9 @@ logging.basicConfig(
 )
 
 
-### Prepare Airline, Airport, States Data ###
+#########################
+#   Prepare Data Maps   #
+#########################
 
 # Copy JSON Files to Dictionaries
 file_path = "airline_code_to_name.json"
@@ -64,6 +67,11 @@ sorted_airport_mappings = sorted(
     airport_dual_mapping.items(), key=lambda item: len(item[0]), reverse=True
 )
 
+
+##############################
+#   Compile Regex Patterns   #
+##############################
+
 # Build a regex pattern for all unique state names and abbreviations from us_states_dict
 state_patterns = []
 for abbr, name in us_states_dict.items():
@@ -73,9 +81,206 @@ for abbr, name in us_states_dict.items():
 state_regex = (
     r"\b(?:" + "|".join(sorted(state_patterns, key=len, reverse=True)) + r")\b"
 )
+STATE_REGEX = re.compile(state_regex, re.IGNORECASE)
+
+COMMA_COLON_REGEX = re.compile(r"[,:]")
+DASH_SLASH_REGEX = re.compile(r"[-/]")
+
+# Define a regex for impossible day values 32-99 in MM/DD
+impossible_day_regex = r"\b(?:(?:\d{1,2}[-/])|(?:))(3[2-9]|[4-9]\d)(?:,)?\b"
+IMPOSSIBLE_DAY_REGEX = re.compile(impossible_day_regex, re.IGNORECASE)
+
+# ---------------------------------------------------------------------------- #
+#   Define Date Patterns for extract_date_info and standardize_date_strings    #
+# ---------------------------------------------------------------------------- #
+# --- Define variables to build larger regex patterns ---
+# Month names
+month_names = (
+    r"(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|"
+    + r"January|February|March|April|May|June|July|August|September|October|November|December)"
+)
+# Time intervals for relative dates
+intervals = r"(?:days|day|weeks|week|months|month|years|year)"
+
+# Days of the week
+weekdays = (
+    r"(?:Mon|Tue|Wed|Thu|Fri|Sat|Sun|"
+    + r"Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)"
+)
+# Numbers and words for numbers
+numbers = r"(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|couple|few|the|a)"
+
+# Map text numbers to integers
+text_numbers_map = {
+    "one": 1,
+    "two": 2,
+    "three": 3,
+    "four": 4,
+    "five": 5,
+    "six": 6,
+    "seven": 7,
+    "eight": 8,
+    "nine": 9,
+    "ten": 10,
+    "couple": 2,
+    "few": 3,
+    "the": 1,
+    "a": 1,
+}
+
+# Map weekdays to relativedelta codes
+weekday_map = {
+    "monday": MO,
+    "tuesday": TU,
+    "wednesday": WE,
+    "thursday": TH,
+    "friday": FR,
+    "saturday": SA,
+    "sunday": SU,
+    "mon": MO,
+    "tue": TU,
+    "wed": WE,
+    "thu": TH,
+    "fri": FR,
+    "sat": SA,
+    "sun": SU,
+}
+
+# --- Define relative date patterns ---
+# 3 days from now, two weeks from Mon, a week after tomorrow
+relative_interval_from_pattern = (
+    r"(?:in\s+)?"
+    + numbers
+    + r"\s+"
+    + intervals
+    + r"\s+"
+    + r"(?:from|after)\s+(?:now|today|tomorrow|"
+    + weekdays
+    + r")"
+)
+# next Friday, next Sat.
+relative_next_weekday_pattern = r"next\s+" + weekdays
+
+# in 3 days, in two weeks, in a month
+relative_in_interval_pattern = r"in\s+" + numbers + r"\s+" + intervals
+
+# tomorrow, various ways of saying 'today'
+relative_simple_terms = (
+    r"(?:tomorrow|today|tonight|now|this\safternoon|this\sevening|"
+    + r"this\smorning|immediately|asap|this\sminute|this\sinstant|"
+    + r"as\ssoon\sas\spossible|at\sonce|straight\saway|presently)"
+)
+RELATIVE_INTERVAL_FROM_PATTERN = re.compile(
+    relative_interval_from_pattern, re.IGNORECASE
+)
+RELATIVE_NEXT_WEEKDAY_PATTERN = re.compile(relative_next_weekday_pattern, re.IGNORECASE)
+RELATIVE_IN_INTERVAL_PATTERN = re.compile(relative_in_interval_pattern, re.IGNORECASE)
+RELATIVE_SIMPLE_TERMS = re.compile(relative_simple_terms, re.IGNORECASE)
+
+ORDINAL_SUFFIX_REGEX = re.compile(r"(?<=\d)(st|nd|rd|th)\b")
+OF_REGEX = re.compile(r"\bof\b")
+
+# --- Define all the regex patterns with descriptive names for common date formats ---
+# YYYY/MM/DD or YYYY-MM-DD
+numeric_ymd = r"\b\d{4}[-/]\d{1,2}[-/]\d{1,2}\b"
+# MM/DD/YY or MM-DD-YYYY
+numeric_mdy = r"\b\d{1,2}[-/]\d{1,2}[-/]\d{2,4}\b"
+# MM/DD or MM-DD
+numeric_md = r"\b\d{1,2}[-/]\d{1,2}\b"
+# The next five patterns allow optional dot after Month, and optional comma before optional Year
+# January 8, January 8, 2023, jan. 8
+month_day_year = r"\b" + month_names + r"\.?\s+\d{1,2}(?:,?\s+(?P<year>\d{4}))?\b"
+# 8 January, 8 January 2023, 8jan
+day_month_year = r"\b\d{1,2}\s*" + month_names + r"(?:\.?,?\s+(?P<year>\d{4}))?\b"
+# 1st January, 22nd February 2023
+day_ordinal_month_year = (
+    r"\b\d{1,2}(?:st|nd|rd|th)\s*" + month_names + r"(?:\.?,?\s+(?P<year>\d{4}))?\b"
+)
+# June 1st, December 22nd, 2023
+month_day_ordinal_year = (
+    r"\b" + month_names + r"\.?\s+\d{1,2}(?:st|nd|rd|th)(?:,?\s+(?P<year>\d{4}))?\b"
+)
+# 1st of June, 22nd of December 2023
+day_ordinal_of_month_year = (
+    r"\b\d{1,2}(?:st|nd|rd|th)\s+of\s+"
+    + month_names
+    + r"(?:\.?,?\s+(?P<year>\d{4}))?\b"
+)
+# 3 days from now, next Friday, in two weeks, tomorrow
+relative_date = (
+    r"\b(?:"  # Start non-capturing group for alternatives
+    + relative_interval_from_pattern
+    + r"|"
+    + relative_next_weekday_pattern
+    + r"|"
+    + relative_in_interval_pattern
+    + r"|"
+    + relative_simple_terms
+    + r")\b"  # End non-capturing group and word boundary
+)
+
+NUMBERIC_YMD = re.compile(numeric_ymd, re.IGNORECASE)
+NUMBERIC_MDY = re.compile(numeric_mdy, re.IGNORECASE)
+NUMBERIC_MD = re.compile(numeric_md, re.IGNORECASE)
+MONTH_DAY_YEAR = re.compile(month_day_year, re.IGNORECASE)
+DAY_MONTH_YEAR = re.compile(day_month_year, re.IGNORECASE)
+DAY_ORDINAL_MONTH_YEAR = re.compile(day_ordinal_month_year, re.IGNORECASE)
+MONTH_DAY_ORDINAL_YEAR = re.compile(month_day_ordinal_year, re.IGNORECASE)
+DAY_ORDINAL_OF_MONTH_YEAR = re.compile(day_ordinal_of_month_year, re.IGNORECASE)
+RELATIVE_DATE = re.compile(relative_date, re.IGNORECASE)
+
+# Define a dictionary of regex patterns with descriptive names
+date_patterns = {
+    "numeric_ymd": NUMBERIC_YMD,
+    "numeric_mdy": NUMBERIC_MDY,
+    "numeric_md": NUMBERIC_MD,
+    "month_day_year": MONTH_DAY_YEAR,
+    "day_month_year": DAY_MONTH_YEAR,
+    "day_ordinal_month_year": DAY_ORDINAL_MONTH_YEAR,
+    "month_day_ordinal_year": MONTH_DAY_ORDINAL_YEAR,
+    "day_ordinal_of_month_year": DAY_ORDINAL_OF_MONTH_YEAR,
+    "relative_date": RELATIVE_DATE,
+}
+# --- End of Patterns for extract_date_info and standardize_date_strings ---
+
+# 2-char carrier code, no space, 1 to 4 digits flight number (e.g., AA123)
+CC9999_REGEX = re.compile(r"\b([A-Z]{2})(\d{1,4})\b", re.IGNORECASE)
+# 1 to 4 digits
+FLIGHT_NUMBER_REGEX = re.compile(r"\d{1,4}")
+
+# Create a dictionary of common word variations to replace
+word_replacements = {
+    r"D\.C\.": "Washington",
+    r"K\.C\.": "Kansas City",
+    r"L\.A\.": "Los Angeles",
+    r"N\.Y\.C\.": "New York",
+    r"\bSaint\b": "St.",
+    r"\bSt\s": "St. ",
+    r"\bFt\.\s*": "Fort ",
+    r"\bFt\s": "Fort ",
+    # Add other common variations as needed (e.g., 'Mount' to 'Mt.')
+}
+# Sort replacement patterns by length in descending order
+sorted_replacements = sorted(
+    word_replacements.items(), key=lambda item: len(item[0]), reverse=True
+)
+# Compile the patterns and create a new list of (compiled_pattern, replacement) tuples
+COMPILED_REPLACEMENTS = [
+    (re.compile(pattern, re.IGNORECASE), replacement)
+    for pattern, replacement in sorted_replacements
+]
+
+# 3 capital letters (e.g, LAX)
+AIRPORT_CODE_REGEX = re.compile(r"[A-Z]{3}")
+# 3 letters or a number 0 to 99
+OVER_9_AIRPORTS_REGEX = re.compile(r"\b(?:[A-Z]{3}|[0-9]{1,2})\b", re.IGNORECASE)
+# '1 stop' or '2 stops'
+NUMBER_OF_STOPS_REGEX = re.compile(r"\(.*,\s*(\d+)\s*stop")
 
 
-### Prepare Model Classification Pipeline ###
+#############################################
+#   Prepare Model Classification Pipeline   #
+#############################################
 
 # Define ID to label mapping
 id2label_mapping = {0: "booking", 1: "general", 2: "status"}
@@ -90,35 +295,40 @@ tokenizer = AutoTokenizer.from_pretrained(model_path)
 question_classifier = pipeline("text-classification", model=model, tokenizer=tokenizer)
 
 
-################################################################################
-###                               Functions                                  ###
-################################################################################
-#   choose_retry_phrase()                                                      #
-#   remove_duplicate_locations_by_city_name(found_locations)                   #
-#   remove_duplicate_locations_by_airport_code(found_locations)                #
-#   find_matching_state(state_regex, search_string, location)                  #
-#   check_same_name_cities(found_locations, temp_query, errors)                #
-#   build_airport_list(airport_info, airport_code, airport_list, found_states) #
-#   extract_date_info(query)                                                   #
-#   parse_query_date(date_string)                                              #
-#   extract_flight_info(query, intent)                                         #
-#   get_flight_status(flight_ident)                                            #
-#   get_flights_to_book(flight_info, passengers)                               #
-#   get_timezone_name(latitude, longitude, tz_finder=timezone_finder)          #
-#   get_local_datetime(datetime_string, local_timezone_str)                    #
-#   append_departure_details(flight, response_lines)                           #
-#   append_arrival_details(flight, response_lines)                             #
-#   format_delay_time(delay_seconds)                                           #
-#   build_status_response(flight_data, flight_ident)                           #
-#   build_booking_response(booking_data, departure_date, tz_finder)            #
-#   parse_multi_airport_response(user_input, flight_info_alt,                  #
-#                                multi_airport_display_string)                 #
-#   sort_flight_options(flight_options, sort_radio)                           #
-#   build_flight_options_batch(sorted_options, start_index, batch_size=10)     #
-#   show_more_flight_options(chat_history, state_dict, sort_radio)            #
-#   chat_flight_assistant(user_input, chat_history, state_dict, sort_radio)   #
-#   clear_chat(chat_history, state_dict)                                       #
-################################################################################
+#################################################################################
+###                               Functions                                   ###
+#################################################################################
+#   choose_retry_phrase()                                                       #
+#   remove_duplicate_locations_by_city_name(found_locations)                    #
+#   remove_duplicate_locations_by_airport_code(found_locations)                 #
+#   find_matching_state(search_string, location)                                #
+#   check_same_name_cities(found_locations, temp_query, errors)                 #
+#   build_airport_list(airport_info, airport_code, airport_list, found_states)  #
+#   parse_query_date(date_string)                                               #
+#   extract_date_info(query)                                                    #
+#   standardize_date_strings(date_dict, state_dict)                             #
+#   extract_flight_info(query, intent, state_dict)                              #
+#   get_flight_status(flight_ident)                                             #
+#   get_flights_to_book(flight_info, passengers)                                #
+#   get_timezone_name(latitude, longitude, tz_finder=timezone_finder)           #
+#   get_local_datetime(datetime_string, local_timezone_str)                     #
+#   append_departure_details(flight, response_lines)                            #
+#   append_arrival_details(flight, response_lines)                              #
+#   format_delay_time(delay_seconds)                                            #
+#   build_status_response(flight_data, flight_ident)                            #
+#   build_booking_response(booking_data, departure_date, tz_finder)             #
+#   update_relative_dates(state_dict)                                           #
+#   parse_multi_airport_response(user_input, state_dict)                        #
+#   sort_flight_options(flight_options, sort_radio)                             #
+#   build_flight_options_batch(sorted_options, start_index, batch_size=10)      #
+#   show_more_flight_options(chat_history, state_dict)                          #
+#   chat_flight_assistant(chat_history, state_dict, user_input)                 #
+#   get_user_date(user_date, chat_history, state_dict, user_input)              #
+#   set_preferred_date_format(date_format_radio, state_dict)                    #
+#   set_sort_preference(sort_radio, state_dict)                                 #
+#   set_include_nearby_airports(nearby_airports_checkbox, state_dict)           #
+#   clear_chat(chat_history, state_dict)                                        #
+#################################################################################
 
 
 ######################################
@@ -230,18 +440,17 @@ def remove_duplicate_locations_by_airport_code(found_locations):
 ###########################
 #   Find Matching State   #
 ###########################
-def find_matching_state(state_regex, search_string, location):
+def find_matching_state(search_string, location):
     """
     Finds a matching state in a search string and updates the location dictionary.
     Args:
-        state_regex (str): The regular expression pattern for matching states.
         search_string (str): The string to search for a matching state.
         location (dict): The dictionary containing location information.
     Returns:
         found_flag (bool): True if a matching state is found and updated, False otherwise.
     """
     found_flag = False
-    match = re.search(state_regex, search_string, re.IGNORECASE)
+    match = STATE_REGEX.search(search_string)
 
     if match:
         state_match = match.group(0).upper()
@@ -290,7 +499,7 @@ def check_same_name_cities(found_locations, temp_query, errors):
             else:
                 window_end = len(temp_query)
             search_string = temp_query[window_start:window_end]
-            if not find_matching_state(state_regex, search_string, location):
+            if not find_matching_state(search_string, location):
                 errors_dict[location["city"]] = location["airport"]
 
     first_message = False
@@ -335,7 +544,9 @@ def build_airport_list(airport_info, airport_code, airport_list, found_states):
         found_states (set): Adds the airport's state.
     """
     # Split by comma and colon for "City, State: Airport Name"
-    airport_info_parts = [part.strip() for part in re.split(r"[,:]", airport_info)]
+    airport_info_parts = [
+        part.strip() for part in COMMA_COLON_REGEX.split(airport_info)
+    ]
     airport_name = ""
     city_names = airport_info_parts[0].split("/")
     airport_state = airport_info_parts[1]
@@ -351,80 +562,10 @@ def build_airport_list(airport_info, airport_code, airport_list, found_states):
     return city_names[0]
 
 
-####################################
-#   Extract Date Info from query   #
-####################################
-def extract_date_info(query):
-    """
-    Extracts dates in various formats from a natural language query.
-    Args:
-        query (str): The natural language query.
-    Returns:
-        date_dict (dict): A dictionary containing the extracted date information.
-    """
-    date_dict = {}
-    dates = []
-
-    ### Breaking down this regex:
-
-    # \b...\b       Ensures we match whole date patterns.
-    # (?:...|...)   This is a non-capturing group that allows us to match one of several date formats.
-
-    # \d{1,2}[-/]\d{1,2}[-/]\d{2,4}
-    # Matches numeric date formats like MM/DD/YY, MM-DD-YYYY, M/D/YY, etc. with required year:
-    #   \d{1,2}     One or two digits for month or day.
-    #   [-/]        Matches either a hyphen or a slash as a separator.
-    #   \d{2,4}     Two or four digits for the year.
-
-    # \d{1,2}[-/]\d{1,2}
-    # Matches numeric date formats like MM-DD or MM/DD:
-    #   \d{1,2}     One or two digits for month or day.
-    #   [-/]        Matches either a hyphen or a slash as a separator.
-
-    # \b(?:Jan|Feb|...|December)\s+\d{1,2}(?:,\s*\d{4})?
-    # Matches date formats with month names followed by day and optional year (e.g., Jan 8, Jan 8, 2023):
-    #   \b(?:Jan|Feb|...)   Matches a month name (abbreviated or full) as a whole word.
-    #   \s+                 One or more spaces after the month name.
-    #   \d{1,2}             One or two digits for the day.
-    #   (?:,*\s+\d{4})?     This part is optional (?) and matches optional comma, spaces, and a four-digit year.
-
-    # \b\d{1,2}\s*(?:Jan|Feb|...|December)(?:,*\s+\d{4})?
-    # Matches date formats with day followed by month name and optional year (e.g., 8 Jan, 8 Jan 2023, 8Jan 2023):
-    #   \b\d{1,2}           One or two digits for the day.
-    #   \s*                 Zero or more spaces.
-    #   (?:Jan|Feb|...)     Matches a month name (abbreviated or full).
-    #   (?:,*\s+\d{4})?     This part is optional (?) and matches optional comma, spaces, and a four-digit year.
-
-    ###
-    # Define the regex pattern as a single-line string for clarity
-    ###
-    date_regex = r"\b(?:\d{1,2}[-/]\d{1,2}[-/]\d{2,4}|\d{1,2}[-/]\d{1,2}|\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)\s+\d{1,2}(?:,*\s+\d{4})?|\b\d{1,2}\s*(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec|January|February|March|April|May|June|July|August|September|October|November|December)(?:,*\s+\d{4})?)\b"
-
-    temp_query = query
-    match = re.search(date_regex, temp_query, re.IGNORECASE)
-
-    # Use a while loop with re.search to find all non-overlapping matches
-    # in the continually updated temp_query
-    while match:
-        dates.append(match.group(0))
-        # Replace the matched substring with unmatchable text
-        replacement = "~" * len(match.group(0))
-        temp_query = (
-            temp_query[: match.start()] + replacement + temp_query[match.end() :]
-        )
-        # Search again in the modified string
-        match = re.search(date_regex, temp_query, re.IGNORECASE)
-
-    date_dict["dates"] = dates
-    date_dict["query_without_date"] = temp_query
-
-    return date_dict
-
-
 ########################
 #   Parse Query Date   #
 ########################
-def parse_query_date(date_string):
+def parse_query_date(date_string, includes_year=False):
     """
     Parses a date string into a datetime object using dateutil.
     If the date string does not include a year, it defaults to the current year.
@@ -438,29 +579,11 @@ def parse_query_date(date_string):
             or None if parsing fails or the date is invalid.
     """
     try:
-        # --- Initial Validation: Check for impossible day values like 32-99 ---
-        # extract_date_info doesn't allow days over 2-digits, or 2-digit years with month names
+        # --- Initial Validation ---
+        # Check for impossible day values 32-99 in MM/DD (extract_date_info
+        # doesn't allow days over two digits or 2-digit years with month names).
 
-        ### Breakdown of the combined regex:
-
-        # \b...\b       Word boundaries.
-
-        # (?:(?:\d{1,2}[-/])|(?:))
-        # A non-capturing group (?:...) that handles the two possibilities for the start of the pattern:
-        #   (?:\d{1,2}[-/])   Matches one or two digits followed by a hyphen or forward slash (e.g., 12- or 5/).
-        #   |(?:)             An empty non-capturing group that matches nothing. This allows the pattern to be
-        #                     matched without a preceding month and slash.
-
-        # (3[2-9]|[4-9]\d|\d{3,})
-        # This capturing group matches the impossible day numbers:
-        #   3[2-9]      Matches 32 through 39.
-        #   |[4-9]\d    Matches 40 through 99.
-
-        # (?:,)?        This non-capturing group matches an optional comma. The ? makes the comma optional.
-
-        impossible_day_regex = r"\b(?:(?:\d{1,2}[-/])|(?:))(3[2-9]|[4-9]\d)(?:,)?\b"
-
-        if re.search(impossible_day_regex, date_string):
+        if IMPOSSIBLE_DAY_REGEX.search(date_string):
             logging.error(
                 f"parse_query_date: Found impossible day value in string: {date_string}"
             )
@@ -475,7 +598,7 @@ def parse_query_date(date_string):
 
         # If the parsed date is before today's date, increment the year.
         # We compare only the date part to ignore the time component.
-        if parsed_datetime.date() < today_date:
+        if not includes_year and parsed_datetime.date() < today_date:
             parsed_datetime = parsed_datetime.replace(year=parsed_datetime.year + 1)
 
         return parsed_datetime
@@ -488,15 +611,268 @@ def parse_query_date(date_string):
         return None
 
 
+####################################
+#   Extract Date Info from query   #
+####################################
+def extract_date_info(query):
+    """
+    Extracts dates in various formats from a natural language query using
+    a list of regex patterns, indicating which pattern matched each date.
+    Args:
+        query (str): The natural language query.
+    Returns:
+        date_dict (dict): A dictionary containing the extracted date information,
+             including the date string, the matched pattern type, and start index.
+    """
+    date_dict = {}
+    found_dates = []
+    temp_query = query
+
+    # Iterate through the compiled regex patterns and find all matches
+    for pattern_name, COMPILED_PATTERN in date_patterns.items():
+        # Use re.finditer to find all non-overlapping matches
+        for match in COMPILED_PATTERN.finditer(temp_query):
+            start_index = match.start()
+            end_index = match.end()
+            date_str = match.group(0)
+
+            if "year" in match.groupdict() and match.group("year") is not None:
+                includes_year = True
+            elif pattern_name in ["numeric_mdy", "numeric_ymd"]:
+                includes_year = True
+            else:
+                includes_year = False
+
+            # Add the found date information to the list
+            found_dates.append(
+                {
+                    "date": date_str,
+                    "includes_year": includes_year,
+                    "pattern_type": pattern_name,
+                    "start_index": start_index,
+                    "end_index": end_index,
+                }
+            )
+
+            # Replace the matched substring with unmatchable text
+            replacement = "~" * len(date_str)
+            temp_query = temp_query[:start_index] + replacement + temp_query[end_index:]
+
+    # Sort the found dates by their appearance in the original query
+    found_dates.sort(key=lambda x: x["start_index"])
+
+    date_dict["extracted_dates"] = found_dates
+    date_dict["query_without_date"] = temp_query
+
+    return date_dict
+
+
+############################
+#   Standardize Dates   #
+############################
+def standardize_date_strings(date_dict, state_dict):
+    """
+    Standardizes extracted date strings into datetime objects.
+    Interprets relative date phrases and parses standard date formats.
+    Args:
+        date_dict (dict): The dictionary returned by extract_date_info.
+        state_dict (dict): A dictionary containing state-related information.
+    Returns:
+        standardized_dates (list): A list of datetime objects representing the
+            standardized dates.
+        invalid_dates (list): A list of invalid date strings if standardization fails.
+    Modifies:
+        state_dict (dict): Updates the user_date_prompt_active flag if needed.
+    """
+    # Check if we need to prompt the user for their current date
+    if state_dict["user_date"] is None:
+        # Check if they used a relative date in their request
+        for date_info in date_dict["extracted_dates"]:
+            if date_info["pattern_type"] == "relative_date":
+                # Ask them for their current date
+                state_dict["user_date_prompt_active"] = True
+                break
+
+    standardized_dates = []
+    invalid_dates = []
+
+    if state_dict["user_date"] is not None:
+        today = state_dict["user_date"]
+    else:
+        today = date.today()
+
+    for date_info in date_dict["extracted_dates"]:
+        date_str = date_info["date"].lower()
+        pattern_type = date_info["pattern_type"]
+        includes_year = date_info["includes_year"]
+
+        if pattern_type == "relative_date":
+            # Handle relative date phrases - check for longer phrases first
+            match_interval_from = RELATIVE_INTERVAL_FROM_PATTERN.search(date_str)
+            match_next_weekday = RELATIVE_NEXT_WEEKDAY_PATTERN.search(date_str)
+            match_in_interval = RELATIVE_IN_INTERVAL_PATTERN.search(date_str)
+            match_simple_term = RELATIVE_SIMPLE_TERMS.search(date_str)
+
+            if match_interval_from:
+                # Use the interval from match
+                parts = match_interval_from.group(0).split()
+                if parts[0].lower() == "in":
+                    del parts[0]  # Remove optional 'in'
+                number_str = parts[0]  # Extract number part
+                interval = parts[1].rstrip(
+                    "s"
+                )  # Extract singular interval (day, week, etc.)
+                from_when = parts[-1]  # Extract 'now', 'today', or weekday
+
+                if number_str.lower() in text_numbers_map:
+                    num = text_numbers_map[number_str.lower()]
+                else:
+                    num = int(number_str)  # Convert number to integer
+
+                # Calculate the base date to add timedelta/relativedelta to
+                if from_when.lower() == "tomorrow":
+                    base_date = today + timedelta(days=1)
+                elif from_when.lower() == "now" or from_when.lower() == "today":
+                    base_date = today
+                else:
+                    # Find the next occurrence of the specified weekday from today.
+                    # relativedelta(weekday=...) finds the next occurrence of that weekday
+                    # except if weekday == today's weekday, then it returns today's date.
+                    base_date = today + relativedelta(
+                        weekday=weekday_map[from_when.lower()]
+                    )
+
+                # Save the standardized date
+                if interval == "day":
+                    standardized_dates.append(base_date + timedelta(days=num))
+                elif interval == "week":
+                    standardized_dates.append(base_date + timedelta(weeks=num))
+                elif interval == "month":
+                    standardized_dates.append(base_date + relativedelta(months=num))
+                elif interval == "year":
+                    standardized_dates.append(base_date + relativedelta(years=num))
+
+            elif match_next_weekday:
+                # Use the next weekday match
+                parts = match_next_weekday.group(0).split()
+                weekday_str = parts[1]
+                # Find the next occurrence of the specified weekday from today.
+                # relativedelta(weekday=...) finds the next occurrence of that weekday
+                # except if weekday == today's weekday, then it returns today's date.
+                next_weekday_date = today + relativedelta(
+                    weekday=weekday_map[weekday_str.lower()]
+                )
+                if next_weekday_date == today:
+                    standardized_dates.append(next_weekday_date + timedelta(weeks=1))
+                else:
+                    standardized_dates.append(next_weekday_date)
+
+            elif match_in_interval:
+                # Use the in interval match
+                parts = match_in_interval.group(0).split()
+                number_str = parts[1]  # Extract number part after "in"
+                interval = parts[2].rstrip(
+                    "s"
+                )  # Extract singular interval (day, week, etc.)
+
+                if number_str.lower() in text_numbers_map:
+                    num = text_numbers_map[number_str.lower()]
+                else:
+                    num = int(number_str)  # Convert number to integer
+
+                # Save the standardized date
+                if interval == "day":
+                    standardized_dates.append(today + timedelta(days=num))
+                elif interval == "week":
+                    standardized_dates.append(today + timedelta(weeks=num))
+                elif interval == "month":
+                    standardized_dates.append(today + relativedelta(months=num))
+                elif interval == "year":
+                    standardized_dates.append(today + relativedelta(years=num))
+
+            elif match_simple_term:
+                # Use the simple term match
+                if match_simple_term.group(0).lower() == "tomorrow":
+                    standardized_dates.append(today + timedelta(days=1))
+                else:
+                    standardized_dates.append(today)
+
+            else:
+                logging.warning(
+                    f"standardize_date_strings: Unhandled relative date phrase: {date_str}"
+                )
+
+        else:
+            # Preprocess ordinal dates and "of" before parsing standard formats
+            processed_date_str = date_str
+
+            if pattern_type in [
+                "day_ordinal_month_year",
+                "month_day_ordinal_year",
+                "day_ordinal_of_month_year",
+            ]:
+                # Remove ordinal suffixes (st, nd, rd, th)
+                processed_date_str = ORDINAL_SUFFIX_REGEX.sub("", processed_date_str)
+                # Remove "of" if present
+                processed_date_str = OF_REGEX.sub("", processed_date_str).strip()
+                # Parse the processed date string
+                parsed_date = parse_query_date(processed_date_str, includes_year)
+
+            elif pattern_type in [
+                "numeric_ymd",
+                "numeric_mdy",
+                "numeric_md",
+            ]:
+                # Swap DD with MM if international date format
+                if state_dict["preferred_date_format"] == "DD/MM":
+                    split_date = DASH_SLASH_REGEX.split(processed_date_str)
+                    if pattern_type == "numeric_md":  # Change dm to md
+                        processed_date_str = f"{split_date[1]}/{split_date[0]}"
+                    elif pattern_type == "numeric_mdy":
+                        # This pattern could match MM/DD/YY or YY/MM/DD but we can't determine
+                        # which without asking the user. YY/MM/DD is quite rare, even in parts
+                        # of Asia. The standard format in East Asian countries like China, Japan,
+                        # and Korea is the four-digit year, or YYYY/MM/DD, which aligns with the
+                        # ISO 8601 international standard. Year/Day/Month is not standard in any
+                        # region and would be extremely rare to encounter.
+
+                        # We'll ignore possible YY/MM/DD (and YY/DD/MM) inputs. However, some will
+                        # work: e.g., 26/3/2 is matched as numeric_md since '2' doesn't satisfy the
+                        # 2 or 4-digit year requirement of numeric_mdy. 26/3 becomes 3/26 above or
+                        # or March 26, 2026 (today being 10/24/2025).
+
+                        processed_date_str = (  # Change dmy to mdy
+                            f"{split_date[1]}/{split_date[0]}/{split_date[2]}"
+                        )
+                    # Else the pattern_type is numeric_ydm. Year/Day/Month is not standard in any
+                    # region and would be extremely rare to encounter. Even DD/MM users would use
+                    # YYYY/MM/DD if putting the year first. We'll treat YYYY/DD/MM as invalid.
+
+                parsed_date = parse_query_date(processed_date_str, includes_year)
+
+            else:
+                # Parse the unprocessed date string
+                parsed_date = parse_query_date(processed_date_str, includes_year)
+
+            # Save just the datetime.date part if valid
+            if parsed_date:
+                standardized_dates.append(parsed_date.date())
+            else:
+                invalid_dates.append(date_str)
+
+    return standardized_dates, invalid_dates
+
+
 ######################################
 #   Extract Flight Info from query   #
 ######################################
-def extract_flight_info(query, intent):
+def extract_flight_info(query, intent, state_dict):
     """
     Extracts flight information from a natural language query.
     Args:
         query (str): The natural language query.
         intent (str): The intent of the query ('status' or 'booking').
+        state_dict (dict): A dictionary containing state-related information.
     Returns:
         flight_info (dict): A dictionary containing the extracted flight information.
         assistant_response (str): A string containing error messages.
@@ -524,27 +900,32 @@ def extract_flight_info(query, intent):
         flight_info = {"airline_code": None, "flight_number": None, "flight_date": None}
 
         # Look for date info and remove it from the query
-        date_info = extract_date_info(query)
+        date_dict = extract_date_info(query)
 
-        if date_info["dates"]:
-            query = date_info["query_without_date"]
-            flight_info["flight_date"] = date_info["dates"][0]
+        if date_dict["extracted_dates"]:
+            query = date_dict["query_without_date"]
+            valid_dates, invalid_dates = standardize_date_strings(date_dict, state_dict)
+            # Turn this off until build_status_response uses the date
+            state_dict["user_date_prompt_active"] = False
+            if valid_dates:
+                flight_info["dates"] = valid_dates[0].strftime("%Y-%m-%d")
 
         # Remove hyphens and slashes from the query
-        query_split = re.split(r"[-/]", query)
+        query_split = DASH_SLASH_REGEX.split(query)
         query = " ".join(query_split)
 
         for name_or_code, codes in sorted_carriers:
             # Use regex to find whole word matches for names and codes
-            pattern = r"\b" + re.escape(name_or_code) + r"\b"
-            match = re.search(pattern, query, re.IGNORECASE)
+            word_pattern = r"\b" + re.escape(name_or_code) + r"\b"
+            compiled_word_pattern = re.compile(word_pattern, re.IGNORECASE)
+            match = compiled_word_pattern.search(query)
             if match:
                 flight_info["airline_code"] = codes
                 break  # Once an airline is found, we can stop looking for others
 
         if flight_info["airline_code"] is None:
             # Fallback to matching AA123 format if no specific name/code match found
-            match = re.search(r"\b([A-Z]{2})(\d{1,4})\b", query, re.IGNORECASE)
+            match = CC9999_REGEX.search(query)
             if match:
                 # Ensure airline code is uppercase
                 flight_info["airline_code"] = match.group(1).upper()
@@ -552,17 +933,23 @@ def extract_flight_info(query, intent):
 
         if flight_info["flight_number"] is None:
             # If an airline code was found by name/code, now look for the flight number
-            match = re.search(r"\d{1,4}", query)
+            match = FLIGHT_NUMBER_REGEX.search(query)
             if match:
                 flight_info["flight_number"] = match.group(0)
 
         # Check for errors
         if flight_info["airline_code"] is None:
             if flight_info["flight_number"] is None:
-                assistant_response = "Sorry, I couldn't find a valid airline name/code or flight number in your status request."
+                assistant_response = (
+                    "Sorry, I couldn't find a valid airline name/code "
+                    + "or flight number in your status request."
+                )
                 assistant_response += f"\n\n{choose_retry_phrase()}"
             else:
-                assistant_response = "Sorry, I couldn't find a valid airline name/code in your status request."
+                assistant_response = (
+                    "Sorry, I couldn't find a valid airline name/code "
+                    + "in your status request."
+                )
                 assistant_response += f"\n\n{choose_retry_phrase()}"
         elif flight_info["flight_number"] is None:
             assistant_response = (
@@ -575,40 +962,18 @@ def extract_flight_info(query, intent):
     # --------------------------------------------------------------------------------#
     elif intent == "booking":
 
-        # ----------------------------------------------------#
-        #   Normalize common variations in city/place names   #
-        # ----------------------------------------------------#
-        # Create a dictionary of common variations to replace
-        replacements = {
-            r"D\.C\.": "Washington",
-            r"K\.C\.": "Kansas City",
-            r"L\.A\.": "Los Angeles",
-            r"N\.Y\.C\.": "New York",
-            r"\bSaint\b": "St.",
-            r"\bSt\s": "St. ",
-            r"\bFt\.\s*": "Fort ",
-            r"\bFt\s": "Fort ",
-            # Add other common variations as needed (e.g., 'Mount' to 'Mt.')
-        }
-
-        # Sort replacement patterns by length in descending order
-        sorted_replacements = sorted(
-            replacements.items(), key=lambda item: len(item[0]), reverse=True
-        )
-
-        # Apply replacements to the query
+        # Normalize common variations in city/place names
         normalized_query = query
-        for pattern, replacement in sorted_replacements:
-            normalized_query = re.sub(
-                pattern, replacement, normalized_query, flags=re.IGNORECASE
-            )
+        # Apply replacements to the query
+        for COMPILED_PATTERN, replacement in COMPILED_REPLACEMENTS:
+            normalized_query = COMPILED_PATTERN.sub(replacement, normalized_query)
 
         # Use the normalized_query for further processing
         query = normalized_query
 
-        # Parse date info and remove date(s) from the query
-        date_info = extract_date_info(query)
-        query_without_dates = date_info["query_without_date"]
+        # Extract date info and remove date(s) from the query
+        date_dict = extract_date_info(query)
+        query_without_dates = date_dict["query_without_date"]
 
         # -------------------------------------------------------#
         #   Process location mappings to build found_locations   #
@@ -617,9 +982,9 @@ def extract_flight_info(query, intent):
         for name_or_code, codes in sorted_airport_mappings:
 
             # Use regex to find whole word matches for names and codes
-            pattern = r"\b" + re.escape(name_or_code) + r"\b"
-
-            match = re.search(pattern, query_without_dates, re.IGNORECASE)
+            word_pattern = r"\b" + re.escape(name_or_code) + r"\b"
+            compiled_word_pattern = re.compile(word_pattern, re.IGNORECASE)
+            match = compiled_word_pattern.search(query_without_dates)
 
             # Use a while loop with re.search to find all non-overlapping
             # matches in the continually updated query_without_dates
@@ -635,7 +1000,9 @@ def extract_flight_info(query, intent):
                     codes = airport_dual_mapping[name_or_code]  # New values
 
                 # Determine if the match is an airport code (3 capital letters)
-                input_was_airport_code = bool(re.fullmatch(r"[A-Z]{3}", name_or_code))
+                input_was_airport_code = bool(
+                    AIRPORT_CODE_REGEX.fullmatch(name_or_code)
+                )
 
                 if input_was_airport_code:
                     # Add airport info for the matched airport code
@@ -678,7 +1045,7 @@ def extract_flight_info(query, intent):
                     + query_without_dates[end_index:]
                 )
                 # Search again in the modified string
-                match = re.search(pattern, query_without_dates, re.IGNORECASE)
+                match = compiled_word_pattern.search(query_without_dates)
 
         # Sort found locations by their index in the query to determine origin and destination
         found_locations.sort(key=lambda x: x["start_index"])
@@ -715,97 +1082,98 @@ def extract_flight_info(query, intent):
                         f"- I only found one valid location ['{name}'], so I "
                         + "couldn't form an origin-destination pair.",
                     )
+
+        # Do date checks after city/airport checks to group errors together
+        valid_dates = []
+        if date_dict["extracted_dates"]:
+            valid_dates, invalid_dates = standardize_date_strings(date_dict, state_dict)
+
+            if state_dict["user_date_prompt_active"]:
+                errors.append(
+                    "- I need your current date to finish your request. "
+                    + "Please select it from the calendar on the top right."
+                )
+                state_dict["date_dict"] = date_dict
+
+            if not invalid_dates:
+                # All dates were successfully parsed
+                date_dict["dates"] = valid_dates
+
+            elif len(invalid_dates) == 1:
+                # A requested date couldn't be converted to a datetime object
+                errors.append(f"- The requested date '{invalid_dates[0]}' is invalid.")
             else:
-                # Do date checks after city/airport checks to group errors together
-                valid_dates = []
-                invalid_dates = []
+                # Multiple invalid dates were found
+                quoted_invalid_dates = [
+                    f"'{date_str}'" for date_str in invalid_dates[:-1]
+                ]
+                date_string = ", ".join(quoted_invalid_dates)
+                date_string += " and " + f"'{invalid_dates[-1]}'"
+                errors.append(f"- The requested dates {date_string} are invalid.")
+        else:
+            # No date was found
+            errors.append("- I didn't find a valid departure date in your entry.")
+            errors.append(
+                "- Try a format like 6/23, 6-23, or Jun 23 (year is optional for any format)."
+            )
 
-                if date_info["dates"]:
-                    for date_str in date_info["dates"]:
-                        requested_date = parse_query_date(date_str)
+        # Check for past dates and dates too far in the future
+        if valid_dates:
+            # Get today's date without time for comparison
+            today_date = date.today()
+            max_booking_date = today_date + timedelta(days=329)
 
-                        if requested_date:
-                            valid_dates.append(requested_date)
-                        else:
-                            invalid_dates.append(date_str)
+            for i, date_obj in enumerate(valid_dates):
+                # Ignore days too close to today for timezones a day behind UTC
+                if date_obj + timedelta(days=2) < today_date:
+                    date_str = date_dict["extracted_dates"][i]["date"]
+                    errors.append(f"- The requested date '{date_str}' is in the past.")
+                elif date_obj > max_booking_date:
+                    date_str = date_dict["extracted_dates"][i]["date"]
+                    errors.append(
+                        f"- The requested date '{date_str}' "
+                        + f"({date_obj.strftime('%m-%d-%Y')}) is too far in the future."
+                    )
+                    errors.append(
+                        f"- The furthest date I can search is 329 days from today, "
+                        + f"which is currently {max_booking_date.strftime('%m-%d-%Y')}."
+                    )
+                    break
 
-                    if not invalid_dates:
-                        # All dates were successfully parsed
-                        date_info["dates"] = valid_dates
-
-                    elif len(invalid_dates) == 1:
-                        # A requested date couldn't be converted to a datetime object
+            # Check dates for chronological order
+            if not errors and len(valid_dates) > 1:
+                for i in range(len(valid_dates) - 1):
+                    # Compare date part only to ignore time component
+                    if valid_dates[i] > valid_dates[i + 1]:
                         errors.append(
-                            f"- The requested date '{invalid_dates[0]}' is invalid."
+                            "- The requested dates are not in chronological order."
                         )
-                    else:
-                        # Multiple invalid dates were found
-                        quoted_invalid_dates = [
-                            f"'{date_str}'" for date_str in invalid_dates[:-1]
-                        ]
-                        date_string = ", ".join(quoted_invalid_dates)
-                        date_string += " and " + f"'{invalid_dates[-1]}'"
-                        errors.append(
-                            f"- The requested dates {date_string} are invalid."
-                        )
+                        break
+
+        # Build legs by grouping locations into origin/destination pairs
+        if found_locations:
+            legs = []
+            current_leg = {}
+            # Assign locations to origin and destination based on order in query
+            for location in found_locations:
+                if not current_leg:
+                    current_leg["origin"] = location
                 else:
-                    # No date was found
-                    errors.append(
-                        "- I didn't find a valid departure date in your entry."
-                    )
-                    errors.append(
-                        "- Try a format like 6-23, 6/23, or Jun 23 (year is optional for any format)."
-                    )
-
-                # Check dates for too far in the future
-                if valid_dates:
-                    today_date = (
-                        date.today()
-                    )  # Get today's date without time for comparison
-                    max_booking_date = today_date + timedelta(days=329)
-                    for date_obj in valid_dates:
-                        if date_obj.date() > max_booking_date:
-                            errors.append(
-                                f"- The requested date {date_obj.strftime('%m-%d-%Y')} "
-                                + "is too far in the future."
-                            )
-                            errors.append(
-                                f"- The furthest date I can search is 329 days from today, "
-                                + "which is currently {max_booking_date.strftime('%m-%d-%Y')}."
-                            )
-                            break
-
-                    # Check dates for chronological order
-                    if not errors and len(valid_dates) > 1:
-                        for i in range(len(valid_dates) - 1):
-                            # Compare date part only to ignore time component
-                            if valid_dates[i].date() >= valid_dates[i + 1].date():
-                                errors.append(
-                                    "- The requested dates are not in chronological order."
-                                )
-                                break
-
-                    # Build legs by grouping locations into origin/destination pairs
-                    legs = []
+                    current_leg["destination"] = location
+                    legs.append(copy.deepcopy(current_leg))
                     current_leg = {}
+                    current_leg = {"origin": location}
 
-                    # Assign locations to origin and destination based on order in query
-                    for location in found_locations:
-                        if not current_leg:
-                            current_leg["origin"] = location
-                        else:
-                            current_leg["destination"] = location
-                            legs.append(copy.deepcopy(current_leg))
-                            current_leg = {}
-                            current_leg = {"origin": location}
+            if legs and "destination" not in legs[-1]:
+                del legs[-1]
 
-                    if "destination" not in legs[-1]:
-                        del legs[-1]
-
-                    # Check for round trip and enough departure dates
-                    num_legs = len(legs)
-                    num_dates = len(date_info["dates"])
-
+            # Check for round trip and enough departure dates
+            if legs:
+                num_legs = len(legs)
+                if not "dates" in date_dict:
+                    num_dates = 0
+                else:
+                    num_dates = len(date_dict["dates"])
                     # Check for implied round trip
                     if num_legs == 1 and num_dates == 2:
                         return_leg = {
@@ -821,27 +1189,27 @@ def extract_flight_info(query, intent):
                     else:
                         is_round_trip = False
 
-                    # Check for 6 legs max
-                    if num_legs > 6:
+                # Check for 6 legs max
+                if num_legs > 6:
+                    errors.append(
+                        f"- I found {num_legs} origin-destination pairs in your "
+                        + "entry, but I can only search for 6 at a time.",
+                    )
+                # Add departure dates to each leg
+                elif num_dates >= num_legs:
+                    for leg, date_obj in zip(legs, date_dict["dates"]):
+                        leg["date"] = date_obj
+                else:
+                    if num_dates == 1:
                         errors.append(
-                            f"- I found {num_legs} origin-destination pairs in your "
-                            + "entry, but I can only search for 6 at a time.",
+                            f"- I found {num_legs} origin-destination pairs "
+                            + f"but only 1 departure date.",
                         )
-                    # Add departure dates to each leg
-                    elif num_dates >= num_legs:
-                        for leg, date_obj in zip(legs, date_info["dates"]):
-                            leg["date"] = date_obj
-                    else:
-                        if num_dates == 1:
-                            errors.append(
-                                f"- I found {num_legs} origin-destination pairs "
-                                + f"but only 1 departure date.",
-                            )
-                        else:
-                            errors.append(
-                                f"- I found {num_legs} origin-destination pairs "
-                                + f"but only {num_dates} departure dates.",
-                            )
+                    elif num_dates != 0:
+                        errors.append(
+                            f"- I found {num_legs} origin-destination pairs "
+                            + f"but only {num_dates} departure dates.",
+                        )
 
         # Move errors to assistant_response
         if errors:
@@ -849,26 +1217,31 @@ def extract_flight_info(query, intent):
                 special_error = True
             else:
                 special_error = False
+
             if len(errors) == 1 or special_error:
                 if errors[0][2] == "I":
                     assistant_response = f"Sorry, {errors[0][2:]}"
                 else:
                     first_letter = errors[0][2].lower()
                     assistant_response = f"Sorry, {first_letter}{errors[0][3:]}"
+
                 if special_error:
                     assistant_response += f"\n\n{errors[1][2:]}"
-                else:
+                elif not state_dict["user_date_prompt_active"]:
                     assistant_response += f"\n\n{choose_retry_phrase()}"
             else:
+                # More than one error
                 errors.insert(0, "Sorry, I couldn't understand your booking request:")
                 errors.append("")
                 errors.append(choose_retry_phrase())
                 assistant_response = "\n".join(errors)
+                # Turn this off since they'll be fixing other errors in a new query
+                state_dict["user_date_prompt_active"] = False
 
             flight_info = {}
 
         # Build flight_info
-        else:
+        if not errors or state_dict["user_date_prompt_active"]:
             # Expedia cabin options are economy/first/business/premiumeconomy
             cabin = "economy"  # Default cabin
             query_lower = query.lower()
@@ -894,6 +1267,8 @@ def extract_flight_info(query, intent):
                 "cabin": cabin,
                 "is_round_trip": is_round_trip,
             }
+
+            state_dict["altered_flight_info"] = flight_info
 
     # -----------#
     #   Return   #
@@ -949,18 +1324,13 @@ def get_flight_status(flight_ident):
 ####################################
 #   Get Flights to Book from API   #
 ####################################
-def get_flights_to_book(flight_info, passengers, state_dict, nearby_airports_checkbox):
+def get_flights_to_book(flight_info, passengers, state_dict):
     """
     Requests flight listings for 1 to 6 origin-destination pairs with dates.
-    Optional request parameters:
-        cabin (str): The cabin type (e.g., 'economy')
-        passengers (dict): A dictionary containing passenger information.
-        nearby_airports_checkbox (bool): Whether to include nearby airports.
     Args:
         flight_info (dict): A dictionary containing flight information.
         passengers (dict): A dictionary containing passenger information.
         state_dict (dict): A dictionary containing state-related information.
-        nearby_airports_checkbox (bool): Whether to include nearby airports.
     Returns:
         flight_data (dict): A dictionary containing flight listings.
     """
@@ -1005,13 +1375,15 @@ def get_flights_to_book(flight_info, passengers, state_dict, nearby_airports_che
     # parameter. This filter is ignored if a city name is used instead of an airport code.
     params["filterNearByAirport"] = True
 
+    include_nearby_airports = state_dict["include_nearby_airports"]
+
     # Build flight segments
     for i, leg in enumerate(flight_info["legs"]):
 
         if (
             leg["origin"]["use_all_airports"]
             or (state_dict["all_airports"] and len(leg["origin"]["airport"]) > 1)
-            or nearby_airports_checkbox
+            or include_nearby_airports
         ):
             # Use city, state for multi-airport city
             origin = leg["origin"]["city"] + ", " + leg["origin"]["airport"][0]["state"]
@@ -1022,7 +1394,7 @@ def get_flights_to_book(flight_info, passengers, state_dict, nearby_airports_che
         if (
             leg["destination"]["use_all_airports"]
             or (state_dict["all_airports"] and len(leg["destination"]["airport"]) > 1)
-            or nearby_airports_checkbox
+            or include_nearby_airports
         ):
             # Use city, state for multi-airport city
             destination = (
@@ -1045,10 +1417,42 @@ def get_flights_to_book(flight_info, passengers, state_dict, nearby_airports_che
     if response.status_code == 200:
         flight_data = response.json()
     else:
+        flight_data = None
+        response_data = response.json()
         logging.error(
             f"Error fetching flights to book: {response.status_code} - {response.text}"
         )
-        flight_data = None
+        # Set a default message for unexpected cases
+        state_dict["expedia_api_error"] = (
+            "An unexpected error occurred with the flight search. Please try again."
+        )
+        try:
+            # Attempt to access the error description
+            # Accessing nested keys and list indices can raise KeyError or IndexError
+            if (
+                response_data
+                and response_data.get("Errors")
+                and response_data["Errors"][0].get("Description")
+            ):
+                error_description = response_data["Errors"][0]["Description"]
+                state_dict["expedia_api_error"] = error_description
+            else:
+                # Handle cases where the 'Errors' key or description is missing
+                # but no exception was raised
+                logging.warning(
+                    f"Expedia API response structure unexpected or no errors key: {response.text}"
+                )
+        except (KeyError, IndexError, TypeError) as e:
+            # Catch potential errors when accessing nested data
+            # (e.g., key missing, index out of range, not a dict/list)
+            logging.error(
+                f"Unexpected Expedia API error structure: {response.text}. Error: {e}"
+            )
+        except Exception as e:
+            # Catch any other unexpected errors during processing
+            logging.error(
+                f"An unexpected error occurred while processing Expedia API response: {e}"
+            )
 
     return flight_data
 
@@ -1658,20 +2062,41 @@ def build_booking_response(booking_data, flight_info, tz_finder):
     return header_string, flight_options_list
 
 
+#############################
+#   Update Relative Dates   #
+#############################
+def update_relative_dates(state_dict):
+    """
+    Updates the relative dates in flight_info.
+    Args:
+        state_dict (dict): The state dictionary.
+    Returns:
+        flight_info (dict): The flight information dictionary.
+    """
+    flight_info = state_dict["altered_flight_info"]
+    date_dict = state_dict["date_dict"]
+
+    valid_dates, invalid_dates = standardize_date_strings(date_dict, state_dict)
+
+    date_dict["dates"] = valid_dates
+
+    # Replace departure dates in each leg
+    for leg, date_obj in zip(flight_info["legs"], date_dict["dates"]):
+        leg["date"] = date_obj
+
+    return flight_info
+
+
 ####################################
 #   Parse Multi-Airport Response   #
 ####################################
-def parse_multi_airport_response(
-    user_input, state_dict, flight_info_alt, multi_airport_display_string
-):
+def parse_multi_airport_response(user_input, state_dict):
     """
     Parses the airport code(s) or line number(s) in the follow-up user response,
     and updates flight_info_alt with the selected airport code(s).
     Args:
         user_input (str): The user's message.
         state_dict (dict): The state dictionary.
-        flight_info_alt (dict): The flight information dictionary.
-        multi_airport_display_string (str): The multi-airport display string.
     Returns:
         flight_info_alt (dict): The updated flight information dictionary.
         assistant_response (str): The assistant's response.
@@ -1683,9 +2108,11 @@ def parse_multi_airport_response(
         del state_dict["original_flight_info"]
         del state_dict["altered_flight_info"]
         assistant_response = "Enter another flight query..."
-        return flight_info_alt, assistant_response
+        return {}, assistant_response
 
     # Parse the user input and update flight_info_alt with the selected airport code(s).
+    multi_airport_display_string = state_dict["multi_airport_display_string"]
+    flight_info_alt = state_dict["altered_flight_info"]
     origin_airport_codes = []
     destination_airport_codes = []
     all_airport_codes = []
@@ -1716,14 +2143,14 @@ def parse_multi_airport_response(
     if num_all_airport_codes < 10:
         # Check the input for 3-char alpha or 1-char numeric within the airports list range
         # Use a non-capturing group (?:...) for the OR condition, and escape curly braces within the f-string
-        pattern = rf"\b(?:[A-Z]{{3}}|[1-{num_all_airport_codes}]{{1}})\b"
-        valid_input = re.findall(pattern, user_input, re.IGNORECASE)
+        under_9_airports_regex = rf"\b(?:[A-Z]{{3}}|[1-{num_all_airport_codes}]{{1}})\b"
+        compiled_airports_regex = re.compile(under_9_airports_regex, re.IGNORECASE)
+        valid_input = compiled_airports_regex.findall(user_input)
 
     else:
         # Unexpected, would not expect 10 or more airports in two cities max
         # Check the input for 3-char alpha or 1 to 2-char numeric
-        pattern = r"\b(?:[A-Z]{3}|[0-9]{1,2})\b"
-        regex_matches = re.findall(pattern, user_input, re.IGNORECASE)
+        regex_matches = OVER_9_AIRPORTS_REGEX.findall(user_input)
         # Remove invalid 1 to 2-char numerics if any
         valid_input = []
         for item in regex_matches:
@@ -1908,7 +2335,7 @@ def sort_flight_options(flight_options, sort_radio):
         def get_sort_key(option):
             """Helper function to determine the sorting key."""
             # Extract the number of stops from the display text (duration, X stop/stops)
-            stops_match = re.search(r"\(.*,\s*(\d+)\s*stop", option["display_text"])
+            stops_match = NUMBER_OF_STOPS_REGEX.search(option["display_text"])
             num_stops = (
                 int(stops_match.group(1)) if stops_match else 0
             )  # Default to 0 for nonstops
@@ -1957,13 +2384,12 @@ def build_flight_options_batch(sorted_options, start_index, batch_size=10):
 ################################
 #   Show More Flight Options   #
 ################################
-def show_more_flight_options(chat_history, state_dict, sort_radio):
+def show_more_flight_options(chat_history, state_dict):
     """
     Builds the response for showing more flight options.
     Args:
         chat_history (list): The history of the conversation (list of dictionaries).
         state (dict or None): The current state dictionary.
-        sort_radio (str): The selected sorting button.
     Returns:
         chat_history (list): The updated chat history (list of dictionaries).
         state_dict (dict): The updated state dictionary.
@@ -1973,6 +2399,7 @@ def show_more_flight_options(chat_history, state_dict, sort_radio):
     if "flight_options_batch_n" in state_dict:
         # Get stored sort preference, else default to Price
         current_sort_preference = state_dict.get("active_sort_preference", "Price")
+        sort_radio = state_dict["sort_radio"]
 
         if current_sort_preference != sort_radio:
             # Sorting has changed, reset to the first batch and re-sort the list
@@ -2037,40 +2464,37 @@ def show_more_flight_options(chat_history, state_dict, sort_radio):
 ####################################
 #   Chat Flight Assistant driver   #
 ####################################
-def chat_flight_assistant(
-    user_input, chat_history, state_dict, sort_radio, nearby_airports_checkbox
-):
+def chat_flight_assistant(chat_history, state_dict, user_input):
     """
     Processes user input for the flight assistant chatbot, handling conversational turns.
     Args:
-        user_input (str): The user's message.
         chat_history (list): The history of the conversation (list of dictionaries). For example,
             [{"role": "user", "content": "Hi"}, {"role": "assistant", "content": "Hello!"}]
         state (dict or None): The current state dictionary.
-        sort_radio (str): The selected sorting button.
-        nearby_airports_checkbox (bool): Whether to include nearby airports.
+        user_input (str): The user's message.
     Returns:
         chat_history (list): The updated chat history (list of dictionaries).
         state_dict (dict): The updated state dictionary.
-        clear_input (str): An empty string to clear the input textbox.
+        str: An empty string to clear the input textbox.
     """
     logging.info(f"User input: {user_input}")
-
     # Add the user's message to chat history
     chat_history = chat_history or []
     chat_history.append({"role": "user", "content": user_input})
-
     assistant_response = ""  # Initialize response string
+    is_new_query = True
 
-    if (
-        "multi_airport_prompt_active" in state_dict
-        and state_dict["multi_airport_prompt_active"]
-    ):
-        # This is a response to the multi-airport question.
-        flight_info_alt = state_dict["altered_flight_info"]
-        multi_airport_display_string = state_dict["multi_airport_display_string"]
+    if state_dict["user_date_prompt_active"]:
+        # This is a response to the user date prompt.
+        flight_info = update_relative_dates(state_dict)
+        state_dict["user_date_prompt_active"] = False
+        intent = state_dict["intent"]
+        is_new_query = False
+
+    if state_dict["multi_airport_prompt_active"]:
+        # This is a response to the multi-airport prompt.
         flight_info, assistant_response = parse_multi_airport_response(
-            user_input, state_dict, flight_info_alt, multi_airport_display_string
+            user_input, state_dict
         )
         # Check for error response
         if assistant_response:
@@ -2078,24 +2502,30 @@ def chat_flight_assistant(
             chat_history.append({"role": "assistant", "content": assistant_response})
             return chat_history, state_dict, ""  # Return empty string to clear input
 
-        # Multi-airports were eliminated in flight_info
+        # Multi-airports were selected correctly
         else:
             intent = "booking"
+            is_new_query = False
 
-    # ------------------------#
-    #   This is a new query   #
-    # ------------------------#
-    else:
+    # ----------------------------------------#
+    #   Classify intent and parse the query   #
+    # ----------------------------------------#
+    if is_new_query:
         state_dict["multi_airport_prompt_active"] = False
         state_dict["all_airports"] = False
         response = question_classifier(user_input)
         intent = response[0]["label"]
-        flight_info, assistant_response = extract_flight_info(user_input, intent)
+        state_dict["intent"] = intent
 
-    if assistant_response:
-        # Add the assistant's message to chat_history
-        chat_history.append({"role": "assistant", "content": assistant_response})
-        return chat_history, state_dict, ""  # Return empty string to clear input
+        flight_info, assistant_response = extract_flight_info(
+            user_input, intent, state_dict
+        )
+
+        # Check for errors
+        if assistant_response:
+            # Add the assistant's response to chat_history
+            chat_history.append({"role": "assistant", "content": assistant_response})
+            return chat_history, state_dict, ""  # Return empty string to clear input
 
     # ----------------------#
     #   Status processing   #
@@ -2127,10 +2557,8 @@ def chat_flight_assistant(
         if (
             not state_dict["multi_airport_prompt_active"]
             and (len(origin_airports) > 1 or len(destination_airports) > 1)
-            and not nearby_airports_checkbox
+            and not state_dict["include_nearby_airports"]
         ):
-            # Store the flight info in state_dict for a follow-up user reply
-            state_dict["altered_flight_info"] = flight_info
             # Save all multi-airports once to retry with different airports
             # later if state_dict["multi_airport_prompt_active"] == False:
             state_dict["original_flight_info"] = copy.deepcopy(flight_info)
@@ -2161,7 +2589,8 @@ def chat_flight_assistant(
             if len(destination_airports) > 1:
                 destination_code = destination_airports[0]["code"]
                 response_lines.append(
-                    f"For destination '{leg['destination']['city']}', multiple airports were found:"
+                    f"For destination '{leg['destination']['city']}', "
+                    + "multiple airports were found:"
                 )
                 for i, airport in enumerate(
                     destination_airports, start=first_line_number_dest
@@ -2182,11 +2611,13 @@ def chat_flight_assistant(
                 )
             elif origin_code is not None:
                 response_lines.append(
-                    f"Please specify which airport you'd like to use (e.g., '1' or '{origin_code}')."
+                    f"Please specify which airport you'd like to use "
+                    + f"(e.g., '1' or '{origin_code}')."
                 )
             else:
                 response_lines.append(
-                    f"Please specify which airport you'd like to use (e.g., '1' or '{destination_code}')."
+                    f"Please specify which airport you'd like to use "
+                    + f"(e.g., '1' or '{destination_code}')."
                 )
 
             # Join the lines into a single string
@@ -2207,9 +2638,7 @@ def chat_flight_assistant(
             passengers["infantInLap"] = 0
             passengers["infantInSeat"] = 0
 
-            booking_data = get_flights_to_book(
-                flight_info, passengers, state_dict, nearby_airports_checkbox
-            )
+            booking_data = get_flights_to_book(flight_info, passengers, state_dict)
 
             header_str, options_list = build_booking_response(
                 booking_data, flight_info, timezone_finder
@@ -2217,7 +2646,11 @@ def chat_flight_assistant(
 
             # No flights were found
             if "No flights" in header_str:
-                if state_dict["multi_airport_prompt_active"] == True:
+                if "expedia_api_error" in state_dict:
+                    response_lines.append(
+                        f"Flight search failed: {state_dict['expedia_api_error']}"
+                    )
+                elif state_dict["multi_airport_prompt_active"] == True:
                     # This was after a multi-airport selection
                     original_flight_info = state_dict["original_flight_info"]
                     origin_airports = original_flight_info["origin"]["airport"]
@@ -2234,7 +2667,8 @@ def chat_flight_assistant(
                         "_" + state_dict["multi_airport_display_string"] + "_"
                     )
                     response_lines.append(
-                        f"\nNo flights were found for the requested airports ({origin_code}-{destination_code}).\n"
+                        f"\nNo flights were found for the requested airports "
+                        + f"({origin_code}-{destination_code}).\n"
                     )
                     if num_multi_airport_cities > 1:
                         response_lines.append(
@@ -2242,29 +2676,40 @@ def chat_flight_assistant(
                         )
                     else:
                         response_lines.append(
-                            "If you'd like to try again, select a different airport from the list above."
+                            "If you'd like to try again, select a different airport "
+                            + "from the list above."
                         )
                     response_lines.append(
                         "Otherwise type 'cancel' to start a new query."
                     )
-
                     state_dict["altered_flight_info"] = copy.deepcopy(
                         state_dict["original_flight_info"]
                     )
                 else:
+                    # Not after a multi-airport selection
                     if num_legs == 1:
-                        header_str = f"No flights were found for the requested airports ({origin_code}-{destination_code})."
+                        header_str = (
+                            f"No flights were found for the requested airports "
+                            + f"({origin_code}-{destination_code})."
+                        )
                     elif num_legs == 2:
                         leg_2 = flight_info["legs"][1]
                         dest_code_2 = leg_2["destination"]["airport"][0]["code"]
-                        header_str = f"No flights were found for the requested airports ({origin_code}-{destination_code}-{dest_code_2})."
+                        header_str = (
+                            f"No flights were found for the requested airports "
+                            + f"({origin_code}-{destination_code}-{dest_code_2})."
+                        )
                     else:
-                        header_str = f"No flights were found for the requested itinerary. Please check your locations and dates and try again."
+                        header_str = (
+                            "No flights were found for the requested itinerary. "
+                            + "Please check your locations and dates and try again."
+                        )
                     response_lines.append(header_str)
 
             # Flights were found
             else:
                 # Sort options based on the selected button
+                sort_radio = state_dict["sort_radio"]
                 sorted_options = sort_flight_options(options_list, sort_radio)
 
                 # Store the booking info in state_dict for follow-up user requests
@@ -2290,6 +2735,113 @@ def chat_flight_assistant(
     return chat_history, state_dict, ""  # Return empty string to clear input
 
 
+#####################
+#   Get User Date   #
+#####################
+def get_user_date(user_date, chat_history, state_dict, user_input):
+    """
+    Updates the user_date in the state_dict when a date is selected.
+    Args:
+        user_date (str): The selected date.
+        chat_history (list): The current chat history.
+        state_dict (dict): The current state dictionary.
+        user_input (str): The user's input.
+    Returns:
+        chat_history (list): The updated chat history.
+        state_dict (dict): The updated state dictionary.
+        user_input (str): The updated user input.
+    """
+    if (
+        chat_history
+        and chat_history[-1]["role"] == "assistant"
+        and "You updated" not in chat_history[-1]["content"]
+        and "You cleared" not in chat_history[-1]["content"]
+    ):
+        assistant_response = f"<br>\n"
+    else:
+        assistant_response = ""
+
+    if user_date is not None:
+        # Update state_dict with selected date
+        state_dict["user_date"] = user_date.date()
+        if state_dict["user_date_prompt_active"]:
+            # Call chat_flight_assistant after the prompt
+            chat_history, state_dict, user_input = chat_flight_assistant(
+                chat_history, state_dict, user_input
+            )
+        else:
+            assistant_response += (
+                f"You updated your current date to {user_date.strftime('%B %d, %Y')}."
+            )
+            # Add the assistant message to chat_history
+            chat_history.append({"role": "assistant", "content": assistant_response})
+    else:
+        if state_dict["user_date_prompt_active"]:
+            assistant_response += f"Please select a date, 'Clear' is invalid."
+        else:
+            state_dict["user_date"] = None
+            assistant_response += "You cleared your current date."
+        # Add the assistant message to chat_history
+        chat_history.append({"role": "assistant", "content": assistant_response})
+
+    # Return changed or unchanged outputs either way
+    return chat_history, state_dict, user_input
+
+
+#################################
+#   Set Preferred Date Format   #
+#################################
+def set_preferred_date_format(date_format_radio, state_dict):
+    """
+    Sets the preferred date format in the state dictionary.
+    Args:
+        date_format_radio (str): The selected date format.
+        state_dict (dict): The current state dictionary.
+    Returns:
+        state_dict (dict): The updated state dictionary.
+    """
+    if date_format_radio == "MM/DD: 6/23 (U.S.A.)":
+        state_dict["preferred_date_format"] = "MM/DD"
+    else:
+        state_dict["preferred_date_format"] = "DD/MM"
+
+    return state_dict
+
+
+###########################
+#   Set Sort Preference   #
+###########################
+def set_sort_preference(sort_radio, state_dict):
+    """
+    Sets the sort preference in the state dictionary.
+    Args:
+        sort_radio (str): The selected sorting button.
+        state_dict (dict): The current state dictionary.
+    Returns:
+        state_dict (dict): The updated state dictionary.
+    """
+    state_dict["sort_radio"] = sort_radio
+
+    return state_dict
+
+
+###################################
+#   Set Include Nearby Airports   #
+###################################
+def set_include_nearby_airports(nearby_airports_checkbox, state_dict):
+    """
+    Sets the include nearby airports flag in the state dictionary.
+    Args:
+        nearby_airports_checkbox (bool): The checkbox state.
+        state_dict (dict): The current state dictionary.
+    Returns:
+        state_dict (dict): The updated state dictionary.
+    """
+    state_dict["include_nearby_airports"] = nearby_airports_checkbox
+
+    return state_dict
+
+
 ##################
 #   Clear Chat   #
 ##################
@@ -2301,15 +2853,31 @@ def clear_chat(chat_history, state_dict):
         state_dict (dict): The current state dictionary.
     Returns:
         list: An empty list for the chat history.
-        dict: An empty dictionary for the state dictionary.
+        initial_state_dict (dict): The initialized state dictionary.
         str: An empty string to clear the input textbox.
     """
-    return [], {}, ""
+    initial_state_dict = {
+        "multi_airport_prompt_active": state_dict["multi_airport_prompt_active"],
+        "user_date_prompt_active": state_dict["user_date_prompt_active"],
+        "user_date": state_dict["user_date_prompt_active"],
+        "preferred_date_format": state_dict["preferred_date_format"],
+        "sort_radio": state_dict["sort_radio"],
+        "include_nearby_airports": state_dict["include_nearby_airports"],
+    }
+
+    return [], initial_state_dict, ""
 
 
 ##################
-### Gradio app ###
+#   Gradio app   #
 ##################
+
+# This CSS targets any button with the text content "Clear".
+custom_css = """
+button.action-button:has(> .svelte-12ypm2m:not(::before, ::after)) {
+    display: none !important;
+}
+"""
 
 # Create the Chat Interface
 with gr.Blocks() as chat_interface:
@@ -2338,6 +2906,14 @@ with gr.Blocks() as chat_interface:
             )
 
         with gr.Column(scale=1):
+            user_date = gr.DateTime(
+                type="datetime", label="Your Current Date:", include_time=False
+            )
+            date_format_radio = gr.Radio(
+                ["MM/DD: 6/23 (U.S.A.)", "DD/MM: 23/6 (International)"],
+                value="MM/DD: 6/23 (U.S.A.)",
+                label="Preferred Numeric Dates Format:",
+            )
             sort_radio = gr.Radio(
                 ["Price", "Price (Nonstops first)", "Time", "Time (Nonstops first)"],
                 value="Price",
@@ -2345,58 +2921,82 @@ with gr.Blocks() as chat_interface:
             )
             nearby_airports_checkbox = gr.Checkbox(label="Include Nearby Airports")
             show_more_flights_button = gr.Button("View More Flight Options")
-            gr.Markdown(f"<br><br><br><br><br><br><br>")
             clear_button = gr.Button("Clear Chat")
 
-    state_dict = gr.State(value={})
+    # Define a dictionary for state
+    initial_state_dict = {
+        "multi_airport_prompt_active": False,
+        "user_date_prompt_active": False,
+        "user_date": None,
+        "preferred_date_format": "MM/DD",
+        "sort_radio": "Price",
+        "include_nearby_airports": False,
+    }
+    state_dict = gr.State(value=initial_state_dict)
 
-    # Create an event listener for the input textbox.
-    # When the user submits a message via the Textbox (`user_input_textbox.submit`):
-    #   - Call the `chat_flight_assistant` function.
-    #   - Pass the Textbox content, Chatbot history, state, and sort buttons as inputs.
+    # Event listener for user date calendar changes.
+    user_date.change(
+        fn=get_user_date,
+        inputs=[user_date, chatbot, state_dict, user_input_textbox],
+        outputs=[chatbot, state_dict, user_input_textbox],
+    )
+
+    # Event listener for preferred date format changes.
+    date_format_radio.change(
+        fn=set_preferred_date_format,
+        inputs=[date_format_radio, state_dict],
+        outputs=[state_dict],
+    )
+
+    # Event listener for sorting preference changes.
+    sort_radio.change(
+        fn=set_sort_preference,
+        inputs=[sort_radio, state_dict],
+        outputs=[state_dict],
+    )
+
+    # Event listener for include nearby airports checkbox.
+    nearby_airports_checkbox.change(
+        fn=set_include_nearby_airports,
+        inputs=[nearby_airports_checkbox, state_dict],
+        outputs=[state_dict],
+    )
+
+    # Event listener for the user input textbox.
+    # When the user submits a message via the Textbox ('user_input_textbox.submit'):
+    #   - Call the 'chat_flight_assistant' function.
+    #   - Pass the Chatbot history, state, and Textbox content as inputs.
     #   - Update the Chatbot, state, and clear the Textbox with the function's outputs.
     user_input_textbox.submit(
         fn=chat_flight_assistant,
-        inputs=[
-            user_input_textbox,
-            chatbot,
-            state_dict,
-            sort_radio,
-            nearby_airports_checkbox,
-        ],
-        outputs=[
-            chatbot,
-            state_dict,
-            user_input_textbox,
-        ],  # Add user_input_textbox as output to clear it
+        inputs=[chatbot, state_dict, user_input_textbox],
+        outputs=[chatbot, state_dict, user_input_textbox],
     )
 
-    # Create an event listener for the "Show more flight options" button.
-    # When the button is clicked (`show_more_flights_button.click`):
-    #   - Call the `show_more_flight_options` function.
-    #   - Pass the Chatbot history, state, and selected sort button value as inputs.
-    #   - Update the Chatbot, state, and clear the Textbox with the function's outputs.
+    # Event listener for the show more flights button.
+    # When the button is clicked ('show_more_flights_button.click'):
+    #   - Call the 'show_more_flight_options' function.
+    #   - Pass the Chatbot history and state as inputs.
+    #   - Update the Chatbot and state with the function's outputs.
     show_more_flights_button.click(
         fn=show_more_flight_options,
-        inputs=[chatbot, state_dict, sort_radio],  # Pass chat history from chatbot
+        inputs=[chatbot, state_dict],  # Pass chat history from chatbot
         outputs=[chatbot, state_dict],  # Update chatbot with new history
     )
 
-    # Create an event listener for the Clear button.
-    # When the button is clicked (`clear_button.click`):
-    #   - Call the `clear_chat` function.
+    # Event listener for the Clear button.
+    # When the button is clicked ('clear_button.click'):
+    #   - Call the 'clear_chat' function.
     #   - Pass the Chatbot history and state as inputs.
     #   - Update the Chatbot, state, and clear the Textbox with the function's outputs.
     clear_button.click(
         fn=clear_chat,
         inputs=[chatbot, state_dict],  # Pass chat_history and state
-        outputs=[
-            chatbot,
-            state_dict,
-            user_input_textbox,
-        ],  # Update chatbot, state, and input textbox
+        outputs=[chatbot, state_dict, user_input_textbox],
     )
 
 
-### Launch the app ###
+######################
+#   Launch the app   #
+######################
 chat_interface.launch()
