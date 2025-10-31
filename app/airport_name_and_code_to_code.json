@@ -181,6 +181,9 @@
     "Wilkes-Barre": [
         "AVP"
     ],
+    "Wilkes Barre": [
+        "AVP"
+    ],
     "AZA": [
         "AZA"
     ],
@@ -520,9 +523,9 @@
     ],
     "Columbus": [
         "CMH",
+        "LCK",
         "CSG",
-        "GTR",
-        "LCK"
+        "GTR"
     ],
     "CMI": [
         "CMI"
@@ -741,8 +744,7 @@
     ],
     "Houston": [
         "IAH",
-        "HOU",
-        "EFD"
+        "HOU"
     ],
     "EGE": [
         "EGE"
@@ -1428,8 +1430,8 @@
         "MAF"
     ],
     "Midland": [
-        "MAF",
-        "MBS"
+        "MBS",
+        "MAF"
     ],
     "Odessa": [
         "MAF"
@@ -1520,6 +1522,9 @@
         "MHK"
     ],
     "Manhattan": [
+        "MHK"
+    ],
+    "Fort Riley": [
         "MHK"
     ],
     "MHT": [
@@ -2461,7 +2466,229 @@
     "Yuma": [
         "YUM"
     ],
-    "Fort Riley": [
-        "MHK"
+    "CDG": [
+        "CDG"
+    ],
+    "Paris": [
+        "CDG",
+        "ORY"
+    ],
+    "ORY": [
+        "ORY"
+    ],
+    "LHR": [
+        "LHR"
+    ],
+    "London": [
+        "LHR",
+        "LGW"
+    ],
+    "LGW": [
+        "LGW"
+    ],
+    "PTP": [
+        "PTP"
+    ],
+    "Pointe-à-Pitre": [
+        "PTP"
+    ],
+    "Pointe à Pitre": [
+        "PTP"
+    ],
+    "LA": [
+        "alias",
+        "Los Angeles"
+    ],
+    "NYC": [
+        "alias",
+        "New York"
+    ],
+    "Kennedy": [
+        "alias",
+        "JFK"
+    ],
+    "LaGuardia": [
+        "alias",
+        "LGA"
+    ],
+    "Chi-Town": [
+        "alias",
+        "Chicago"
+    ],
+    "O'Hare": [
+        "alias",
+        "ORD"
+    ],
+    "O Hare": [
+        "alias",
+        "ORD"
+    ],
+    "Ohare": [
+        "alias",
+        "ORD"
+    ],
+    "Midway": [
+        "alias",
+        "MDW"
+    ],
+    "DC": [
+        "alias",
+        "Washington"
+    ],
+    "Dulles": [
+        "alias",
+        "IAD"
+    ],
+    "Reagan": [
+        "alias",
+        "DCA"
+    ],
+    "Thurgood Marshall": [
+        "alias",
+        "BWI"
+    ],
+    "NOLA": [
+        "alias",
+        "New Orleans"
+    ],
+    "Louis Armstrong": [
+        "alias",
+        "New Orleans"
+    ],
+    "St. Paul": [
+        "alias",
+        "Minneapolis"
+    ],
+    "KC": [
+        "alias",
+        "Kansas City"
+    ],
+    "Nash": [
+        "alias",
+        "Nashville"
+    ],
+    "Cincy": [
+        "alias",
+        "Cincinnati"
+    ],
+    "Northern Kentucky": [
+        "alias",
+        "Cincinnati"
+    ],
+    "H-Town": [
+        "alias",
+        "Houston"
+    ],
+    "George Bush": [
+        "alias",
+        "IAH"
+    ],
+    "Hobby": [
+        "alias",
+        "HOU"
+    ],
+    "Love Field": [
+        "alias",
+        "DAL"
+    ],
+    "John Wayne": [
+        "alias",
+        "SNA"
+    ],
+    "Paris Charles de Gaulle": [
+        "alias",
+        "CDG"
+    ],
+    "Roissy-en-France": [
+        "alias",
+        "CDG"
+    ],
+    "Roissy en France": [
+        "alias",
+        "CDG"
+    ],
+    "Paris Roissy": [
+        "alias",
+        "CDG"
+    ],
+    "Roissy": [
+        "alias",
+        "CDG"
+    ],
+    "Charles de Gaulle": [
+        "alias",
+        "CDG"
+    ],
+    "de Gaulle": [
+        "alias",
+        "CDG"
+    ],
+    "DeGaulle": [
+        "alias",
+        "CDG"
+    ],
+    "de Gaul": [
+        "alias",
+        "CDG"
+    ],
+    "DeGaul": [
+        "alias",
+        "CDG"
+    ],
+    "Paris Orly": [
+        "alias",
+        "ORY"
+    ],
+    "Orly": [
+        "alias",
+        "ORY"
+    ],
+    "London Heathrow": [
+        "alias",
+        "LHR"
+    ],
+    "London Gatwick": [
+        "alias",
+        "LGW"
+    ],
+    "Heathrow": [
+        "alias",
+        "LHR"
+    ],
+    "Gatwick": [
+        "alias",
+        "LGW"
+    ],
+    "Guadeloupe": [
+        "alias",
+        "PTP"
+    ],
+    "Pointe-a-Pitre": [
+        "alias",
+        "PTP"
+    ],
+    "Pointe a Pitre": [
+        "alias",
+        "PTP"
+    ],
+    "Guadeloupe Pôle Caraïbes": [
+        "alias",
+        "PTP"
+    ],
+    "Guadeloupe Pole Caraibes": [
+        "alias",
+        "PTP"
+    ],
+    "Pôle Caraïbes": [
+        "alias",
+        "PTP"
+    ],
+    "Pole Caraibes": [
+        "alias",
+        "PTP"
+    ],
+    "Le Raizet": [
+        "alias",
+        "PTP"
     ]
 }

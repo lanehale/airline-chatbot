@@ -37,8 +37,22 @@
     "XP": "XP",
     "Breeze": "MX",
     "MX": "MX",
+    "Southern": "9X",
+    "9X": "9X",
     "Sun Country": "SY",
     "SY": "SY",
     "Cape Air": "9K",
-    "9K": "9K"
+    "9K": "9K",
+    "Air France": "AF",
+    "AF": "AF",
+    "French bee": "BF",
+    "BF": "BF",
+    "Caraïbes": "TX",
+    "TX": "TX",
+    "British": "BA",
+    "BA": "BA",
+    "Lufthansa": "LH",
+    "LH": "LH",
+    "Icelandair": "FI",
+    "FI": "FI"
 }
