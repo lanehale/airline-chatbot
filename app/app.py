@@ -994,7 +994,7 @@ def extract_flight_info(query, intent, state_dict):
                 found_states = set()
                 airport_list = []
 
-                if codes[0] == "abbreviation":
+                if codes[0] == "alias":
                     # Switch to city name or airport code key/value
                     name_or_code = codes[1]  # This is the new key
                     codes = airport_dual_mapping[name_or_code]  # New values
@@ -2285,11 +2285,14 @@ def parse_multi_airport_response(user_input, state_dict):
 
     else:
         # Update flight_info_alt with the selected airport code(s)
+        updated_origin_airport = []
+        updated_destination_airport = []
+
         if origin_airport_match:
             if origin_airport_match[0] == "ALL":
                 leg["origin"]["use_all_airports"] = True
             else:
-                updated_origin_airports = [
+                updated_origin_airport = [
                     airport
                     for airport in leg["origin"]["airport"]
                     if origin_airport_match[0] == airport["code"]
@@ -2299,11 +2302,21 @@ def parse_multi_airport_response(user_input, state_dict):
             if destination_airport_match[0] == "ALL":
                 leg["destination"]["use_all_airports"] = True
             else:
-                updated_destination_airports = [
+                updated_destination_airport = [
                     airport
                     for airport in leg["destination"]["airport"]
                     if destination_airport_match[0] == airport["code"]
                 ]
+
+        # Update the flight_info leg with selected airport(s)
+        if origin_airport_match == "ALL":
+            leg["origin"]["use_all_airports"] = True
+        elif updated_origin_airport:
+            leg["origin"]["airport"] = updated_origin_airport
+        if destination_airport_match == "ALL":
+            leg["destination"]["use_all_airports"] = True
+        elif updated_destination_airport:
+            leg["destination"]["airport"] = updated_destination_airport
 
         if flight_info_alt["is_round_trip"]:
             flight_info_alt["legs"][1]["origin"] = leg["destination"]
