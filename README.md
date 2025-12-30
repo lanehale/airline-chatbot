@@ -17,7 +17,7 @@ Key features:
 - Real-time flight status lookups
 - Flight searches with up-to-date options and **direct Expedia booking links** (users complete actual bookings on Expedia)
 - Supports multi-leg (round-trip) itineraries
-- Robust natural language understanding for variations in cities, airports, dates, airlines, and passenger details
+- Robust natural language understanding for variations in cities, airports, dates, airlines, cabins, and passenger details
 
 ## Technical Details
 
@@ -36,7 +36,7 @@ Key features:
   - Add support for multiple passengers and passenger types (e.g., adults, children, infants) as allowed by Expedia
   - Expand coverage to more niche destinations and airlines
   - Integrate a generative LLM for more natural, conversational responses
-  - Handle additional intents (e.g., baggage policies, delay information)
+  - Handle additional intents (e.g., baggage policies, airport information)
 
 ## Acknowledgments
 
